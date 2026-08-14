@@ -294,11 +294,31 @@ const App = (() => {
   // =======================================================================
   async function renderAlumnos() {
     const cont = $('#view-alumnos');
-    cont.innerHTML = `<div class="panel-header"><h2>Mis alumnos</h2></div><div id="lista-alumnos" class="grid-objetivos"><p class="texto-suave">Cargando...</p></div>`;
+    const usuario = FirebaseService.getUsuarioActual();
+    cont.innerHTML = `
+      <div class="panel-header"><h2>Mis alumnos</h2></div>
+      <div class="tarjeta-objetivo" style="margin-bottom:1.2rem">
+        <p class="texto-pequeno texto-suave" style="margin:0 0 .3rem">Tu código para que se registren tus alumnos</p>
+        <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
+          <code id="codigo-propio" style="font-family:var(--fuente-mono);font-size:1.1rem;letter-spacing:.05em;background:var(--color-fondo-elevado);padding:.4rem .7rem;border-radius:8px">${usuario.uid}</code>
+          <button class="btn btn-fantasma btn-sm" id="btn-copiar-codigo">Copiar</button>
+        </div>
+      </div>
+      <div id="lista-alumnos" class="grid-objetivos"><p class="texto-suave">Cargando...</p></div>`;
+
+    $('#btn-copiar-codigo').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(usuario.uid);
+        toast('Código copiado', 'exito');
+      } catch {
+        toast('No se pudo copiar. Copialo a mano.', 'info');
+      }
+    });
+
     const alumnos = await FirebaseService.listarAlumnos();
     const listaCont = $('#lista-alumnos');
     if (!alumnos.length) {
-      listaCont.innerHTML = `<div class="estado-vacio"><p>${icon('routine')} Todavía no tenés alumnos registrados.</p><p class="texto-suave">Compartí el link de la app para que se registren, o avisame el email que usaron y los agrego.</p></div>`;
+      listaCont.innerHTML = `<div class="estado-vacio"><p>${icon('routine')} Todavía no tenés alumnos registrados.</p><p class="texto-suave">Pasales el código de arriba para que se registren.</p></div>`;
       return;
     }
     listaCont.innerHTML = alumnos.map(a => `
