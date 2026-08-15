@@ -916,7 +916,7 @@ const App = (() => {
         const serie = ejercicio.series[b.dataset.si];
         serie.completada = !serie.completada;
         pintar();
-        if (serie.completada) abrirWidgetTimer(ejercicio.descansoSeg || 90);
+        if (serie.completada) { /* abrirWidgetTimer(ejercicio.descansoSeg || 90); */ } // TEMPORALMENTE DESACTIVADO
       }));
       $$('[data-ver-detalle]', ejCont).forEach(b => b.addEventListener('click', () => abrirDetalleEjercicio(b.dataset.verDetalle)));
     }
