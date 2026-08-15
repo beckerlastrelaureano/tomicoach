@@ -93,12 +93,50 @@ const App = (() => {
   }
   function imagenEjercicioHTML(ej) {
     const pose = poseIcon(categoriaIlustracion(ej));
+    if (ej.gifs && ej.gifs.length) {
+      return `${pose}<img src="${escapeHtml(ej.gifs[0].url)}" alt="" loading="lazy" class="foto-ejercicio" onerror="this.remove()">`;
+    }
     if (ej.imagenesExternas && ej.imagenesExternas.length) {
       return `${pose}<img src="${escapeHtml(ej.imagenesExternas[0])}" alt="" loading="lazy" class="foto-ejercicio" onerror="this.remove()">`;
     }
     return pose;
   }
   function getExerciseById(id) { return EXERCISE_DATABASE.find(e => e.id === id) || null; }
+
+  // ---------------------------------------------------------------------
+  // Pantalla de detalle de ejercicio (foto/GIF, errores frecuentes,
+  // consejos de técnica, variantes). Se abre como modal desde cualquier
+  // lugar donde aparezca un ejercicio.
+  // ---------------------------------------------------------------------
+  function abrirDetalleEjercicio(ejercicioId) {
+    const ej = getExerciseById(ejercicioId);
+    if (!ej) return;
+
+    const galeriaHtml = (ej.gifs && ej.gifs.length)
+      ? `<div class="detalle-ejercicio-galeria">
+          ${ej.gifs.slice(0, 4).map(g => `<img src="${escapeHtml(g.url)}" alt="${escapeHtml(ej.nombre)}" loading="lazy" class="detalle-ejercicio-gif" onerror="this.remove()">`).join('')}
+        </div>`
+      : `<div class="detalle-ejercicio-fallback">${poseIcon(categoriaIlustracion(ej), 'detalle-ejercicio-fallback-icono')}</div>`;
+
+    const listaHtml = (titulo, iconoNombre, items) => (items && items.length) ? `
+      <h4 class="detalle-ejercicio-subtitulo">${icon(iconoNombre)} ${titulo}</h4>
+      <ul class="lista-detalle-ejercicio">${items.map(t => `<li>${escapeHtml(t)}</li>`).join('')}</ul>` : '';
+
+    abrirModal(`
+      <div class="modal-header"><h3>${escapeHtml(ej.nombre)}</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
+      <div class="modal-body">
+        ${galeriaHtml}
+        <div class="detalle-ejercicio-meta">
+          <span class="badge">${escapeHtml(ej.grupoMuscular)}</span>
+          <span class="badge">${escapeHtml(ej.equipamiento)}</span>
+          <span class="badge">${escapeHtml(ej.dificultad)}</span>
+        </div>
+        <p class="texto-suave" style="margin-top:.9rem">${escapeHtml(ej.descripcion)}</p>
+        ${listaHtml('Errores frecuentes', 'warning', ej.erroresFrecuentes)}
+        ${listaHtml('Consejos de técnica', 'check', ej.consejos)}
+        ${listaHtml('Variantes', 'repeat', ej.variantes)}
+      </div>`, { ancho: 'lg', id: 'modal-detalle-ejercicio' });
+  }
 
   // ---------------------------------------------------------------------
   // Programas por objetivo (mismo contenido que Becker App, resumido)
@@ -176,14 +214,88 @@ const App = (() => {
     function pintar(texto = '') {
       const filtrados = (texto ? EXERCISE_DATABASE.filter(e => e.nombre.toLowerCase().includes(texto.toLowerCase())) : EXERCISE_DATABASE).slice(0, 40);
       cont.innerHTML = filtrados.map(e => `
-        <button class="tarjeta-ejercicio" data-id="${e.id}">
-          <div class="tarjeta-ejercicio-imagen">${imagenEjercicioHTML(e)}</div>
+        <div class="tarjeta-ejercicio" data-id="${e.id}" role="button" tabindex="0">
+          <div class="tarjeta-ejercicio-imagen">
+            ${imagenEjercicioHTML(e)}
+            <button class="btn-icono tarjeta-ejercicio-btn-info" data-ver-detalle="${e.id}" title="Ver detalle" aria-label="Ver detalle">${icon('info')}</button>
+          </div>
           <div class="tarjeta-ejercicio-contenido"><h4>${escapeHtml(e.nombre)}</h4><p class="texto-suave texto-pequeno">${e.grupoMuscular} · ${e.equipamiento}</p></div>
-        </button>`).join('') || `<p class="texto-suave">Sin resultados.</p>`;
+        </div>`).join('') || `<p class="texto-suave">Sin resultados.</p>`;
       $$('.tarjeta-ejercicio', cont).forEach(b => b.addEventListener('click', () => { cerrarModal(); onSeleccionar(getExerciseById(b.dataset.id)); }));
+      $$('[data-ver-detalle]', cont).forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); abrirDetalleEjercicio(b.dataset.verDetalle); }));
     }
     input.addEventListener('input', debounce(() => pintar(input.value)));
     pintar();
+  }
+
+  // ---------------------------------------------------------------------
+  // Widget flotante del cronómetro de descanso
+  // ---------------------------------------------------------------------
+  const PRESETS_DESCANSO = [30, 45, 60, 90, 120, 180, 300];
+
+  function abrirWidgetTimer(segundosIniciales = 90) {
+    const widget = $('#rest-timer-widget');
+    if (!widget) return;
+    widget.classList.add('timer-widget-visible');
+    RestTimer.establecer(segundosIniciales);
+    RestTimer.iniciar();
+  }
+
+  function cerrarWidgetTimer() {
+    RestTimer.detener();
+    $('#rest-timer-widget')?.classList.remove('timer-widget-visible');
+  }
+
+  function initWidgetTimer() {
+    const widget = $('#rest-timer-widget');
+    if (!widget) return;
+    widget.innerHTML = `
+      <div class="timer-widget-inner">
+        <div class="timer-widget-header">
+          <span>${icon('timer')} Descanso</span>
+          <button class="btn-icono" id="btn-cerrar-timer">${icon('close')}</button>
+        </div>
+        <div class="timer-progreso"><div class="timer-progreso-barra"></div></div>
+        <div class="timer-display">01:30</div>
+        <div class="timer-presets">${PRESETS_DESCANSO.map(s => `<button data-preset="${s}">${s}s</button>`).join('')}</div>
+        <div class="timer-controles">
+          <button class="btn-icono" id="btn-timer-menos">${icon('minus')}</button>
+          <button class="btn btn-primario btn-sm" id="btn-timer-play">${icon('play')}</button>
+          <button class="btn-icono" id="btn-timer-reiniciar">${icon('repeat')}</button>
+          <button class="btn-icono" id="btn-timer-mas">${icon('plus')}</button>
+        </div>
+      </div>`;
+
+    $('#btn-cerrar-timer').addEventListener('click', cerrarWidgetTimer);
+    $$('.timer-presets button', widget).forEach(btn => btn.addEventListener('click', () => {
+      RestTimer.establecer(Number(btn.dataset.preset));
+      RestTimer.iniciar();
+      widget.classList.add('timer-widget-visible');
+      $('#btn-timer-play').innerHTML = icon('pause');
+    }));
+    $('#btn-timer-menos').addEventListener('click', () => RestTimer.agregarSegundos(-15));
+    $('#btn-timer-mas').addEventListener('click', () => RestTimer.agregarSegundos(15));
+    $('#btn-timer-reiniciar').addEventListener('click', () => { RestTimer.reiniciar(); RestTimer.iniciar(); $('#btn-timer-play').innerHTML = icon('pause'); });
+    $('#btn-timer-play').addEventListener('click', (e) => {
+      if (RestTimer.estaCorriendo()) { RestTimer.pausar(); e.currentTarget.innerHTML = icon('play'); }
+      else { RestTimer.iniciar(); e.currentTarget.innerHTML = icon('pause'); }
+    });
+
+    RestTimer.inicializar({
+      tick: (restantes, iniciales) => {
+        const mm = String(Math.floor(Math.max(0, restantes) / 60)).padStart(2, '0');
+        const ss = String(Math.max(0, restantes) % 60).padStart(2, '0');
+        const display = $('.timer-display', widget);
+        if (display) display.textContent = `${mm}:${ss}`;
+        const barra = $('.timer-progreso-barra', widget);
+        if (barra) barra.style.width = `${Math.max(0, (restantes / iniciales) * 100)}%`;
+      },
+      fin: () => {
+        $('#btn-timer-play').innerHTML = icon('play');
+        toast('¡Descanso terminado!', 'logro');
+        if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+      }
+    });
   }
 
   // ---------------------------------------------------------------------
@@ -315,7 +427,14 @@ const App = (() => {
       }
     });
 
-    const alumnos = await FirebaseService.listarAlumnos();
+    let alumnos;
+    try {
+      alumnos = await FirebaseService.listarAlumnos();
+    } catch (err) {
+      console.error('Error cargando alumnos:', err);
+      $('#lista-alumnos').innerHTML = `<p class="texto-suave estado-vacio">No se pudo cargar la lista de alumnos (error de permisos o de conexión). Refrescá la página e intentá de nuevo.</p>`;
+      return;
+    }
     const listaCont = $('#lista-alumnos');
     if (!alumnos.length) {
       listaCont.innerHTML = `<div class="estado-vacio"><p>${icon('routine')} Todavía no tenés alumnos registrados.</p><p class="texto-suave">Pasales el código de arriba para que se registren.</p></div>`;
@@ -342,11 +461,22 @@ const App = (() => {
     if (!uid) { cambiarVista('alumnos'); return; }
     cont.innerHTML = `<p class="texto-suave">Cargando ficha...</p>`;
 
-    const [alumnos, rutina, historial] = await Promise.all([
+    const [alumnosRes, rutinaRes, historialRes] = await Promise.allSettled([
       FirebaseService.listarAlumnos(),
       FirebaseService.getRutina(uid),
       FirebaseService.getHistorial(uid)
     ]);
+    if (alumnosRes.status === 'rejected') {
+      cont.innerHTML = `<p class="texto-suave estado-vacio">No se pudo cargar este alumno (error de permisos o de conexión). Volvé e intentá de nuevo.</p><button class="btn btn-fantasma" id="btn-volver-alumnos-error">${icon('chevron-left')} Volver</button>`;
+      $('#btn-volver-alumnos-error')?.addEventListener('click', () => cambiarVista('alumnos'));
+      console.error('Error cargando alumno:', alumnosRes.reason);
+      return;
+    }
+    const alumnos = alumnosRes.value;
+    const rutina = rutinaRes.status === 'fulfilled' ? rutinaRes.value : null;
+    const historial = historialRes.status === 'fulfilled' ? historialRes.value : [];
+    if (rutinaRes.status === 'rejected') console.error('Error cargando rutina:', rutinaRes.reason);
+    if (historialRes.status === 'rejected') console.error('Error cargando historial:', historialRes.reason);
     const alumno = alumnos.find(a => a.uid === uid);
     if (!alumno) { cambiarVista('alumnos'); return; }
 
@@ -462,6 +592,37 @@ const App = (() => {
     });
   }
 
+  function abrirModalEditarSeriesObjetivo(uid, rutina, di, ei, esEntrenadorEditando) {
+    const item = rutina.dias[di].ejercicios[ei];
+    const ej = getExerciseById(item.ejercicioId);
+    if (!ej) return;
+    abrirModal(`
+      <div class="modal-header"><h3>${icon('edit')} ${escapeHtml(ej.nombre)}</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
+      <div class="modal-body">
+        <label class="campo"><span>Número de series</span><input type="number" min="1" max="12" id="input-num-series" value="${item.seriesObjetivo.length}"></label>
+        <label class="campo"><span>Repeticiones objetivo</span><input type="number" min="1" id="input-reps-obj" value="${item.seriesObjetivo[0]?.reps || 10}"></label>
+        <label class="campo"><span>Peso objetivo (kg)</span><input type="number" min="0" step="0.5" id="input-peso-obj" value="${item.seriesObjetivo[0]?.peso || 0}"></label>
+        <label class="campo"><span>Descanso (segundos)</span><input type="number" min="0" step="15" id="input-descanso-obj" value="${item.descansoSeg || 90}"></label>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-fantasma" data-cerrar-modal>Cancelar</button>
+        <button class="btn btn-primario" id="btn-guardar-series-obj">${icon('check')} Guardar</button>
+      </div>`, { id: 'modal-editar-series' });
+
+    $('#btn-guardar-series-obj').addEventListener('click', async () => {
+      const n = Math.max(1, Number($('#input-num-series').value) || 1);
+      const reps = Math.max(1, Number($('#input-reps-obj').value) || 10);
+      const peso = Math.max(0, Number($('#input-peso-obj').value) || 0);
+      item.seriesObjetivo = Array.from({ length: n }, () => ({ reps, peso }));
+      item.descansoSeg = Math.max(0, Number($('#input-descanso-obj').value) || 90);
+      await FirebaseService.guardarRutina(uid, rutina);
+      cerrarModal();
+      toast('Ejercicio actualizado.', 'exito');
+      renderDiasRutina(uid, rutina, esEntrenadorEditando);
+    });
+  }
+
+
   function renderDiasRutina(uid, rutina, esEntrenadorEditando) {
     const cont = $('#dias-rutina-alumno');
     if (!rutina) { cont.innerHTML = `<p class="texto-suave estado-vacio">Este alumno todavía no tiene una rutina asignada. Elegí un objetivo arriba para generar una.</p>`; return; }
@@ -477,12 +638,21 @@ const App = (() => {
             return `<div class="fila-ejercicio-dia">
               <div class="fila-ejercicio-dia-icono">${icon('routine')}</div>
               <div class="fila-ejercicio-dia-info"><strong>${escapeHtml(ej.nombre)}</strong><span class="texto-suave">${item.seriesObjetivo.length} series</span></div>
-              ${esEntrenadorEditando ? `<button class="btn-icono btn-icono-peligro" data-quitar-ej="${di}:${ei}">${icon('close')}</button>` : ''}
+              <div class="fila-ejercicio-dia-acciones">
+                <button class="btn-icono" data-ver-detalle="${ej.id}" title="Ver detalle" aria-label="Ver detalle">${icon('info')}</button>
+                ${esEntrenadorEditando ? `<button class="btn-icono" data-editar-series="${di}:${ei}" title="Editar series" aria-label="Editar series">${icon('edit')}</button>` : ''}
+                ${esEntrenadorEditando ? `<button class="btn-icono btn-icono-peligro" data-quitar-ej="${di}:${ei}">${icon('close')}</button>` : ''}
+              </div>
             </div>`;
           }).join('') || '<p class="texto-suave texto-pequeno">Sin ejercicios.</p>'}
         </div>
       </div>`).join('');
 
+    $$('[data-ver-detalle]', cont).forEach(b => b.addEventListener('click', () => abrirDetalleEjercicio(b.dataset.verDetalle)));
+    $$('[data-editar-series]', cont).forEach(b => b.addEventListener('click', () => {
+      const [di, ei] = b.dataset.editarSeries.split(':').map(Number);
+      abrirModalEditarSeriesObjetivo(uid, rutina, di, ei, esEntrenadorEditando);
+    }));
     $$('[data-agregar-ej]', cont).forEach(b => b.addEventListener('click', () => {
       abrirSelectorEjercicios(async (ej) => {
         rutina.dias[Number(b.dataset.agregarEj)].ejercicios.push({
@@ -513,25 +683,17 @@ const App = (() => {
 
     if (!rutina) {
       cont.innerHTML = `
-        <div class="panel-header"><h2>¿Cuál es tu objetivo?</h2></div>
-        <p class="texto-suave" style="margin-bottom:1rem">Elegí un objetivo y te armamos una rutina. Tu entrenador también puede asignarte una directamente.</p>
-        <div class="grid-objetivos-inicio" id="picker-objetivo-propio"></div>`;
-      $('#picker-objetivo-propio').innerHTML = Object.entries(PROGRAMAS_OBJETIVO).map(([key, p]) => `
-        <button class="tarjeta-objetivo-grande" data-objetivo="${key}">
-          <span class="tarjeta-objetivo-grande-icono">${icon(p.icono)}</span>
-          <span class="tarjeta-objetivo-grande-nombre">${escapeHtml(p.nombre)}</span>
-        </button>`).join('');
-      $$('#picker-objetivo-propio [data-objetivo]').forEach(b => b.addEventListener('click', async () => {
-        const rutina = generarRutinaDesdeObjetivo(b.dataset.objetivo, 'Principiante');
-        await FirebaseService.guardarRutina(usuario.uid, rutina);
-        await FirebaseService.actualizarFichaAlumno(usuario.uid, { objetivo: b.dataset.objetivo, nivel: 'Principiante' });
-        toast('¡Rutina generada!', 'logro');
-        renderMiRutina();
-      }));
+        <p class="texto-suave texto-pequeno" style="margin-bottom:.2rem">Hola, ${escapeHtml(usuario.nombre.split(' ')[0])} 👋</p>
+        <div class="estado-vacio">
+          <p>${icon('routine')} Todavía no tenés una rutina asignada.</p>
+          <p class="texto-suave">Tu entrenador te la va a armar pronto. Cuando lo haga, la vas a ver acá.</p>
+        </div>`;
       return;
     }
 
-    cont.innerHTML = `<div class="panel-header"><h2>${escapeHtml(rutina.nombre)}</h2></div><div id="dias-mi-rutina"></div>`;
+    cont.innerHTML = `
+      <p class="texto-suave texto-pequeno" style="margin-bottom:.2rem">Hola, ${escapeHtml(usuario.nombre.split(' ')[0])} 👋</p>
+      <div class="panel-header"><h2>${escapeHtml(rutina.nombre)}</h2></div><div id="dias-mi-rutina"></div>`;
     const diasCont = $('#dias-mi-rutina');
     diasCont.innerHTML = rutina.dias.map((dia, di) => `
       <div class="bloque-dia">
@@ -541,10 +703,11 @@ const App = (() => {
         <div class="lista-ejercicios-dia">
           ${dia.ejercicios.map(item => {
             const ej = getExerciseById(item.ejercicioId);
-            return ej ? `<div class="fila-ejercicio-dia"><div class="fila-ejercicio-dia-icono">${icon('routine')}</div><div class="fila-ejercicio-dia-info"><strong>${escapeHtml(ej.nombre)}</strong><span class="texto-suave">${item.seriesObjetivo.length} series</span></div></div>` : '';
+            return ej ? `<div class="fila-ejercicio-dia"><div class="fila-ejercicio-dia-icono">${imagenEjercicioHTML(ej)}</div><div class="fila-ejercicio-dia-info"><strong>${escapeHtml(ej.nombre)}</strong><span class="texto-suave">${item.seriesObjetivo.length} series</span></div><div class="fila-ejercicio-dia-acciones"><button class="btn-icono" data-ver-detalle="${ej.id}" title="Ver detalle" aria-label="Ver detalle">${icon('info')}</button></div></div>` : '';
           }).join('') || '<p class="texto-suave texto-pequeno">Sin ejercicios.</p>'}
         </div>
       </div>`).join('');
+    $$('[data-ver-detalle]', diasCont).forEach(b => b.addEventListener('click', () => abrirDetalleEjercicio(b.dataset.verDetalle)));
     $$('[data-empezar]', diasCont).forEach(b => b.addEventListener('click', () => iniciarEntrenamiento(rutina, rutina.dias[Number(b.dataset.empezar)])));
   }
   RENDERERS['mi-rutina'] = renderMiRutina;
@@ -556,6 +719,7 @@ const App = (() => {
         const ej = getExerciseById(item.ejercicioId);
         return {
           ejercicioId: item.ejercicioId, nombre: ej?.nombre || 'Ejercicio',
+          descansoSeg: item.descansoSeg || 90,
           series: item.seriesObjetivo.map(o => ({ peso: o.peso || 0, reps: o.reps || 0, completada: false }))
         };
       })
@@ -581,7 +745,7 @@ const App = (() => {
     function pintar() {
       ejCont.innerHTML = s.ejercicios.map((ej, ei) => `
         <div class="tarjeta-ejercicio-sesion">
-          <div class="tarjeta-ejercicio-sesion-header"><h3>${escapeHtml(ej.nombre)}</h3></div>
+          <div class="tarjeta-ejercicio-sesion-header"><h3>${escapeHtml(ej.nombre)}</h3><button class="btn-icono" data-ver-detalle="${ej.ejercicioId}" title="Ver técnica" aria-label="Ver técnica">${icon('info')}</button></div>
           <table class="tabla-series"><thead><tr><th>#</th><th>Kg</th><th>Reps</th><th></th></tr></thead><tbody>
             ${ej.series.map((serie, si) => `<tr class="${serie.completada ? 'fila-serie-completa' : ''}">
               <td>${si + 1}</td>
@@ -595,15 +759,19 @@ const App = (() => {
         s.ejercicios[inp.dataset.ei].series[inp.dataset.si][inp.dataset.campo] = Number(inp.value) || 0;
       }));
       $$('.check-serie', ejCont).forEach(b => b.addEventListener('click', () => {
-        const serie = s.ejercicios[b.dataset.ei].series[b.dataset.si];
+        const ejercicio = s.ejercicios[b.dataset.ei];
+        const serie = ejercicio.series[b.dataset.si];
         serie.completada = !serie.completada;
         pintar();
+        if (serie.completada) abrirWidgetTimer(ejercicio.descansoSeg || 90);
       }));
+      $$('[data-ver-detalle]', ejCont).forEach(b => b.addEventListener('click', () => abrirDetalleEjercicio(b.dataset.verDetalle)));
     }
     pintar();
 
-    $('#btn-cancelar-sesion').addEventListener('click', () => { state.sesionActiva = null; cambiarVista('mi-rutina'); });
+    $('#btn-cancelar-sesion').addEventListener('click', () => { cerrarWidgetTimer(); state.sesionActiva = null; cambiarVista('mi-rutina'); });
     $('#btn-finalizar-sesion').addEventListener('click', async () => {
+      cerrarWidgetTimer();
       const usuario = FirebaseService.getUsuarioActual();
       const ejerciciosSesion = s.ejercicios.map(ej => ({
         ejercicioId: ej.ejercicioId, nombre: ej.nombre, series: ej.series,
@@ -738,6 +906,7 @@ const App = (() => {
   function init() {
     aplicarMarcaEnDOM();
     initAuthUI();
+    initWidgetTimer();
 
     if (!FirebaseService.configurado()) {
       ocultarSplash();

@@ -94,6 +94,36 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Bench_Press_-_Medium_Grip/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Bench_Press_-_Medium_Grip/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-001-press-de-banca-con-barra/supino%20reto%20%20no%20cross.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-001-press-de-banca-con-barra/supino%20reto%20pegada%20aberta.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-001-press-de-banca-con-barra/Supino.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-001-press-de-banca-con-barra/Supino%20barra.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-001-press-de-banca-con-barra/Supino%20canadense.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-001-press-de-banca-con-barra/Supino%20smith.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-001-press-de-banca-con-barra/Supino%20em%20P%C3%A9%20com%20Faixa%20El%C3%A1stica.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -142,6 +172,32 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Bench_Press/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Bench_Press/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-002-press-de-banca-con-mancuernas/supino%20reto%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-002-press-de-banca-con-mancuernas/Supino%20reto%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-002-press-de-banca-con-mancuernas/SUPINO%20ALTERNADO%20COM%20HALTERES.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-002-press-de-banca-con-mancuernas/Supino%20com%20halteres.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-002-press-de-banca-con-mancuernas/Supino%20fechado%20com%20halteres.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-002-press-de-banca-con-mancuernas/Supino%20incliando%20com%20halteres.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -190,6 +246,36 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Bench_Press_-_Medium_Grip/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Bench_Press_-_Medium_Grip/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-003-press-inclinado-con-barra/supino%20inclinado%20%20aparelho%20articulado.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-003-press-inclinado-con-barra/supino%20inclinado%20banco.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-003-press-inclinado-con-barra/supino%20inclinado%20banco%20cross.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-003-press-inclinado-con-barra/supino%20inclinado%20banco%20no%20smith.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-003-press-inclinado-con-barra/supino%20inclinado%20no%20smith.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-003-press-inclinado-con-barra/Supino%20inclinado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-003-press-inclinado-con-barra/Supino%20inclinado%20cabo.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -238,6 +324,12 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hammer_Grip_Incline_DB_Bench_Press/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hammer_Grip_Incline_DB_Bench_Press/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-004-press-inclinado-con-mancuernas/Supino%20inclinado%20com%20halteres.gif",
+        "confianza": "alta"
+      }
     ]
   },
   {
@@ -285,6 +377,20 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Barbell_Bench_Press/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Barbell_Bench_Press/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-005-press-declinado-con-barra/supino%20declinado%20barra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-005-press-declinado-con-barra/supino%20declinado%20barrapegada%20aberta.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-005-press-declinado-con-barra/supino%20declinado%20no%20smit.gif",
+        "confianza": "alta"
+      }
     ]
   },
   {
@@ -332,6 +438,12 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Bench_Press/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Bench_Press/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-006-press-declinado-con-mancuernas/supino%20declinado%20com%20halteres.gif",
+        "confianza": "alta"
+      }
     ]
   },
   {
@@ -379,6 +491,28 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Chest_Press/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Chest_Press/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-007-press-de-pecho-en-maquina/supino%20articulado%20maquina.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-007-press-de-pecho-en-maquina/supino%20horizontal%20maquina.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-007-press-de-pecho-en-maquina/Supino%20Incliado%20Maquina.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-007-press-de-pecho-en-maquina/supino%20vertical%20pegada%20neutra%20maquina.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-007-press-de-pecho-en-maquina/Supino%20m%C3%A1quina.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -565,6 +699,104 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Flyes/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Decline_Dumbbell_Flyes/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/crucifixo%20beixo%20no%20croos%20em%20pe.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/crucifixo%20inclinado%20banco%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20Maquina.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/crucifixo%20no%20cross%20banco%20reto.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/crucifixo%20no%20cross%20em%20p%C3%A9.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/crucifixo%20no%20cross%20polia%20alta.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/supino%20crucifixo%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/voador%20maquina.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20invertido%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20invertido%20com%20halteres%201.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20invertido%20na%20m%C3%A1qina.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20inverto%20com%20halteres%2001.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20invertido%20com%20halter.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20invertido%20com%20halteres.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20invertido%20polia%20baixa.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20inclinado%20com%20halteres.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20inclinado%20no%20cabo%202.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20m%C3%A1quina.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20pegada%20pronada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/CRUCIFIXO%20POLIA%20BAIXA.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20unilateral%20declinado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Peck%20deck.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20com%20TRX.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-011-aperturas-con-mancuernas/Crucifixo%20invertido%20com%20gymstick%20para%20deltoides%20posterior.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -877,6 +1109,32 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-018-fondos-en-paralelas/weighted-dips.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-018-fondos-en-paralelas/Dips%20na%20cadeira.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-018-fondos-en-paralelas/Impossible%20Dips.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-018-fondos-en-paralelas/Mergulho%20Coreano.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-018-fondos-en-paralelas/Mergulho%20de%20tr%C3%ADceps.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-018-fondos-en-paralelas/Mergulho%20reverso.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -1059,6 +1317,12 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Press_-_With_Bands/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Press_-_With_Bands/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-022-press-con-banda-elastica/Crucifixo%20invertido%20el%C3%A1stico.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -1657,6 +1921,92 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chin-Up/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chin-Up/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/band-assisted-pull-up.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20fixa%20nuca.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20fixa%20pegada%20aberta.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/eccentric-pull-up.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/pull-up.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20fixa%20Assistida%20com%20Faixa%20El%C3%A1stica.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20fixa%20com%20Arco.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20fixa%20com%20bra%C3%A7os%20alternados.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20Fixa%20com%20Giro.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20fixa%20com%20L-sit.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20Fixa%20com%20Pegada%20Fechada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20fixa%20com%20pegada%20invertida%20assistido.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20fixa%20com%20pegada%20neutra.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20Fixa%20com%20Pegada%20por%20Tr%C3%A1s%20do%20Pesco%C3%A7o.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20Fixa%20com%20Pegada%20Supinada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20fixa%20com%20peso.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20fixa%20com%20Salto.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20Fixa%20de%20Cabe%C3%A7a%20para%20Baixo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20Fixa%20para%20o%20Braquial.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Barra%20fixa%20pegada%20invertida.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-035-dominadas/Puxada%20escapular%20na%20barra%20fixa.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -1887,6 +2237,72 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Front_Lat_Pulldown/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Front_Lat_Pulldown/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/puxada%20maquina.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/puxada%20maquina%20pegada%20supinada.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/Puxada%20isom%C3%A9trica.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/close-grip-lat-pulldown-standard-bar-attachment.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/Pulldown%20com%20corda.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/Puxada%20alta%20com%20el%C3%A1stico.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/Puxada%20alta%20fechada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/Puxada%20alta%20nuca.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/Puxada%20alta%20polia.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/Puxada%20alta%20tradicional.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/Puxada%20alta%20triangulo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/Puxada%20cruzada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/wide-grip-lat-pulldown.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/Puxada%20Front%20Lever.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/Puxada%20isom%C3%A9trica-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-040-jalon-al-pecho-en-polea/Puxada%20ajoelhada%20com%20banda%20de%20resist%C3%AAncia.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -2027,6 +2443,164 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Barbell_Row/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Barbell_Row/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/remada%20aberta%20no%20banco%20inclinada%20pega%20supinada.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/remada%20articulada.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/remada%20articulada%20pegada%20supinada.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/remada%20baixa%20no%20pulley%20pegada%20aberta%20supinada.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/remada%20beixa%20no%20pulley%20triangulo.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/remada%20cavalinha%20pegada%20aberta.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/remada%20cavalino%20com%20barra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/remada%20com%20banco%20inclinado%20com%20haltres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/remada%20com%20barra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/remada%20inclinada%20no%20smith.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/remada%20inclinda%20no%20banco%20pegada%20supinda%20puxada%20fechada.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/remada%20no%20banco%20inclinado%20pegada%20pronada%20com%20barra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/remada%20serrote.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/remada%20unilateral%20cavalindo%20barra%20puxada%20fechada.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20Invertida%20na%20Mesa.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20aberta%20pronada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20ajoelhado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20alta.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20alta%20barra.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20alta%20no%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20apoio%20banco%20inclinado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20apoio%20peitoral%20banco.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20cavalinho.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20cavalinho%20barra.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20com%20triangulo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20curvada%20no%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20curvada%20pronada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20curvada%20pronada%20aberta.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20fechada%20supinada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20inclinada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20invertida%20TRX.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20no%20smith.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20serrote.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20com%20o%20Peso%20do%20Corpo%20na%20Porta.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20Invertida%20Com%20Argolas.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20Invertida%20na%20Mesa-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20afastada%20com%20banda%20de%20resist%C3%AAncia.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-043-remo-con-barra/Remada%20sentada%20com%20faixa.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -2120,6 +2694,16 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_High_Row/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_High_Row/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-045-remo-en-maquina/remada%20maquina%20pronada.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-045-remo-en-maquina/Remada%20m%C3%A1quina.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -2399,6 +2983,36 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Deadlift/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Deadlift/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-051-peso-muerto-convencional/levantamento%20terra%20no%20smith.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-051-peso-muerto-convencional/Levantamento%20terra.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-051-peso-muerto-convencional/Terra%20barra%20hexagonal.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-051-peso-muerto-convencional/terra%20na%20m%C3%A1quina.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-051-peso-muerto-convencional/Terra%20sumo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-051-peso-muerto-convencional/Levantamento%20Terra%20Unilateral.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-051-peso-muerto-convencional/Levantamento%20Terra%20Unilateral-2.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -2446,6 +3060,16 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-052-peso-muerto-rumano/Stiff.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-052-peso-muerto-rumano/Stiff%2003.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -2855,6 +3479,28 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Low-Pulley_Side_Lateral/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Low-Pulley_Side_Lateral/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-061-remo-unilateral-en-polea-baja/remada%20baixa%20unilateral%20no%20cross.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-061-remo-unilateral-en-polea-baja/remada%20baixa%20unilateral%20pegada%20neutra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-061-remo-unilateral-en-polea-baja/remada%20cavalinho%20unilateral.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-061-remo-unilateral-en-polea-baja/Remada%20unilateral.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-061-remo-unilateral-en-polea-baja/Remada%20unilateral%20com%20gymstick.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -2901,6 +3547,16 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Low-Pulley_Side_Lateral/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Low-Pulley_Side_Lateral/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-062-jalon-unilateral-en-polea/Puxada%20unilateral%201.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-062-jalon-unilateral-en-polea/Puxada%20unilateral%20cabo.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -3135,6 +3791,28 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Two-Dumbbell_Row/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Two-Dumbbell_Row/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-067-remo-renegado-con-mancuernas/remada%20aberta%20no%20banco%20inclinado%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-067-remo-renegado-con-mancuernas/remada%20livre%20%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-067-remo-renegado-con-mancuernas/Remada%20alta%20com%20halteres.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-067-remo-renegado-con-mancuernas/Remada%20apoio%20banco%20com%20halteres.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-067-remo-renegado-con-mancuernas/Remada%20com%20halteres.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -3274,6 +3952,92 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Shoulder_Military_Press/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Shoulder_Military_Press/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/desenvolvimento%20barra%20atras%20da%20nuca.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/desenvolvimento%20barra%20sentado%20atras%20nuca.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/desenvolvimento%20cabo%20cross.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/Desenvolvimento%20com%20Barra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/Desenvolvimento%20com%20Barra%20sentado.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/desenvolvimento%20com%20rota%C3%A7%C3%A3o.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/desenvolvimento%20na%20barra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/desenvolvimento%20no%20smith%20barra%20na%20nuca.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/Desenvolvimento%20por%20tras%20com%20barra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/Desenvolvimento%20por%20tr%C3%A1s%20com%20barra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/Desenvolvimento%20Smith.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/desenvolvimento%20unilateral.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/Desenvolvimento.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/Desenvolvimento%20no%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/Desenvolvimento%20no%20smith.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/Desenvolvimento%20nuca.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/Desenvolvimento%20unilateral.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/Desenvolvimento%20de%20ombro%20unilateral%20com%20banda.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/Desenvolvimento%20lateral%20com%20gymstick.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/Desenvolvimento%20militar%20atr%C3%A1s%20da%20cabe%C3%A7a%20com%20gymstick.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-070-press-militar-con-barra/Desenvolvimento%20militar%20com%20peso%20do%20corpo.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -3321,6 +4085,20 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Shoulder_Military_Press/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Shoulder_Military_Press/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-071-press-militar-con-mancuernas/Desenvolvimento%20com%20Halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-071-press-militar-con-mancuernas/Desenvolvimento%20Sentado%20com%20Halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-071-press-militar-con-mancuernas/Desenvolvimento%20com%20halteres.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -3460,6 +4238,12 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-074-press-de-hombro-en-maquina/Desenvolvimento%20m%C3%A1quina.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -3951,6 +4735,36 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Backward_Medicine_Ball_Throw/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Backward_Medicine_Ball_Throw/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-085-remo-al-menton/remada%20alta%20com%20barra%20no%20cross.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-085-remo-al-menton/remada%20alta%20com%20barra%20pegada%20aberta.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-085-remo-al-menton/remada%20alta%20com%20barra%20W.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-085-remo-al-menton/remada%20alta%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-085-remo-al-menton/remada%20alta%20com%20halteres%20bilateral.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-085-remo-al-menton/remada%20alta%20no%20cross.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-085-remo-al-menton/remada%20livre%20com%20barra.gif",
+        "confianza": "alta"
+      }
     ]
   },
   {
@@ -4089,6 +4903,16 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Shoulder_Military_Press/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Shoulder_Military_Press/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-088-press-militar-sentado-en-maquina/Desenvolvimento%20Sentado%20Smith.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-088-press-militar-sentado-en-maquina/Desenvolvimento%20de%20ombro%20sentado%20com%20faixa%20de%20resist%C3%AAncia.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -4131,6 +4955,80 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Incline_Lateral_Raise/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Incline_Lateral_Raise/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/eleva%C3%A7%C3%A3o%20lateral%20inclinado%20sentado.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/eleva%C3%A7%C3%A3o%20lateral%20pegda%20neutra%20inversa.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/eleva%C3%A7%C3%A3o%20lateral%20sentado%20no%20banco.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20lateral%20%2B%20descida%20frontal.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20lateral%2001.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20lateral%204.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20lateral%20com%20inclina%C3%A7%C3%A3o.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20lateral%20inclinado%20apoio%20banco.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20lateral%20inclinado%20no%20cabo%202.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20lateral%20no%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20lateral%20no%20cross%20cruzado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20lateral%20tronco%20apoiado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20lateral%20uni%20no%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20lateral%20com%20toalha%20na%20parede.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20lateral%20de%20bra%C3%A7os.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20Lateral%20de%20Perna%20com%20Faixa%20El%C3%A1stica%20Deitado%20de%20Lado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20Lateral%20de%20Perna%20com%20Faixa%20El%C3%A1stica.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-089-elevacion-lateral-inclinado-lean-away/Eleva%C3%A7%C3%A3o%20lateral%20de%20delt%C3%B3ide%20posterior%20com%20halteres.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -4219,6 +5117,60 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Plate_Raise/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Plate_Raise/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-091-elevacion-frontal-alterna-con-disco/Eleva%C3%A7%C3%A3o%20Frontal%20com%20Barra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-091-elevacion-frontal-alterna-con-disco/Eleva%C3%A7%C3%A3o%20Frontal%20Crossover.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-091-elevacion-frontal-alterna-con-disco/Eleva%C3%A7%C3%A3o%20frontal%20com%20barra.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-091-elevacion-frontal-alterna-con-disco/Eleva%C3%A7%C3%A3o%20frontal%20com%20halteres.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-091-elevacion-frontal-alterna-con-disco/Eleva%C3%A7%C3%A3o%20frontal%20Inclinado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-091-elevacion-frontal-alterna-con-disco/Eleva%C3%A7%C3%A3o%20frontal%20m%C3%A3o%20juntas.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-091-elevacion-frontal-alterna-con-disco/Eleva%C3%A7%C3%A3o%20frontal%20no%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-091-elevacion-frontal-alterna-con-disco/Eleva%C3%A7%C3%A3o%20frontal%20sentado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-091-elevacion-frontal-alterna-con-disco/Eleva%C3%A7%C3%A3o%20frontal%20unilateral.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-091-elevacion-frontal-alterna-con-disco/Eleva%C3%A7%C3%A3o%20frontal%20unilateral%203.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-091-elevacion-frontal-alterna-con-disco/Eleva%C3%A7%C3%A3o%20frontal%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-091-elevacion-frontal-alterna-con-disco/Eleva%C3%A7%C3%A3o%20frontal%20diagonal.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-091-elevacion-frontal-alterna-con-disco/Eleva%C3%A7%C3%A3o%20frontal%20lateral%20com%20el%C3%A1stico.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -4538,6 +5490,264 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Curl/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Curl/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20%20direta%20no%20banco%20scort.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20alternada%20aparelho%20biarticular.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20alternada%20com%20giro.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20alternada%20pegada%20neutra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20alternada%20pegada%20neutra%20sentado%20no%20banco.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20Concentrada.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20Concentrada%202.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20dierata%20pegada%20invertida%20barra%20W.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20dierta%20pegada%20aberta.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20dierta%20pegada%20fechada.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20direta%20apaiada%20no%20banco%20barra%20W.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20direta%20barra%20pegada%20fechada%20sentado%20no%20banco.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20direta%20barra%20W.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20direta%20barra%20W%20sentado%20banco.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20direta%20deitado%20no%20banco%20reto%20no%20cross.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20direta%20no%20cross%20barra%20W.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20direta%20pegada%20fechada%20barra%20W.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20neutra%20no%20banco%20scort%20aparelho.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20no%20banco%20scort%20barra%20W.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/rosca%20no%20scort.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20agachado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20alternada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20apoio%20banco.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20apoio%20banco%2002.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20apoio%20no%20banco.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20b%C3%ADceps%20diagonal.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20b%C3%ADceps%20no%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20com%20rota%C3%A7%C3%A3o.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20concentrada%20feminino.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20concentrada%20masculino.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20direta.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20direta%2003.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20direta%2004.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20direta%20apoio%20braquial.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20direta%20curta.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20inclinada%20no%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20inversa.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20inversa%20no%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20lateral.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20lateral%20no%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20lateral%20polia%20alta.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20martelo%2001.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20martelo%20alternada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20martelo%20alternada%2002.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20martelo%20corda.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20martelo%20scott.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20martelo%20suporte%20braquial.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20punho%2002.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20punho%20com%20anilha.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20punho%20com%20barra.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20punho%20invertida.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20punho%20invertida%20apoio%20antebra%C3%A7o.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20punho%20martelo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20punho%20por%20tr%C3%A1s.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20punho%20unilatera.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20scott%20alternada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20scott%20barra%20reta.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20scott%20de%20p%C3%A9.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20scott%20martelo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20concentrada%20com%20perna.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20b%C3%ADceps%20com%20faixa%20el%C3%A1stica.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20martelo%20com%20faixa%20de%20resist%C3%AAncia.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-098-curl-con-barra/Rosca%20martelo%20com%20garrafa%20de%20%C3%A1gua.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -4628,6 +5838,44 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternate_Hammer_Curl/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternate_Hammer_Curl/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-100-curl-con-mancuernas/rosca%20neutra%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-100-curl-con-mancuernas/rosca%20neutra%20com%20halteres%20sentado%20no%20banco.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-100-curl-con-mancuernas/Rosca%20Scott%20Unil%20com%20Halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-100-curl-con-mancuernas/rosca%20unilateral%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-100-curl-con-mancuernas/rosca%20unilateral%20com%20halteres%20sentado%20no%20banco.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-100-curl-con-mancuernas/rosca%20unilateral%20pegada%20neutra%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-100-curl-con-mancuernas/Rosca%20inversa%20com%20halteres.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-100-curl-con-mancuernas/Rosca%20punho%20invertida%20com%20halteres.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-100-curl-con-mancuernas/Rosca%20scott%20com%20halteres%20em%20p%C3%A9.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -4894,6 +6142,16 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bicep_Curl/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bicep_Curl/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-106-curl-en-maquina/Rosca%20alternada%20m%C3%A1quina.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-106-curl-en-maquina/Rosca%20scott%20na%20m%C3%A1quina.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -4982,6 +6240,16 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternate_Incline_Dumbbell_Curl/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternate_Incline_Dumbbell_Curl/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-108-curl-inclinado-con-mancuernas/Rosca%20alternada%20no%20banco%20inclinado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-108-curl-inclinado-con-mancuernas/Rosca%20deitado%20no%20banco%20inclinado.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -5114,6 +6382,32 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Low-Pulley_Side_Lateral/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Low-Pulley_Side_Lateral/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-111-curl-en-polea-baja-unilateral/rosca%20consentrada%20unilateral%20%20no%20banco%20declinado.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-111-curl-en-polea-baja-unilateral/rosca%20neutra%20%20unilateral%20no%20banco%20scort.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-111-curl-en-polea-baja-unilateral/Rosca%20alta%20unilateral.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-111-curl-en-polea-baja-unilateral/Rosca%20scott%20martelo%20unilateral.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-111-curl-en-polea-baja-unilateral/Rosca%20unilateral%20corda.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-111-curl-en-polea-baja-unilateral/Rosca%20de%20b%C3%ADceps%20unilateral%20com%20faixa%20de%20resist%C3%AAncia.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -5335,6 +6629,76 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Incline_Triceps_Extension/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Incline_Triceps_Extension/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20no%20el%C3%A1stico.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%206%20apoios.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20de%20quadril%2001.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20de%20quadril%20banco%20romano%2002.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20de%20quadril%20graviton.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20gl%C3%BAteo%20no%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20de%20tr%C3%ADceps.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20De%20Gl%C3%BAteo%20Em%20P%C3%A9.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20de%20ombro%20com%20faixa.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20de%20Perna%20em%20P%C3%A9%20com%20Faixa%20de%20Resist%C3%AAncia.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20De%20Perna%20Reta.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20de%20Pernas%20com%20Faixa%20El%C3%A1stica%20Sentado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20de%20Pernas%20Sentado%20com%20Faixa%20de%20Resist%C3%AAncia.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20de%20Quadril%20no%20Banco.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20de%20Tr%C3%ADceps%20Acima%20da%20Cabe%C3%A7a%20com%20Gymstick.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20de%20Tr%C3%ADceps%20com%20Faixa%20El%C3%A1stica.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-116-extension-de-triceps-en-polea-con-cuerda/Extens%C3%A3o%20de%20Tr%C3%ADceps%20com%20Faixas%20El%C3%A1sticas.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -5468,6 +6832,20 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-119-fondos-en-banco/arnold_dips-maschine.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-119-fondos-en-banco/bench-tricep-dips.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-119-fondos-en-banco/Mergulho%20banco.gif",
+        "confianza": "alta"
+      }
     ]
   },
   {
@@ -5691,6 +7069,12 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Triceps_Extension/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Triceps_Extension/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-124-jalon-de-triceps-en-maquina/Puxada%20m%C3%A1quina.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -5826,6 +7210,20 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Low-Pulley_Side_Lateral/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Low-Pulley_Side_Lateral/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-127-extension-unilateral-en-polea/Extens%C3%A3o%20unilateral.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-127-extension-unilateral-en-polea/Extens%C3%A3o%20unilateral%20no%20cabo.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-127-extension-unilateral-en-polea/Triceps%20extens%C3%A3o%20unilateral.gif",
+        "confianza": "alta"
+      }
     ]
   },
   {
@@ -6267,6 +7665,60 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shrug/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shrug/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-137-peso-muerto-con-encogimiento/encolhimento%20livre%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-137-peso-muerto-con-encogimiento/encolhimento%20maquina.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-137-peso-muerto-con-encogimiento/encolhimento%20na%20barra%20livre.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-137-peso-muerto-con-encogimiento/encolhimento%20no%20smith.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-137-peso-muerto-con-encogimiento/encolhimento%20pegada%20fechada%20barra%20no%20cross.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-137-peso-muerto-con-encogimiento/encolhimento%20sentado%20no%20banco%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-137-peso-muerto-con-encogimiento/encolhimento%20sentado%20no%20banco%20inlinado%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-137-peso-muerto-con-encogimiento/Encolhimento%203.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-137-peso-muerto-con-encogimiento/Encolhimento%20barra.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-137-peso-muerto-con-encogimiento/Encolhimento%20barra%20atr%C3%A1s.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-137-peso-muerto-con-encogimiento/Encolhimento%20com%20halteres.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-137-peso-muerto-con-encogimiento/Encolhimento%20m%C3%A1quina.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-137-peso-muerto-con-encogimiento/Encolhimento%20m%C3%A1quina-2.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -6352,6 +7804,16 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_One-Arm_Upright_Row/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_One-Arm_Upright_Row/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-139-remo-alto-con-mancuernas/remada%20alta%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-139-remo-alto-con-mancuernas/remada%20alta%20pegada%20abeta%20com%20barra.gif",
+        "confianza": "alta"
+      }
     ]
   },
   {
@@ -6957,6 +8419,72 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/3_4_Sit-Up/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/3_4_Sit-Up/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/Abdominal%20bicleta.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/Abdominal%20declinado.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/Abdominal%20pegando%20a%20bola.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/crunch.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/Crunch%203.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/Crunch%204.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/Crunch%20com%20carga.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/Crunch%20pernas%20elevadas.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/Crunch%20reverso.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/crunch-floor.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/Crunch-With-Leg-Raise.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/frog-crunch.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/Abdominal%20com%20Carga.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/Abdominal%20Concentrado.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/C%C3%B3pia%20de%20Abdominal%20de%20R%C3%A3%20com%20Bola%20de%20Exerc%C3%ADcios.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-153-crunch-abdominal/Contra%C3%A7%C3%A3o%20abdominal.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -7137,6 +8665,12 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent-Knee_Hip_Raise/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent-Knee_Hip_Raise/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-157-elevacion-de-rodillas-colgado/Subida%20no%20Step%20com%20Eleva%C3%A7%C3%A3o%20de%20Joelhos.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -7269,6 +8803,32 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-160-plancha-con-peso/Prancha.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-160-plancha-con-peso/Prancha%20com%20flex%C3%A3o%20lateral%20de%20quadril.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-160-plancha-con-peso/Prancha%20dinamica%20bola.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-160-plancha-con-peso/Prancha%20frente%20tr%C3%A1s.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-160-plancha-con-peso/Prancha%20lateral.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-160-plancha-con-peso/Prancha%20lateral%20com%20flex%C3%A3o%20lateral.gif",
+        "confianza": "alta"
+      }
     ]
   },
   {
@@ -7881,7 +9441,13 @@ const EXERCISE_DATABASE = [
     "favorito": false,
     "vecesUsado": 0,
     "creadoPorUsuario": false,
-    "imagenesExternas": []
+    "imagenesExternas": [],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-174-burpee/Nave%20Seal%20Burpee.gif",
+        "confianza": "media"
+      }
+    ]
   },
   {
     "id": "ej-175-plancha-con-toque-de-hombro",
@@ -8188,6 +9754,12 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plate_Twist/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plate_Twist/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-181-giro-ruso-russian-twist/Russian%20twist.gif",
+        "confianza": "alta"
+      }
     ]
   },
   {
@@ -8675,6 +10247,232 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Full_Squat/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Full_Squat/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/agachamento%20barra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/agachamento%20bulgaro.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/agachamento%20bulgaro%20com%20barra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20com%20halteres%20com%20uma%20perna.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20livre%20com%20barra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/agachamento%20livre%20p%C3%A9s%20juntos.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/agachamento%20na%20maquina.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/agachamento%20no%20banco.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/agachamento%20no%20cross.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/agachamento%20p%C3%A9s%20afastados.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20terra%20com%20halteres%20do%20lado.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%2003.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20apoio%20bola.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20com%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20com%20salto.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20frontal%2002.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20hack.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20hack%2003.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20B%C3%BAlgaro%20com%20Peso%20Corporal.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20b%C3%BAlgaro%20com%20salto.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20Camar%C3%A3o.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20com%20Joelho%20Elevado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20com%20Salto.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20com%20Sustenta%C3%A7%C3%A3o%20e%20Eleva%C3%A7%C3%A3o%20de%20Panturrilhas.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20havaiano.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20no%20Banco%20com%20Peso%20Corporal.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20Pistol%20com%20TRX.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20Pistola%20Apoiado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20Pistola%20com%20Kettlebell.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20Pistola%20na%20Caixa.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20pistola.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20Sissy%20ajoelhado%20com%20Peso%20Corporal.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20Skater.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Salto%20na%20Caixa%20para%20Agachamento%20Pistola.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20B%C3%BAlgaro%20com%20Peso%20Corporal-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20b%C3%BAlgaro%20com%20salto-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20Camar%C3%A3o-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20com%20Chute%20Lateral%20e%20Toque%20no%20Calcanhar.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20com%20Eleva%C3%A7%C3%A3o%20dos%20Joelhos.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20com%20Faixa%20El%C3%A1stica%20em%20Afundo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20com%20Faixa%20El%C3%A1stica%20sobre%20a%20Cabe%C3%A7a.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20com%20Gymstick.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20com%20Salto-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20com%20Sustenta%C3%A7%C3%A3o%20e%20Eleva%C3%A7%C3%A3o%20de%20Panturrilhas-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20Cossaco.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20Dividido%20Profundo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20Goblet%20com%20Kettlebell%20e%20Faixa%20El%C3%A1stica.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20na%20Parede%20com%20Bola%20de%20Exerc%C3%ADcio.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20no%20Banco%20com%20Peso%20Corporal-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20Pistola%20com%20Apoio%20em%20Caixa.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20Pistola%20na%20Caixa-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento%20unilateral%20cruzado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Agachamento-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Salto%20em%20Agachamento%20com%20Joelhos%20Flexionados.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-192-sentadilla-con-barra/Salto%20na%20Caixa%20para%20Agachamento%20Pistola-2.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -8863,6 +10661,24 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Squat/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Squat/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-196-sentadilla-bulgara/Bulgaro%20com%20barra.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-196-sentadilla-bulgara/Bulgaro%20com%20halteres.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-196-sentadilla-bulgara/Afundo%20no%20banco.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-196-sentadilla-bulgara/Afundo%20no%20banco-2.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -8907,6 +10723,32 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-197-prensa-de-piernas/leg%20press.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-197-prensa-de-piernas/leg%20press%20p%C3%A9s%20afastados.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-197-prensa-de-piernas/panturrinha%20no%20leg%20press.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-197-prensa-de-piernas/Leg%20press%2045.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-197-prensa-de-piernas/Leg%20press%2045%2002.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-197-prensa-de-piernas/Leg%20press%20horizontal.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -8951,6 +10793,20 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-198-extension-de-cuadriceps-en-maquina/Extens%C3%A3o%20de%20Quadril%20em%20p%C3%A9.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-198-extension-de-cuadriceps-en-maquina/Extens%C3%A3o%20de%20quadril%20em%20p%C3%A9%20com%20joelhos%20flexionados.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-198-extension-de-cuadriceps-en-maquina/Extens%C3%A3o%20de%20quadril%20em%20p%C3%A9%20na%20polia.gif",
+        "confianza": "alta"
+      }
     ]
   },
   {
@@ -9179,6 +11035,52 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Full_Squat/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Full_Squat/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-203-sentadilla-sumo/agachamento%20sumo%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-203-sentadilla-sumo/Agachamento%20sumo%20com%20halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-203-sentadilla-sumo/agachamento%20sumo%20livre.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-203-sentadilla-sumo/Agachamento%20Sumo%20Peso%20Corporal.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-203-sentadilla-sumo/Agachamento%20sumo%2001.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-203-sentadilla-sumo/Agachamento%20sumo%20barra.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-203-sentadilla-sumo/Agachamento%20sumo%20com%20halter.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-203-sentadilla-sumo/Agachmento%20sumo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-203-sentadilla-sumo/Agachmento%20sumo%20com%20halter%2002.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-203-sentadilla-sumo/Agachamento%20Sum%C3%B4%20sem%20Pesos.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-203-sentadilla-sumo/Agachamento%20Sum%C3%B4%20sem%20Pesos-2.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -9865,6 +11767,12 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-218-prensa-de-piernas-unilateral/Leg%20press%2045%20unilateral.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -9912,6 +11820,24 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-219-peso-muerto-rumano-con-barra/stiff.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-219-peso-muerto-rumano-con-barra/stiff%20com%20barra.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-219-peso-muerto-rumano-con-barra/stiff%20no%20smth.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-219-peso-muerto-rumano-con-barra/Stiff%20unil%20com%20medball.gif",
+        "confianza": "alta"
+      }
     ]
   },
   {
@@ -9959,6 +11885,16 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-220-peso-muerto-rumano-con-mancuernas/Stiff%20com%20Halteres.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-220-peso-muerto-rumano-con-mancuernas/Stiff%20com%20halteres.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -10003,6 +11939,16 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-221-curl-femoral-tumbado/Cadeira%20flexora.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-221-curl-femoral-tumbado/Mesa%20flexora.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -10185,6 +12131,12 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stiff-Legged_Dumbbell_Deadlift/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stiff-Legged_Dumbbell_Deadlift/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-225-peso-muerto-a-una-pierna/levantamento%20terra%20com%20barra.gif",
+        "confianza": "alta"
+      }
     ]
   },
   {
@@ -10457,6 +12409,20 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-231-peso-muerto-rumano-unilateral-con-kettlebell/stiff%20no%20smth%20unilateral.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-231-peso-muerto-rumano-unilateral-con-kettlebell/stiff%20unilateral.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-231-peso-muerto-rumano-unilateral-con-kettlebell/stiff%20unilateral%20com%20kettibel.gif",
+        "confianza": "alta"
+      }
     ]
   },
   {
@@ -10590,6 +12556,12 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-234-curl-femoral-unilateral-tumbado/Mesa%20flexora%20unilateral.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -10636,6 +12608,12 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-235-peso-muerto-rumano-con-banda-elastica/Stiff%20com%20El%C3%A1stico%20de%20Resist%C3%AAncia.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -10726,6 +12704,64 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Single_Leg_Glute_Bridge/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Single_Leg_Glute_Bridge/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-237-puente-de-gluteos/eleva%C3%A7%C3%A3o%20pelvica%20livre.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-237-puente-de-gluteos/Eleva%C3%A7%C3%A3o%20p%C3%A9lvica.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-237-puente-de-gluteos/ELEVA%C3%87%C3%83O%20P%C3%89LVICA%20APOIO%20UNILATERAL.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-237-puente-de-gluteos/Eleva%C3%A7%C3%A3o%20p%C3%A9lvica%20p%C3%A9s%20elevados.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-237-puente-de-gluteos/Eleva%C3%A7%C3%A3o%20p%C3%A9lvica%20p%C3%A9s%20elevados%2002.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-237-puente-de-gluteos/Eleva%C3%A7%C3%A3o%20p%C3%A9lvica%20unilateral.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-237-puente-de-gluteos/Eleva%C3%A7%C3%A3o%20P%C3%A9lvica%20Declinado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-237-puente-de-gluteos/Ponte%20em%20Unilateral.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-237-puente-de-gluteos/Eleva%C3%A7%C3%A3o%20P%C3%A9lvica%20com%20Banda%20de%20Resist%C3%AAncia.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-237-puente-de-gluteos/Eleva%C3%A7%C3%A3o%20P%C3%A9lvica%20Declinado-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-237-puente-de-gluteos/Ponte%20com%20Faixa%20El%C3%A1stica.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-237-puente-de-gluteos/Ponte%20em%20Unilateral-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-237-puente-de-gluteos/Ponte%20Unilateral%20Com%20Uma%20Perna%20Levantada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-237-puente-de-gluteos/Ponte%20Unilateral%20no%20Banco.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -10856,6 +12892,48 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-240-abduccion-de-cadera-en-maquina/Abdu%C3%A7ao%20de%20quadril%20em%20p%C3%A9.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-240-abduccion-de-cadera-en-maquina/Abdu%C3%A7%C3%A3o%20de%20Quadril%20com%20Faixa.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-240-abduccion-de-cadera-en-maquina/Abdu%C3%A7%C3%A3o%20m%C3%A1quina.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-240-abduccion-de-cadera-en-maquina/Abdu%C3%A7%C3%A3o%20m%C3%A1quina%2002.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-240-abduccion-de-cadera-en-maquina/Abdu%C3%A7%C3%A3o%20no%20cabo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-240-abduccion-de-cadera-en-maquina/Abdu%C3%A7%C3%A3o%20de%20Quadril%20com%20Faixa-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-240-abduccion-de-cadera-en-maquina/Abdu%C3%A7%C3%A3o%20de%20Quadril%20em%20Dec%C3%BAbito%20Lateral.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-240-abduccion-de-cadera-en-maquina/Abdu%C3%A7%C3%A3o%20de%20Quadril%20em%20P%C3%A9.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-240-abduccion-de-cadera-en-maquina/Abdu%C3%A7%C3%A3o%20de%20Quadril%20Lateral.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-240-abduccion-de-cadera-en-maquina/Abdu%C3%A7%C3%A3o%20de%20Quadril%20Sentado%20com%20Faixa%20El%C3%A1stica.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -11574,6 +13652,84 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Raise/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Raise/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Gemeos%20sentado.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Panturrilha%20em%20p%C3%A9%20m%C3%A1quina.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Panturrilha%20em%20p%C3%A9%20unilateral.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Panturrilha%20leg%2045.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Panturrilha%20leg%20press%20horizontal.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Panturrilha%20maquina%2002.gif",
+        "confianza": "alta"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Eleva%C3%A7%C3%A3o%20de%20panturrilha%20em%20p%C3%A9.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Eleva%C3%A7%C3%A3o%20de%20Panturrilha%20em%20Uma%20Perna.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Levantamento%20de%20panturrilha%20com%20apoio%20e%20sobrecarga.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Eleva%C3%A7%C3%A3o%20de%20Panturrilha%20com%20Faixa%20El%C3%A1stica%20de%20Resist%C3%AAncia.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Eleva%C3%A7%C3%A3o%20de%20panturrilha%20em%20p%C3%A9-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Eleva%C3%A7%C3%A3o%20de%20Panturrilha%20em%20Uma%20Perna-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Alongamento%20da%20panturrilha%20agachado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Alongamento%20da%20panturrilha%20com%20descida%20do%20calcanhar.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Alongamento%20de%20Panturrilha%20com%20Corda.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Alongamento%20de%20panturrilha%20com%20uma%20perna%20esticada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Alongamento%20de%20panturrilha%20com%20uma%20perna.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Alongamento%20de%20panturrilha%20em%20posi%C3%A7%C3%A3o%20est%C3%A1tica.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-256-elevacion-de-talones-de-pie/Alongamento%20de%20panturrilha%20na%20parede.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -11706,6 +13862,12 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Calf_Raise_On_A_Dumbbell/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Calf_Raise_On_A_Dumbbell/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-259-elevacion-de-talones-con-mancuernas/Panturrilha%20com%20halteres.gif",
+        "confianza": "alta"
+      }
     ]
   },
   {
@@ -11840,6 +14002,56 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Jump/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Jump/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-262-salto-a-la-comba/Pulo%20de%20impulso%20de%20quadril%20de%20uma%20perna.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-262-salto-a-la-comba/Salto%20em%20Caixa%20com%20uma%20Perna.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-262-salto-a-la-comba/Salto%20em%20Dist%C3%A2ncia.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-262-salto-a-la-comba/Salto%20para%20Caixa%202%20para%201.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-262-salto-a-la-comba/Corrida%20com%20Salto.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-262-salto-a-la-comba/Salto%20com%20halteres%20dividido.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-262-salto-a-la-comba/Salto%20com%20Joelhos%20Flexionados.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-262-salto-a-la-comba/Salto%20em%20Dist%C3%A2ncia-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-262-salto-a-la-comba/Salto%20em%20Uma%20Perna%20para%20a%20Frente.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-262-salto-a-la-comba/Salto%20na%20Caixa.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-262-salto-a-la-comba/Salto%20para%20Caixa%202%20para%201-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-262-salto-a-la-comba/Salto%20para%20Tr%C3%A1s.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -13104,6 +15316,16 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hyperextensions_Back_Extensions/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hyperextensions_Back_Extensions/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-291-extension-lumbar-con-banda-elastica/Extens%C3%A3o%20de%20quadril%20elastico.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-291-extension-lumbar-con-banda-elastica/Extens%C3%A3o%20de%20tr%C3%ADceps%20com%20el%C3%A1stico%20na%20posi%C3%A7%C3%A3o%20horizontal.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -13827,6 +16049,188 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Round_The_World_Shoulder_Stretch/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Round_The_World_Shoulder_Stretch/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20do%20peitoral%20reverso.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20do%20peitoral%20reverso-2.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/adu%C3%A7%C3%A3o%20de%20pernas%20(alongamento%20do%20adutor%20maior).gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20assistido%20reverso%20(peitoral%20e%20ombro).gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20Borboleta.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20com%20PVC%20na%20Posi%C3%A7%C3%A3o%20Frontal%20de%20Rack.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20da%20Esfinge.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20da%20parte%20superior%20das%20costas.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20das%20Costas%20com%20Rolo%20de%20Espuma.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20de%20Gl%C3%BAteos%20Deitado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20de%20Isquiotibiais%20deitado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20de%20ombro%20com%20o%20bra%C3%A7o%20cruzado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20de%20Pernas%20Duplo.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20de%20Punho.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20de%20quadril%2090-90.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20de%20Quadr%C3%ADceps%20ajoelhado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20de%20Quadr%C3%ADceps%20em%20Quatro%20Apoios.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20Din%C3%A2mico%20do%20Peitoral.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20do%20desviador%20ulnar%20e%20extensor%20do%20punho.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20do%20Gastrocn%C3%AAmio%20com%20Joelho%20Flexionado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20do%20manguito%20rotador.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20do%20ombro%20com%20toalha.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20do%20Peito%20Acima%20da%20Cabe%C3%A7a.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20do%20peito%20com%20rolo%20de%20espuma.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20do%20Peito%20e%20Parte%20Frontal%20dos%20Ombros.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20do%20Peitoral%20at%C3%A9%20as%20Costas.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20do%20peitoral%20e%20do%20ombro%20na%20porta.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20do%20peitoral%20reverso-3.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20do%20tibial%20posterior.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20do%20trato%20iliotibial%20com%20rolo%20de%20espuma.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20dos%20Adutores%20com%20a%20Perna%20Estendida%20ajoelhado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20dos%20adutores%20da%20coxa%20com%20rolo%20de%20espuma.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20dos%20Adutores%20em%20Posi%C3%A7%C3%A3o%20Sentada%20com%20Pernas%20Abertas.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20dos%20Extensores%20dos%20Dedos%20dos%20P%C3%A9s.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20dos%20flexores%20de%20quadril%20ajoelhado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20dos%20flexores%20do%20quadril%20em%20posi%C3%A7%C3%A3o%20de%20joelho.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20dos%20lat%C3%ADssimos%20dorsais%20com%20rolo%20de%20espuma.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20dos%20ombros%20por%20tr%C3%A1s%20das%20costas.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20em%20C%C3%ADrculos%20nos%20Punhos.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20Lateral%20da%20Parte%20Interna%20da%20Coxa.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20na%20parede%20do%20canto.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20Piriforme.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20reverso%20assistido%20(peito%20e%20ombro).gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Alongamento%20Reverso%20de%20Pulso.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-308-estiramiento-cruzado-de-hombro/Postura%20da%20Cobra%20-%20Alongamento%20Abdominal.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -14845,6 +17249,60 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/90_90_Hamstring/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/90_90_Hamstring/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-332-estiramiento-de-isquiotibiales-de-pie/Alongamento%20de%20Adutores%20com%20Pernas%20Afastadas%20em%20P%C3%A9.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-332-estiramiento-de-isquiotibiales-de-pie/Alongamento%20de%20Isquiotibiais%20em%20P%C3%A9.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-332-estiramiento-de-isquiotibiales-de-pie/Alongamento%20de%20ombro%20reverso%20em%20p%C3%A9.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-332-estiramiento-de-isquiotibiales-de-pie/Alongamento%20de%20rota%C3%A7%C3%A3o%20da%20coluna%20em%20p%C3%A9.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-332-estiramiento-de-isquiotibiales-de-pie/Alongamento%20de%20tr%C3%ADceps%20em%20p%C3%A9.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-332-estiramiento-de-isquiotibiales-de-pie/Alongamento%20do%20Peitoral%20com%20um%20Bra%C3%A7o%20em%20P%C3%A9.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-332-estiramiento-de-isquiotibiales-de-pie/Alongamento%20do%20tend%C3%A3o%20de%20Aquiles%20em%20p%C3%A9.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-332-estiramiento-de-isquiotibiales-de-pie/Alongamento%20dos%20Adutores%20com%20Pernas%20Abertas%20em%20P%C3%A9.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-332-estiramiento-de-isquiotibiales-de-pie/Alongamento%20dos%20flexores%20dos%20dedos%20dos%20p%C3%A9s%20em%20p%C3%A9.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-332-estiramiento-de-isquiotibiales-de-pie/Alongamento%20dos%20isquiotibiais%20em%20p%C3%A9%20com%20a%20perna%20cruzada.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-332-estiramiento-de-isquiotibiales-de-pie/Alongamento%20dos%20isquiotibiais%20em%20p%C3%A9.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-332-estiramiento-de-isquiotibiales-de-pie/Alongamento%20em%20P%C3%A9%20dos%20Quadr%C3%ADceps.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-332-estiramiento-de-isquiotibiales-de-pie/Alongamento%20Inclinado%20Lateral%20em%20P%C3%A9.gif",
+        "confianza": "media"
+      }
     ]
   },
   {
@@ -14887,6 +17345,20 @@ const EXERCISE_DATABASE = [
     "imagenesExternas": [
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/90_90_Hamstring/0.jpg",
       "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/90_90_Hamstring/1.jpg"
+    ],
+    "gifs": [
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-333-estiramiento-de-isquiotibiales-sentado/Alongamento%20do%20Piriforme%20Sentado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-333-estiramiento-de-isquiotibiales-sentado/Alongamento%20dos%20adutores%20sentado.gif",
+        "confianza": "media"
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/gh/beckerlastrelaureano/gifs-ejercicios@main/ej-333-estiramiento-de-isquiotibiales-sentado/Alongamento%20dos%20Isquiotibiais%20Sentado.gif",
+        "confianza": "media"
+      }
     ]
   },
   {

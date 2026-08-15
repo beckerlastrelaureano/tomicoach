@@ -363,10 +363,22 @@ button, input, select, textarea { font-family: inherit; color: inherit; }
 
 .lista-ejercicios-dia { display: flex; flex-direction: column; gap: .55rem; margin-bottom: 1rem; }
 .fila-ejercicio-dia { display: flex; align-items: center; gap: .8rem; padding: .7rem .85rem; border-radius: var(--radio-sm); background: var(--color-fondo-elevado); border: 1px solid var(--color-borde-suave); }
-.fila-ejercicio-dia-icono { width: 32px; height: 32px; border-radius: 8px; background: var(--color-acento-suave); color: var(--color-acento-claro); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.fila-ejercicio-dia-icono { width: 32px; height: 32px; border-radius: 8px; background: var(--color-acento-suave); color: var(--color-acento-claro); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; overflow: hidden; }
 .fila-ejercicio-dia-info { flex: 1; display: flex; flex-direction: column; gap: .1rem; min-width: 0; }
 .fila-ejercicio-dia-info strong { font-size: .89rem; }
 .fila-ejercicio-dia-acciones { display: flex; gap: .2rem; flex-shrink: 0; }
+
+.tarjeta-ejercicio-btn-info { position: absolute; top: .5rem; right: .5rem; z-index: 2; background: rgba(0,0,0,.45); color: #fff; }
+.tarjeta-ejercicio-btn-info:hover { background: rgba(0,0,0,.7); color: #fff; }
+
+.detalle-ejercicio-galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .6rem; margin-bottom: .2rem; }
+.detalle-ejercicio-gif { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: var(--radio-sm); background: var(--color-fondo-elevado); border: 1px solid var(--color-borde-suave); }
+.detalle-ejercicio-fallback { display: flex; align-items: center; justify-content: center; padding: 2.4rem 0; background: var(--color-fondo-elevado); border-radius: var(--radio-sm); border: 1px solid var(--color-borde-suave); }
+.detalle-ejercicio-fallback-icono { width: 96px; height: 96px; }
+.detalle-ejercicio-meta { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: 1rem; }
+.detalle-ejercicio-subtitulo { display: flex; align-items: center; gap: .45rem; font-size: .95rem; }
+.lista-detalle-ejercicio { margin: .5rem 0 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: .35rem; }
+.lista-detalle-ejercicio li { font-size: .88rem; color: var(--color-texto-suave); }
 
 /* --------------------------------- Sesión activa --------------------------------- */
 .sesion-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.3rem; padding-bottom: 1rem; border-bottom: 1px solid var(--color-borde-suave); }
@@ -556,3 +568,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .auth-error { color: #E05B5B; font-size: .82rem; background: rgba(224,91,91,.1); border-radius: var(--radio-sm); padding: .5rem .7rem; }
 .btn-full { width: 100%; justify-content: center; }
 .tarjeta-objetivo-grande-activa { border-color: var(--color-acento); background: var(--color-acento-suave); }
+
+/* --------------------------------- Timer de descanso --------------------------------- */
+.timer-widget { position: fixed; bottom: 1.4rem; right: 1.4rem; z-index: 90; opacity: 0; pointer-events: none; transform: translateY(12px) scale(.96); transition: all .25s cubic-bezier(.2,.9,.3,1); }
+.timer-widget-visible { opacity: 1; pointer-events: auto; transform: none; }
+.timer-widget-inner { width: 230px; background: var(--color-superficie-alta); border: 1px solid var(--color-borde); border-radius: var(--radio-lg); box-shadow: var(--sombra-modal); padding: 1rem 1.1rem; }
+.timer-widget-header { display: flex; align-items: center; justify-content: space-between; font-size: .82rem; font-weight: 600; color: var(--color-texto-suave); margin-bottom: .6rem; }
+.timer-progreso { height: 5px; border-radius: 99px; background: var(--color-borde); overflow: hidden; margin-bottom: .6rem; }
+.timer-progreso-barra { height: 100%; width: 100%; background: var(--color-acento); transition: width 1s linear; }
+.timer-display { font-family: var(--fuente-mono); font-size: 2.1rem; font-weight: 600; text-align: center; margin-bottom: .7rem; letter-spacing: -.02em; }
+.timer-presets { display: grid; grid-template-columns: repeat(4, 1fr); gap: .3rem; margin-bottom: .7rem; }
+.timer-presets button { padding: .35rem 0; border-radius: 6px; border: 1px solid var(--color-borde); background: var(--color-fondo-elevado); color: var(--color-texto-suave); font-size: .72rem; cursor: pointer; }
+.timer-presets button:hover { border-color: var(--color-acento); color: var(--color-texto); }
+.timer-controles { display: flex; align-items: center; justify-content: center; gap: .5rem; }
+
+@media (max-width: 560px) {
+  .timer-widget { left: 1rem; right: 1rem; }
+  .timer-widget-inner { width: 100%; }
+}

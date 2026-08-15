@@ -8,7 +8,7 @@
  * que los datos de alumnos, rutinas y entrenamientos siempre estén al día.
  */
 
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v4';
 const CACHE_SHELL = `tomicoach-shell-${CACHE_VERSION}`;
 
 const APP_SHELL = [

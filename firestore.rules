@@ -56,7 +56,7 @@ service cloud.firestore {
       allow read: if esSuperadmin()
                   || (estoyAutenticado() && request.auth.uid == uid)
                   || (estoyAutenticado() && resource.data.rol == 'entrenador')
-                  || esMiAlumno(uid);
+                  || (estoyAutenticado() && resource.data.entrenadorId == request.auth.uid);
 
       // Alta de cuenta: cada quien crea su propio documento al registrarse.
       // Nadie puede autoasignarse el rol superadmin salvo el propio email
