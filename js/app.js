@@ -264,7 +264,24 @@ const App = (() => {
       });
       return { id: `dia-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, nombre: diaDef.nombre, ejercicios };
     });
-    return { nombre: `${programa.nombre} — nivel ${nivel.toLowerCase()}`, objetivo: objetivoKey, nivel, dias, calentamiento: [] };
+
+    // Calentamiento sugerido: 1 ejercicio de movilidad por cada zona clave del objetivo.
+    const GRUPOS_CALENTAMIENTO = {
+      'fuerza': ['Hombros', 'Cadera', 'Columna'],
+      'ganancia-muscular': ['Hombros', 'Cadera', 'Columna'],
+      'perdida-grasa': ['Cadera', 'Tobillos', 'Columna'],
+      'cardio': ['Tobillos', 'Cadera', 'Cuello']
+    };
+    let calentamiento = [];
+    if (GRUPOS_CALENTAMIENTO[objetivoKey]) {
+      const poolMovilidad = EXERCISE_DATABASE.filter(e => e.objetivos && e.objetivos.includes('movilidad'));
+      calentamiento = GRUPOS_CALENTAMIENTO[objetivoKey]
+        .map(grupo => ordenarPriorizandoGif(poolMovilidad.filter(e => e.grupoMuscular === grupo))[0])
+        .filter(Boolean)
+        .map(e => e.id);
+    }
+
+    return { nombre: `${programa.nombre} — nivel ${nivel.toLowerCase()}`, objetivo: objetivoKey, nivel, dias, calentamiento };
   }
 
   // ---------------------------------------------------------------------
@@ -868,63 +885,129 @@ const App = (() => {
   function iniciarEntrenamiento(rutina, dia) {
     state.sesionActiva = {
       rutinaNombre: rutina.nombre, diaNombre: dia.nombre, inicio: Date.now(),
+      calentamiento: rutina.calentamiento || [],
       ejercicios: dia.ejercicios.map(item => {
         const ej = getExerciseById(item.ejercicioId);
         return {
           ejercicioId: item.ejercicioId, nombre: ej?.nombre || 'Ejercicio',
           descansoSeg: item.descansoSeg || 90,
-          series: item.seriesObjetivo.map(o => ({ peso: o.peso || 0, reps: o.reps || 0, completada: false }))
+          series: item.seriesObjetivo.map(o => ({ peso: o.peso || 0, reps: o.reps || 0, rpe: null, rir: null, completada: false }))
         };
       })
     };
     cambiarVista('sesion');
   }
 
+  let cronometroSesionIntervalo = null;
+  function iniciarCronometroSesion() {
+    clearInterval(cronometroSesionIntervalo);
+    const actualizar = () => {
+      const el = $('#sesion-cronometro');
+      if (!el || !state.sesionActiva) { clearInterval(cronometroSesionIntervalo); return; }
+      const mins = Math.floor((Date.now() - state.sesionActiva.inicio) / 60000);
+      el.textContent = `En curso · ${mins} min`;
+    };
+    actualizar();
+    cronometroSesionIntervalo = setInterval(actualizar, 15000);
+  }
+
   function renderSesion() {
     const cont = $('#view-sesion');
     const s = state.sesionActiva;
     if (!s) { cont.innerHTML = `<p class="texto-suave estado-vacio">No hay ningún entrenamiento en curso.</p>`; return; }
+
+    const itemsCalentamiento = (s.calentamiento || []).map(id => getExerciseById(id)).filter(Boolean);
+    const calentamientoHtml = itemsCalentamiento.length ? `
+      <details class="bloque-calentamiento-sesion" open>
+        <summary>${icon('flame')} Entrada en calor sugerida (${itemsCalentamiento.length})</summary>
+        <div class="lista-calentamiento">
+          ${itemsCalentamiento.map(ej => `
+            <div class="fila-ejercicio-dia">
+              <div class="fila-ejercicio-dia-icono">${imagenEjercicioHTML(ej)}</div>
+              <div class="fila-ejercicio-dia-info"><strong>${escapeHtml(ej.nombre)}</strong></div>
+              <div class="fila-ejercicio-dia-acciones"><button class="btn-icono" data-ver-detalle="${ej.id}" title="Ver detalle">${icon('info')}</button></div>
+            </div>`).join('')}
+        </div>
+      </details>` : '';
+
     cont.innerHTML = `
       <div class="sesion-header">
-        <div><h2>${icon('play')} ${escapeHtml(s.diaNombre)}</h2><p class="texto-suave">${escapeHtml(s.rutinaNombre)}</p></div>
+        <div><h2>${icon('play')} ${escapeHtml(s.diaNombre)}</h2><p class="texto-suave" id="sesion-cronometro">En curso · 0 min</p></div>
         <div class="sesion-header-acciones">
           <button class="btn btn-fantasma" id="btn-cancelar-sesion">${icon('close')} Cancelar</button>
           <button class="btn btn-primario" id="btn-finalizar-sesion">${icon('check')} Finalizar</button>
         </div>
       </div>
+      ${calentamientoHtml}
       <div id="sesion-ejercicios"></div>`;
+
+    iniciarCronometroSesion();
 
     const ejCont = $('#sesion-ejercicios');
     function pintar() {
-      ejCont.innerHTML = s.ejercicios.map((ej, ei) => `
-        <div class="tarjeta-ejercicio-sesion">
-          <div class="tarjeta-ejercicio-sesion-header"><h3>${escapeHtml(ej.nombre)}</h3><button class="btn-icono" data-ver-detalle="${ej.ejercicioId}" title="Ver técnica" aria-label="Ver técnica">${icon('info')}</button></div>
-          <table class="tabla-series"><thead><tr><th>#</th><th>Kg</th><th>Reps</th><th></th></tr></thead><tbody>
+      ejCont.innerHTML = s.ejercicios.map((ej, ei) => {
+        const todasCompletas = ej.series.every(x => x.completada);
+        return `
+        <div class="tarjeta-ejercicio-sesion ${todasCompletas ? 'ejercicio-completado' : ''}">
+          <div class="tarjeta-ejercicio-sesion-header">
+            <h3>${escapeHtml(ej.nombre)} ${todasCompletas ? `<span class="badge badge-exito">${icon('check')} Completado</span>` : ''}</h3>
+            <div class="fila-ejercicio-dia-acciones">
+              <button class="btn-icono" data-agregar-serie="${ei}" title="Agregar serie" aria-label="Agregar serie">${icon('plus')}</button>
+              <button class="btn-icono" data-ver-detalle="${ej.ejercicioId}" title="Ver técnica" aria-label="Ver técnica">${icon('info')}</button>
+            </div>
+          </div>
+          <table class="tabla-series"><thead><tr><th>#</th><th>Kg</th><th>Reps</th><th>RPE</th><th>RIR</th><th></th></tr></thead><tbody>
             ${ej.series.map((serie, si) => `<tr class="${serie.completada ? 'fila-serie-completa' : ''}">
               <td>${si + 1}</td>
-              <td><input type="number" class="input-serie" data-ei="${ei}" data-si="${si}" data-campo="peso" value="${serie.peso}"></td>
-              <td><input type="number" class="input-serie" data-ei="${ei}" data-si="${si}" data-campo="reps" value="${serie.reps}"></td>
-              <td><button class="check-serie ${serie.completada ? 'check-serie-activo' : ''}" data-ei="${ei}" data-si="${si}">${icon('check')}</button></td>
+              <td><input type="number" step="0.5" min="0" class="input-serie" data-ei="${ei}" data-si="${si}" data-campo="peso" value="${serie.peso}"></td>
+              <td><input type="number" min="0" class="input-serie" data-ei="${ei}" data-si="${si}" data-campo="reps" value="${serie.reps}"></td>
+              <td><input type="number" min="1" max="10" class="input-serie" data-ei="${ei}" data-si="${si}" data-campo="rpe" value="${serie.rpe ?? ''}" placeholder="—"></td>
+              <td><input type="number" min="0" max="5" class="input-serie" data-ei="${ei}" data-si="${si}" data-campo="rir" value="${serie.rir ?? ''}" placeholder="—"></td>
+              <td><button class="checkbox-serie ${serie.completada ? 'checkbox-serie-activo' : ''}" data-ei="${ei}" data-si="${si}" title="Marcar completada">${icon('check')}</button></td>
             </tr>`).join('')}
           </tbody></table>
-        </div>`).join('');
+        </div>`;
+      }).join('');
+
       $$('.input-serie', ejCont).forEach(inp => inp.addEventListener('change', () => {
-        s.ejercicios[inp.dataset.ei].series[inp.dataset.si][inp.dataset.campo] = Number(inp.value) || 0;
+        const valor = inp.value === '' ? null : Number(inp.value);
+        s.ejercicios[inp.dataset.ei].series[inp.dataset.si][inp.dataset.campo] = valor;
       }));
-      $$('.check-serie', ejCont).forEach(b => b.addEventListener('click', () => {
+      $$('.checkbox-serie', ejCont).forEach(b => b.addEventListener('click', () => {
         const ejercicio = s.ejercicios[b.dataset.ei];
         const serie = ejercicio.series[b.dataset.si];
         serie.completada = !serie.completada;
         pintar();
-        if (serie.completada) { /* abrirWidgetTimer(ejercicio.descansoSeg || 90); */ } // TEMPORALMENTE DESACTIVADO
+        if (serie.completada) abrirWidgetTimer(ejercicio.descansoSeg || 90);
+      }));
+      $$('[data-agregar-serie]', ejCont).forEach(b => b.addEventListener('click', () => {
+        const series = s.ejercicios[b.dataset.agregarSerie].series;
+        const ultima = series[series.length - 1];
+        series.push({ peso: ultima?.peso || 0, reps: ultima?.reps || 0, rpe: null, rir: null, completada: false });
+        pintar();
       }));
       $$('[data-ver-detalle]', ejCont).forEach(b => b.addEventListener('click', () => abrirDetalleEjercicio(b.dataset.verDetalle)));
     }
     pintar();
 
-    $('#btn-cancelar-sesion').addEventListener('click', () => { cerrarWidgetTimer(); state.sesionActiva = null; cambiarVista('mi-rutina'); });
+    $('#btn-cancelar-sesion').addEventListener('click', () => {
+      abrirModal(`
+        <div class="modal-header"><h3>${icon('warning')} Cancelar entrenamiento</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
+        <div class="modal-body"><p>Se va a perder el progreso de esta sesión. ¿Querés continuar?</p></div>
+        <div class="modal-footer">
+          <button class="btn btn-fantasma" data-cerrar-modal>Seguir entrenando</button>
+          <button class="btn btn-peligro" id="btn-confirmar-cancelar-sesion">${icon('trash')} Sí, cancelar</button>
+        </div>`, { id: 'modal-cancelar-sesion' });
+      $('#btn-confirmar-cancelar-sesion').addEventListener('click', () => {
+        clearInterval(cronometroSesionIntervalo);
+        cerrarWidgetTimer();
+        state.sesionActiva = null;
+        cerrarModal();
+        cambiarVista('mi-rutina');
+      });
+    });
+
     $('#btn-finalizar-sesion').addEventListener('click', async () => {
-      cerrarWidgetTimer();
       const usuario = FirebaseService.getUsuarioActual();
       const ejerciciosSesion = s.ejercicios.map(ej => ({
         ejercicioId: ej.ejercicioId, nombre: ej.nombre, series: ej.series,
@@ -937,6 +1020,8 @@ const App = (() => {
         ejercicios: ejerciciosSesion,
         volumenTotal: ejerciciosSesion.reduce((sum, e) => sum + e.volumen, 0)
       });
+      clearInterval(cronometroSesionIntervalo);
+      cerrarWidgetTimer();
       toast('¡Entrenamiento guardado!', 'logro');
       state.sesionActiva = null;
       cambiarVista('mi-progreso');
