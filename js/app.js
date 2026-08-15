@@ -1025,8 +1025,8 @@ const App = (() => {
       catch (ex) { toast(traducirErrorFirebase(ex), 'error'); }
     });
 
-    $('#btn-cerrar-sesion').addEventListener('click', () => FirebaseService.cerrarSesion());
-    $('#btn-cerrar-sesion-suspendido')?.addEventListener('click', () => FirebaseService.cerrarSesion());
+    $('#btn-cerrar-sesion').addEventListener('click', () => { cerrarWidgetTimer(); FirebaseService.cerrarSesion(); });
+    $('#btn-cerrar-sesion-suspendido')?.addEventListener('click', () => { cerrarWidgetTimer(); FirebaseService.cerrarSesion(); });
     $('#btn-menu-movil')?.addEventListener('click', () => $('#sidebar').classList.toggle('sidebar-abierto'));
   }
 
@@ -1114,6 +1114,7 @@ const App = (() => {
     $('#pantalla-suspendido').hidden = true;
     $('#pantalla-auth').hidden = true;
     $('#app').hidden = false;
+    cerrarWidgetTimer();
     construirSidebar(usuario);
     const vistaInicial = usuario.rol === 'superadmin' ? 'superadmin' : usuario.rol === 'entrenador' ? 'alumnos' : 'mi-rutina';
     cambiarVista(vistaInicial);
