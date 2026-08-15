@@ -8,7 +8,7 @@
  * que los datos de alumnos, rutinas y entrenamientos siempre estén al día.
  */
 
-const CACHE_VERSION = 'v4';
+const CACHE_VERSION = 'v5';
 const CACHE_SHELL = `tomicoach-shell-${CACHE_VERSION}`;
 
 const APP_SHELL = [
@@ -20,6 +20,7 @@ const APP_SHELL = [
   './js/database.js',
   './js/firebase-config.js',
   './js/firebase-service.js',
+  './js/timer.js',
   './js/app.js',
   './assets/iconos/sprite.svg',
   './assets/iconos/poses.svg',
@@ -65,17 +66,22 @@ self.addEventListener('fetch', (event) => {
     return; // dejar pasar directo a la red, sin intervención del Service Worker
   }
 
-  event.respondWith(cacheFirstConActualizacion(req));
+  event.respondWith(redPrimeroConRespaldo(req));
 });
 
-async function cacheFirstConActualizacion(req) {
+// Red primero: siempre trae la última versión si hay conexión (así los
+// cambios se ven al instante, sin esperar a la "próxima visita"). Si no
+// hay conexión, recién ahí usa lo que tenga guardado como respaldo.
+async function redPrimeroConRespaldo(req) {
   const cache = await caches.open(CACHE_SHELL);
-  const cacheado = await cache.match(req);
-  const actualizar = fetch(req).then((res) => { if (res && res.status === 200) cache.put(req, res.clone()); return res; }).catch(() => null);
-
-  if (cacheado) { actualizar; return cacheado; }
-  const red = await actualizar;
-  if (red) return red;
-  if (req.mode === 'navigate') { const shell = await cache.match('./index.html'); if (shell) return shell; }
-  return new Response('Sin conexión.', { status: 503, statusText: 'Offline' });
+  try {
+    const res = await fetch(req);
+    if (res && res.status === 200) cache.put(req, res.clone());
+    return res;
+  } catch (err) {
+    const cacheado = await cache.match(req);
+    if (cacheado) return cacheado;
+    if (req.mode === 'navigate') { const shell = await cache.match('./index.html'); if (shell) return shell; }
+    return new Response('Sin conexión.', { status: 503, statusText: 'Offline' });
+  }
 }
