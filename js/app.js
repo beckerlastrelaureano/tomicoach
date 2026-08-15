@@ -144,23 +144,63 @@ const App = (() => {
   const NIVEL_ORDEN = { 'Principiante': 1, 'Intermedio': 2, 'Avanzado': 3 };
 
   const PROGRAMAS_OBJETIVO = {
-    'ganancia-muscular': { nombre: 'Ganancia muscular', icono: 'trophy', dias: [
+    'ganancia-muscular': { nombre: 'Ganancia muscular', icono: 'trophy',
+      frecuencia: '5 días / semana',
+      resumen: 'Rutina de 5 días que reparte todos los grupos musculares de la semana para maximizar el volumen de entrenamiento.',
+      metodologia: [
+        'Rango de 8 a 12 repeticiones por serie: el punto donde más evidencia hay de estímulo para el crecimiento muscular (hipertrofia).',
+        'Descansos de 60 a 90 segundos entre series: suficiente para recuperar sin perder densidad de entrenamiento.',
+        'Se reparten los grupos musculares en distintos días para poder entrenar cada músculo con buen volumen semanal, sin acumular fatiga excesiva en una sola sesión.',
+        'La progresión se basa en sumar repeticiones primero y peso después (doble progresión), mantenida en el tiempo.'
+      ], dias: [
       { nombre: 'Día 1 — Pecho, hombros y tríceps', series: 3, reps: 10, descanso: 75, bloques: [{ grupo: 'Pecho', cantidad: 2 }, { grupo: 'Hombros', cantidad: 2 }, { grupo: 'Tríceps', cantidad: 2 }] },
       { nombre: 'Día 2 — Espalda y bíceps', series: 3, reps: 10, descanso: 75, bloques: [{ grupo: 'Espalda', cantidad: 3 }, { grupo: 'Bíceps', cantidad: 2 }, { grupo: 'Trapecios', cantidad: 1 }] },
       { nombre: 'Día 3 — Piernas completo', series: 3, reps: 10, descanso: 90, bloques: [{ grupo: 'Cuádriceps', cantidad: 2 }, { grupo: 'Isquiotibiales', cantidad: 2 }, { grupo: 'Glúteos', cantidad: 1 }, { grupo: 'Gemelos', cantidad: 1 }] }
     ]},
-    'fuerza': { nombre: 'Fuerza', icono: 'barbell', dias: [
+    'fuerza': { nombre: 'Fuerza', icono: 'barbell',
+      frecuencia: '3 días / semana',
+      resumen: 'Levantamientos compuestos pesados con pocas repeticiones y descansos largos, para maximizar la fuerza máxima.',
+      metodologia: [
+        'Rango de 4 a 6 repeticiones por serie, con cargas altas y técnica muy controlada.',
+        'Descansos largos (2 a 3 minutos) para permitir recuperación casi completa entre series pesadas: en fuerza importa más la calidad de cada serie que la fatiga acumulada.',
+        'El foco está en pocos ejercicios compuestos por sesión (sentadilla, press de banca, peso muerto, remo) en vez de mucha variedad — así se puede progresar en cada uno de forma medible.',
+        'La progresión se basa en sumar peso de forma constante y gradual (sobrecarga progresiva), priorizando siempre la técnica sobre el número en la barra.'
+      ], dias: [
       { nombre: 'Día 1 — Sentadilla y pecho', series: 5, reps: 5, descanso: 180, bloques: [{ grupo: 'Cuádriceps', cantidad: 1, preferirCompuesto: true }, { grupo: 'Pecho', cantidad: 1, preferirCompuesto: true }, { grupo: 'Hombros', cantidad: 1 }] },
       { nombre: 'Día 2 — Peso muerto y espalda', series: 5, reps: 5, descanso: 180, bloques: [{ grupo: 'Isquiotibiales', cantidad: 1, preferirCompuesto: true }, { grupo: 'Espalda', cantidad: 2, preferirCompuesto: true }] }
     ]},
-    'perdida-grasa': { nombre: 'Pérdida de grasa', icono: 'flame', dias: [
+    'perdida-grasa': { nombre: 'Pérdida de grasa', icono: 'flame',
+      frecuencia: '4 días / semana',
+      resumen: 'Circuitos de cuerpo completo combinando fuerza y cardio, con descansos cortos para mantener el pulso alto.',
+      metodologia: [
+        'Rango de 12 a 15 repeticiones por serie, con descansos cortos (30 a 45 segundos) para elevar el gasto calórico de la sesión.',
+        'Se combinan ejercicios compuestos (que reclutan más músculo y gastan más energía) con movimientos de acondicionamiento tipo cardio.',
+        'Entrenar cuerpo completo varias veces por semana mantiene alta la frecuencia de estímulo muscular — clave para preservar masa magra mientras se busca un déficit calórico.',
+        'La pérdida de grasa depende principalmente de la alimentación (déficit calórico sostenido); el entrenamiento acompaña preservando músculo y mejorando la condición física general.'
+      ], dias: [
       { nombre: 'Circuito 1', series: 3, reps: 14, descanso: 40, bloques: [{ grupo: 'Cuádriceps', cantidad: 1 }, { grupo: 'Pecho', cantidad: 1 }, { grupo: 'Espalda', cantidad: 1 }, { grupo: 'Abdomen', cantidad: 1 }] },
       { nombre: 'Circuito 2', series: 3, reps: 14, descanso: 40, bloques: [{ grupo: 'Glúteos', cantidad: 1 }, { grupo: 'Hombros', cantidad: 1 }, { grupo: 'Espalda', cantidad: 1 }] }
     ]},
-    'cardio': { nombre: 'Cardio', icono: 'timer', dias: [
+    'cardio': { nombre: 'Cardio', icono: 'timer',
+      frecuencia: '3 días / semana',
+      resumen: 'Sesiones de acondicionamiento metabólico con movimientos funcionales, pensadas para mejorar resistencia cardiovascular.',
+      metodologia: [
+        'Repeticiones altas (15 a 20) o por tiempo, con descansos muy cortos (20 a 30 segundos) para mantener elevada la frecuencia cardíaca durante toda la sesión.',
+        'Predominan ejercicios con peso corporal y movimientos multiarticulares que exigen más al sistema cardiovascular que al muscular aislado.',
+        'Este tipo de trabajo mejora la capacidad aeróbica y anaeróbica, y es un buen complemento — no reemplazo — de un plan de fuerza.',
+        'Al ser un estímulo exigente, se recomienda no encadenar más de 3 sesiones por semana sin días de por medio para permitir recuperación.'
+      ], dias: [
       { nombre: 'Acondicionamiento 1', series: 4, reps: 15, descanso: 25, bloques: [{ grupo: 'Abdomen', cantidad: 2 }, { grupo: 'Gemelos', cantidad: 1 }] }
     ]},
-    'movilidad': { nombre: 'Movilidad y elongación', icono: 'repeat', dias: [
+    'movilidad': { nombre: 'Movilidad y elongación', icono: 'repeat',
+      frecuencia: '3 días / semana',
+      resumen: 'Rutina de movilidad y estiramientos para mejorar el rango de movimiento, aliviar tensión muscular y complementar el trabajo de fuerza.',
+      metodologia: [
+        'Los estiramientos estáticos se mantienen entre 20 y 30 segundos, respirando profundo, sin rebotar y sin llegar a dolor agudo.',
+        'Los ejercicios de movilidad dinámica (círculos, rotaciones) se hacen con repeticiones controladas en vez de sostenidas.',
+        'Trabajar la movilidad de forma regular ayuda a prevenir lesiones y mejora la técnica en los demás objetivos (fuerza, hipertrofia, cardio).',
+        'Es un buen complemento después de entrenar, o como sesión aparte en los días de descanso activo.'
+      ], dias: [
       { nombre: 'Día 1 — Movilidad general', series: 2, reps: 1, descanso: 20, bloques: [{ grupo: 'Cadera', cantidad: 2 }, { grupo: 'Columna', cantidad: 2 }, { grupo: 'Isquiotibiales', cantidad: 1 }] }
     ]}
   };
@@ -171,7 +211,16 @@ const App = (() => {
       const compuestos = candidatos.filter(e => e.tipo === 'Compuesto');
       if (compuestos.length >= cantidad) candidatos = compuestos;
     }
-    return candidatos.sort((a, b) => a.nombre.localeCompare(b.nombre)).slice(0, cantidad);
+    // Priorizamos los que tienen GIF real (sin dejar afuera al resto si no alcanzan),
+    // para que las rutinas estándar muestren la técnica en video siempre que sea posible.
+    return candidatos
+      .sort((a, b) => {
+        const gifA = a.gifs && a.gifs.length ? 1 : 0;
+        const gifB = b.gifs && b.gifs.length ? 1 : 0;
+        if (gifA !== gifB) return gifB - gifA;
+        return a.nombre.localeCompare(b.nombre, 'es');
+      })
+      .slice(0, cantidad);
   }
 
   function generarRutinaDesdeObjetivo(objetivoKey, nivel) {
@@ -201,31 +250,107 @@ const App = (() => {
   // ---------------------------------------------------------------------
   // Selector de ejercicios reutilizable
   // ---------------------------------------------------------------------
+  // ---------------------------------------------------------------------
+  // Filtros de ejercicios compartidos (selector para agregar a rutina)
+  // ---------------------------------------------------------------------
+  function filtrarEjercicios(lista, filtros) {
+    let resultado = lista;
+    const texto = (filtros.texto || '').trim().toLowerCase();
+    if (texto) resultado = resultado.filter(e => e.nombre.toLowerCase().includes(texto));
+    if (filtros.grupo) resultado = resultado.filter(e => e.grupoMuscular === filtros.grupo);
+    if (filtros.equipo) resultado = resultado.filter(e => e.equipamiento === filtros.equipo);
+    if (filtros.dificultad) resultado = resultado.filter(e => e.dificultad === filtros.dificultad);
+    if (filtros.tipo) resultado = resultado.filter(e => e.tipo === filtros.tipo);
+    if (filtros.soloConGif) resultado = resultado.filter(e => e.gifs && e.gifs.length);
+    return [...resultado].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+  }
+
+  function panelFiltrosHTML(idPrefijo, filtros) {
+    const opcionesGrupo = MUSCLE_GROUPS.map(g => `<option value="${g}" ${filtros.grupo === g ? 'selected' : ''}>${g}</option>`).join('');
+    const opcionesEquipo = EQUIPMENT_LIST.map(eq => `<option value="${eq}" ${filtros.equipo === eq ? 'selected' : ''}>${eq}</option>`).join('');
+    return `
+      <div class="panel-filtros" id="${idPrefijo}-filtros">
+        <div class="buscador-wrap">
+          ${icon('search')}
+          <input type="text" id="${idPrefijo}-buscador-input" placeholder="Buscar ejercicio..." value="${escapeHtml(filtros.texto || '')}" autocomplete="off">
+        </div>
+        <div class="filtros-fila">
+          <select data-filtro="grupo" id="${idPrefijo}-filtro-grupo"><option value="">Todos los grupos</option>${opcionesGrupo}</select>
+          <select data-filtro="equipo" id="${idPrefijo}-filtro-equipo"><option value="">Todo el equipamiento</option>${opcionesEquipo}</select>
+          <select data-filtro="dificultad" id="${idPrefijo}-filtro-dificultad">
+            <option value="">Toda dificultad</option>
+            <option value="Principiante" ${filtros.dificultad === 'Principiante' ? 'selected' : ''}>Principiante</option>
+            <option value="Intermedio" ${filtros.dificultad === 'Intermedio' ? 'selected' : ''}>Intermedio</option>
+            <option value="Avanzado" ${filtros.dificultad === 'Avanzado' ? 'selected' : ''}>Avanzado</option>
+          </select>
+          <select data-filtro="tipo" id="${idPrefijo}-filtro-tipo">
+            <option value="">Todo tipo</option>
+            <option value="Compuesto" ${filtros.tipo === 'Compuesto' ? 'selected' : ''}>Compuesto</option>
+            <option value="Aislado" ${filtros.tipo === 'Aislado' ? 'selected' : ''}>Aislado</option>
+          </select>
+        </div>
+        <div class="filtros-chips" id="${idPrefijo}-chips"></div>
+      </div>`;
+  }
+
+  function chipsFiltrosHTML(filtros) {
+    return `
+      <button class="chip ${filtros.soloConGif ? 'chip-activo' : ''}" data-solo-gif="1">${icon('info')} Con GIF</button>
+      ${(filtros.grupo || filtros.equipo || filtros.dificultad || filtros.tipo || filtros.soloConGif) ? `<button class="chip chip-limpiar" data-limpiar-filtros="1">${icon('close')} Limpiar filtros</button>` : ''}`;
+  }
+
+  function activarPanelFiltros(idPrefijo, filtrosObj, onChange) {
+    const buscador = $(`#${idPrefijo}-buscador-input`);
+    if (buscador) buscador.addEventListener('input', debounce((e) => { filtrosObj.texto = e.target.value; onChange(); }, 200));
+    ['grupo', 'equipo', 'dificultad', 'tipo'].forEach(campo => {
+      const sel = $(`#${idPrefijo}-filtro-${campo}`);
+      if (sel) sel.addEventListener('change', (e) => { filtrosObj[campo] = e.target.value; onChange(); });
+    });
+
+    const chipsCont = $(`#${idPrefijo}-chips`);
+    function pintarChips() {
+      if (!chipsCont) return;
+      chipsCont.innerHTML = chipsFiltrosHTML(filtrosObj);
+      $('[data-solo-gif]', chipsCont)?.addEventListener('click', () => { filtrosObj.soloConGif = !filtrosObj.soloConGif; pintarChips(); onChange(); });
+      $('[data-limpiar-filtros]', chipsCont)?.addEventListener('click', () => {
+        Object.assign(filtrosObj, { grupo: '', equipo: '', dificultad: '', tipo: '', soloConGif: false });
+        ['grupo', 'equipo', 'dificultad', 'tipo'].forEach(campo => { const sel = $(`#${idPrefijo}-filtro-${campo}`); if (sel) sel.value = ''; });
+        pintarChips();
+        onChange();
+      });
+    }
+    pintarChips();
+  }
+
+  let filtrosSelector = {};
   function abrirSelectorEjercicios(onSeleccionar) {
+    filtrosSelector = { texto: '', grupo: '', equipo: '', dificultad: '', tipo: '', soloConGif: false };
     abrirModal(`
-      <div class="modal-header"><h3>Agregar ejercicio</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
+      <div class="modal-header"><h3>${icon('search')} Agregar ejercicio</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
       <div class="modal-body">
-        <div class="buscador-wrapper">${icon('search')}<input type="text" id="selector-buscador-input" placeholder="Buscar ejercicio..." autofocus></div>
-        <div id="selector-resultados" class="grid-selector-ejercicios"></div>
+        ${panelFiltrosHTML('selector', filtrosSelector)}
+        <div id="selector-resultados" class="grid-ejercicios grid-ejercicios-modal"></div>
       </div>`, { ancho: 'lg', id: 'modal-selector-ejercicio' });
 
-    const input = $('#selector-buscador-input');
-    const cont = $('#selector-resultados');
-    function pintar(texto = '') {
-      const filtrados = (texto ? EXERCISE_DATABASE.filter(e => e.nombre.toLowerCase().includes(texto.toLowerCase())) : EXERCISE_DATABASE).slice(0, 40);
+    function pintar() {
+      const cont = $('#selector-resultados');
+      const filtrados = filtrarEjercicios(EXERCISE_DATABASE, filtrosSelector).slice(0, 60);
       cont.innerHTML = filtrados.map(e => `
         <div class="tarjeta-ejercicio" data-id="${e.id}" role="button" tabindex="0">
           <div class="tarjeta-ejercicio-imagen">
             ${imagenEjercicioHTML(e)}
+            ${e.gifs && e.gifs.length ? `<span class="badge-gif" title="Tiene GIF real">GIF</span>` : ''}
             <button class="btn-icono tarjeta-ejercicio-btn-info" data-ver-detalle="${e.id}" title="Ver detalle" aria-label="Ver detalle">${icon('info')}</button>
           </div>
-          <div class="tarjeta-ejercicio-contenido"><h4>${escapeHtml(e.nombre)}</h4><p class="texto-suave texto-pequeno">${e.grupoMuscular} · ${e.equipamiento}</p></div>
-        </div>`).join('') || `<p class="texto-suave">Sin resultados.</p>`;
+          <div class="tarjeta-ejercicio-contenido"><h4>${escapeHtml(e.nombre)}</h4><p class="texto-suave texto-pequeno">${escapeHtml(e.grupoMuscular)} · ${escapeHtml(e.equipamiento)}</p></div>
+        </div>`).join('') || `<p class="texto-suave estado-vacio">No se encontraron ejercicios con esos filtros.</p>`;
       $$('.tarjeta-ejercicio', cont).forEach(b => b.addEventListener('click', () => { cerrarModal(); onSeleccionar(getExerciseById(b.dataset.id)); }));
       $$('[data-ver-detalle]', cont).forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); abrirDetalleEjercicio(b.dataset.verDetalle); }));
     }
-    input.addEventListener('input', debounce(() => pintar(input.value)));
+
     pintar();
+    activarPanelFiltros('selector', filtrosSelector, pintar);
+    $('#selector-buscador-input')?.focus();
   }
 
   // ---------------------------------------------------------------------
@@ -540,6 +665,11 @@ const App = (() => {
     abrirModal(`
       <div class="modal-header"><h3>${icon(p.icono)} ${escapeHtml(p.nombre)}</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
       <div class="modal-body">
+        ${p.frecuencia ? `<span class="badge" style="margin-bottom:.7rem;display:inline-block">${escapeHtml(p.frecuencia)}</span>` : ''}
+        ${p.resumen ? `<p class="texto-suave" style="margin-bottom:.9rem">${escapeHtml(p.resumen)}</p>` : ''}
+        ${p.metodologia && p.metodologia.length ? `
+          <h4 class="detalle-ejercicio-subtitulo" style="margin-bottom:.4rem">${icon('check')} Cómo está pensada</h4>
+          <ul class="lista-detalle-ejercicio" style="margin-bottom:1.1rem">${p.metodologia.map(m => `<li>${escapeHtml(m)}</li>`).join('')}</ul>` : ''}
         <p class="texto-suave" style="margin-bottom:1rem">Elegí el nivel para generar la rutina de este alumno.</p>
         <div class="lista-niveles">
           ${['Principiante', 'Intermedio', 'Avanzado'].map((n, i) => `
@@ -549,7 +679,7 @@ const App = (() => {
       <div class="modal-footer">
         <button class="btn btn-fantasma" data-cerrar-modal>Cancelar</button>
         <button class="btn btn-primario" id="btn-confirmar-nivel-alumno">${icon('plus')} Generar rutina</button>
-      </div>`, { id: 'modal-nivel-alumno' });
+      </div>`, { ancho: 'lg', id: 'modal-nivel-alumno' });
 
     $('#btn-confirmar-nivel-alumno').addEventListener('click', async () => {
       const nivel = $('input[name="nivel"]:checked').value;

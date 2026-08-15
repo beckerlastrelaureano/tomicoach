@@ -586,3 +586,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .timer-widget { left: 1rem; right: 1rem; }
   .timer-widget-inner { width: 100%; }
 }
+
+/* --------------------------------- Badge GIF en tarjetas de ejercicio --------------------------------- */
+.badge-gif { position: absolute; top: .5rem; left: .5rem; z-index: 2; background: var(--color-acento); color: #fff; font-size: .62rem; font-weight: 700; letter-spacing: .04em; padding: .15rem .4rem; border-radius: 4px; }
