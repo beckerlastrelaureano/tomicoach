@@ -28,6 +28,12 @@ const App = (() => {
   function formatFecha(iso, opciones = { day: '2-digit', month: 'short', year: 'numeric' }) {
     return new Date(iso).toLocaleDateString('es-ES', opciones);
   }
+  function formatDuracion(seg) {
+    if (!seg) return '—';
+    const min = Math.round(seg / 60);
+    if (min < 60) return `${min} min`;
+    return `${Math.floor(min / 60)}h ${min % 60}min`;
+  }
   function debounce(fn, ms = 200) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
 
   const state = { vistaActual: null, alumnoSeleccionadoUid: null, sesionActiva: null };
@@ -1034,13 +1040,18 @@ const App = (() => {
     const usuario = FirebaseService.getUsuarioActual();
     cont.innerHTML = `<p class="texto-suave">Cargando...</p>`;
     const historial = await FirebaseService.getHistorial(usuario.uid);
+    const historialOrdenado = [...historial].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
     cont.innerHTML = `
       <div class="panel-header"><h2>Mi progreso</h2></div>
       <div class="grid-cards-resumen" style="grid-template-columns:repeat(2,1fr)">
         <div class="card-stat"><div class="card-stat-icono">${icon('routine')}</div><div class="card-stat-valor">${historial.length}</div><div class="card-stat-label">Entrenamientos</div></div>
         <div class="card-stat exito"><div class="card-stat-icono">${icon('stats')}</div><div class="card-stat-valor">${formatNumero(historial.reduce((s, h) => s + (h.volumenTotal || 0), 0))} kg</div><div class="card-stat-label">Volumen total</div></div>
       </div>
-      <div class="panel"><h3>Volumen por sesión</h3><div class="contenedor-grafico" style="margin-top:.8rem"><canvas id="grafico-mi-progreso"></canvas></div></div>`;
+      <div class="panel"><h3>Volumen por sesión</h3><div class="contenedor-grafico" style="margin-top:.8rem"><canvas id="grafico-mi-progreso"></canvas></div></div>
+      <div class="panel" style="margin-top:1.2rem">
+        <h3>${icon('history')} Historial de entrenamientos</h3>
+        <div id="historial-alumno-lista" class="lista-historial" style="margin-top:.9rem"></div>
+      </div>`;
     renderGraficoProgresoAlumno.call(null, historial);
     const canvas = $('#grafico-mi-progreso');
     if (canvas && typeof Chart !== 'undefined') {
@@ -1050,8 +1061,51 @@ const App = (() => {
         options: { responsive: true, maintainAspectRatio: false }
       });
     }
+
+    const listaCont = $('#historial-alumno-lista');
+    if (!historialOrdenado.length) {
+      listaCont.innerHTML = `<p class="texto-suave estado-vacio">Todavía no registraste ningún entrenamiento. ¡Empezá uno desde "Mi rutina"!</p>`;
+      return;
+    }
+    listaCont.innerHTML = historialOrdenado.map(s => {
+      const seriesCompletas = (s.ejercicios || []).reduce((n, ej) => n + ej.series.filter(x => x.completada).length, 0);
+      return `
+        <button class="fila-historial" data-id="${s.id}">
+          <div class="fila-historial-fecha"><strong>${formatFecha(s.fecha, { day: '2-digit', month: 'short' })}</strong><span class="texto-suave">${formatFecha(s.fecha, { year: 'numeric' })}</span></div>
+          <div class="fila-historial-info"><strong>${escapeHtml(s.diaNombre || s.rutinaNombre || 'Entrenamiento')}</strong><span class="texto-suave">${(s.ejercicios || []).length} ejercicios · ${seriesCompletas} series · ${formatDuracion(s.duracionSeg)}</span></div>
+          <div class="fila-historial-volumen"><strong>${formatNumero(s.volumenTotal || 0)} kg</strong><span class="texto-suave">volumen</span></div>
+          ${icon('chevron-right')}
+        </button>`;
+    }).join('');
+    $$('.fila-historial', listaCont).forEach(fila => fila.addEventListener('click', () => {
+      const sesion = historialOrdenado.find(h => h.id === fila.dataset.id);
+      if (sesion) abrirModalDetalleSesion(sesion);
+    }));
   }
   RENDERERS['mi-progreso'] = renderMiProgreso;
+
+  function abrirModalDetalleSesion(s) {
+    abrirModal(`
+      <div class="modal-header"><h3>${escapeHtml(s.diaNombre || s.rutinaNombre || 'Entrenamiento')}</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
+      <div class="modal-body">
+        <p class="texto-suave">${formatFecha(s.fecha, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} · ${formatDuracion(s.duracionSeg)}</p>
+        ${(s.ejercicios || []).map(ej => `
+          <div class="detalle-sesion-ejercicio">
+            <h4>${escapeHtml(ej.nombre)}</h4>
+            <table class="tabla-series tabla-series-lectura">
+              <thead><tr><th>#</th><th>Peso</th><th>Reps</th><th>RPE</th><th>RIR</th><th></th></tr></thead>
+              <tbody>
+                ${ej.series.map((x, i) => `<tr class="${x.completada ? '' : 'fila-serie-incompleta'}">
+                  <td>${i + 1}</td><td>${x.peso} kg</td><td>${x.reps}</td><td>${x.rpe ?? '—'}</td><td>${x.rir ?? '—'}</td>
+                  <td>${x.completada ? icon('check-circle') : '—'}</td></tr>`).join('')}
+              </tbody>
+            </table>
+            <p class="texto-suave">Volumen: ${formatNumero(ej.volumen || 0)} kg</p>
+          </div>`).join('')}
+      </div>
+      <div class="modal-footer"><button class="btn btn-primario" data-cerrar-modal>${icon('check')} Cerrar</button></div>`,
+      { ancho: 'lg', id: 'modal-detalle-sesion' });
+  }
 
   // ---------------------------------------------------------------------
   // Autenticación (UI)
