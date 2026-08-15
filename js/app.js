@@ -93,9 +93,11 @@ const App = (() => {
   }
   function imagenEjercicioHTML(ej) {
     const pose = poseIcon(categoriaIlustracion(ej));
-    if (ej.gifs && ej.gifs.length) {
-      return `${pose}<img src="${escapeHtml(ej.gifs[0].url)}" alt="" loading="lazy" class="foto-ejercicio" onerror="this.remove()">`;
-    }
+    // OJO: a propósito NO usamos el GIF acá. Poner un GIF animado en cada
+    // miniatura de una lista de 40-60 ejercicios hace que el celular tenga
+    // que descargar y animar todos a la vez, y la app se siente pesada/lenta.
+    // El GIF animado se reserva para la pantalla de detalle (un ejercicio
+    // a la vez). Acá usamos la ilustración fija, o la foto estática si existe.
     if (ej.imagenesExternas && ej.imagenesExternas.length) {
       return `${pose}<img src="${escapeHtml(ej.imagenesExternas[0])}" alt="" loading="lazy" class="foto-ejercicio" onerror="this.remove()">`;
     }
@@ -150,12 +152,14 @@ const App = (() => {
       metodologia: [
         'Rango de 8 a 12 repeticiones por serie: el punto donde más evidencia hay de estímulo para el crecimiento muscular (hipertrofia).',
         'Descansos de 60 a 90 segundos entre series: suficiente para recuperar sin perder densidad de entrenamiento.',
-        'Se reparten los grupos musculares en distintos días para poder entrenar cada músculo con buen volumen semanal, sin acumular fatiga excesiva en una sola sesión.',
+        'Se reparten los grupos musculares en 5 días distintos para poder entrenar cada músculo con buen volumen semanal, sin acumular fatiga excesiva en una sola sesión.',
         'La progresión se basa en sumar repeticiones primero y peso después (doble progresión), mantenida en el tiempo.'
       ], dias: [
       { nombre: 'Día 1 — Pecho, hombros y tríceps', series: 3, reps: 10, descanso: 75, bloques: [{ grupo: 'Pecho', cantidad: 2 }, { grupo: 'Hombros', cantidad: 2 }, { grupo: 'Tríceps', cantidad: 2 }] },
       { nombre: 'Día 2 — Espalda y bíceps', series: 3, reps: 10, descanso: 75, bloques: [{ grupo: 'Espalda', cantidad: 3 }, { grupo: 'Bíceps', cantidad: 2 }, { grupo: 'Trapecios', cantidad: 1 }] },
-      { nombre: 'Día 3 — Piernas completo', series: 3, reps: 10, descanso: 90, bloques: [{ grupo: 'Cuádriceps', cantidad: 2 }, { grupo: 'Isquiotibiales', cantidad: 2 }, { grupo: 'Glúteos', cantidad: 1 }, { grupo: 'Gemelos', cantidad: 1 }] }
+      { nombre: 'Día 3 — Piernas completo', series: 3, reps: 10, descanso: 90, bloques: [{ grupo: 'Cuádriceps', cantidad: 2 }, { grupo: 'Isquiotibiales', cantidad: 2 }, { grupo: 'Glúteos', cantidad: 1 }, { grupo: 'Gemelos', cantidad: 1 }] },
+      { nombre: 'Día 4 — Tren superior', series: 3, reps: 12, descanso: 60, bloques: [{ grupo: 'Pecho', cantidad: 1 }, { grupo: 'Espalda', cantidad: 1 }, { grupo: 'Hombros', cantidad: 1 }, { grupo: 'Bíceps', cantidad: 1 }, { grupo: 'Tríceps', cantidad: 1 }] },
+      { nombre: 'Día 5 — Tren inferior', series: 3, reps: 12, descanso: 60, bloques: [{ grupo: 'Cuádriceps', cantidad: 1 }, { grupo: 'Isquiotibiales', cantidad: 1 }, { grupo: 'Glúteos', cantidad: 2 }, { grupo: 'Aductores', cantidad: 1 }, { grupo: 'Abductores', cantidad: 1 }] }
     ]},
     'fuerza': { nombre: 'Fuerza', icono: 'barbell',
       frecuencia: '3 días / semana',
@@ -163,11 +167,12 @@ const App = (() => {
       metodologia: [
         'Rango de 4 a 6 repeticiones por serie, con cargas altas y técnica muy controlada.',
         'Descansos largos (2 a 3 minutos) para permitir recuperación casi completa entre series pesadas: en fuerza importa más la calidad de cada serie que la fatiga acumulada.',
-        'El foco está en pocos ejercicios compuestos por sesión (sentadilla, press de banca, peso muerto, remo) en vez de mucha variedad — así se puede progresar en cada uno de forma medible.',
+        'El foco está en pocos ejercicios compuestos por sesión (sentadilla, press de banca, peso muerto, press militar, remo) en vez de mucha variedad — así se puede progresar en cada uno de forma medible.',
         'La progresión se basa en sumar peso de forma constante y gradual (sobrecarga progresiva), priorizando siempre la técnica sobre el número en la barra.'
       ], dias: [
-      { nombre: 'Día 1 — Sentadilla y pecho', series: 5, reps: 5, descanso: 180, bloques: [{ grupo: 'Cuádriceps', cantidad: 1, preferirCompuesto: true }, { grupo: 'Pecho', cantidad: 1, preferirCompuesto: true }, { grupo: 'Hombros', cantidad: 1 }] },
-      { nombre: 'Día 2 — Peso muerto y espalda', series: 5, reps: 5, descanso: 180, bloques: [{ grupo: 'Isquiotibiales', cantidad: 1, preferirCompuesto: true }, { grupo: 'Espalda', cantidad: 2, preferirCompuesto: true }] }
+      { nombre: 'Día 1 — Sentadilla y pecho', series: 5, reps: 5, descanso: 180, bloques: [{ grupo: 'Cuádriceps', cantidad: 1, preferirCompuesto: true }, { grupo: 'Pecho', cantidad: 1, preferirCompuesto: true }, { grupo: 'Hombros', cantidad: 1, preferirCompuesto: true }, { grupo: 'Abdomen', cantidad: 1 }] },
+      { nombre: 'Día 2 — Peso muerto y espalda', series: 5, reps: 5, descanso: 180, bloques: [{ grupo: 'Isquiotibiales', cantidad: 1, preferirCompuesto: true }, { grupo: 'Espalda', cantidad: 2, preferirCompuesto: true }, { grupo: 'Antebrazos', cantidad: 1 }] },
+      { nombre: 'Día 3 — Cuerpo completo pesado', series: 4, reps: 6, descanso: 150, bloques: [{ grupo: 'Glúteos', cantidad: 1, preferirCompuesto: true }, { grupo: 'Espalda', cantidad: 1, preferirCompuesto: true }, { grupo: 'Pecho', cantidad: 1, preferirCompuesto: true }, { grupo: 'Trapecios', cantidad: 1 }] }
     ]},
     'perdida-grasa': { nombre: 'Pérdida de grasa', icono: 'flame',
       frecuencia: '4 días / semana',
@@ -175,22 +180,26 @@ const App = (() => {
       metodologia: [
         'Rango de 12 a 15 repeticiones por serie, con descansos cortos (30 a 45 segundos) para elevar el gasto calórico de la sesión.',
         'Se combinan ejercicios compuestos (que reclutan más músculo y gastan más energía) con movimientos de acondicionamiento tipo cardio.',
-        'Entrenar cuerpo completo varias veces por semana mantiene alta la frecuencia de estímulo muscular — clave para preservar masa magra mientras se busca un déficit calórico.',
+        'Entrenar cuerpo completo 4 veces por semana mantiene alta la frecuencia de estímulo muscular — clave para preservar masa magra mientras se busca un déficit calórico.',
         'La pérdida de grasa depende principalmente de la alimentación (déficit calórico sostenido); el entrenamiento acompaña preservando músculo y mejorando la condición física general.'
       ], dias: [
-      { nombre: 'Circuito 1', series: 3, reps: 14, descanso: 40, bloques: [{ grupo: 'Cuádriceps', cantidad: 1 }, { grupo: 'Pecho', cantidad: 1 }, { grupo: 'Espalda', cantidad: 1 }, { grupo: 'Abdomen', cantidad: 1 }] },
-      { nombre: 'Circuito 2', series: 3, reps: 14, descanso: 40, bloques: [{ grupo: 'Glúteos', cantidad: 1 }, { grupo: 'Hombros', cantidad: 1 }, { grupo: 'Espalda', cantidad: 1 }] }
+      { nombre: 'Circuito 1', series: 3, reps: 14, descanso: 40, bloques: [{ grupo: 'Cuádriceps', cantidad: 1 }, { grupo: 'Pecho', cantidad: 1 }, { grupo: 'Espalda', cantidad: 1 }, { grupo: 'Abdomen', cantidad: 1 }, { cardioAmplio: true, cantidad: 1 }] },
+      { nombre: 'Circuito 2', series: 3, reps: 14, descanso: 40, bloques: [{ grupo: 'Glúteos', cantidad: 1 }, { grupo: 'Hombros', cantidad: 1 }, { grupo: 'Espalda', cantidad: 1 }, { grupo: 'Oblicuos', cantidad: 1 }, { cardioAmplio: true, cantidad: 1 }] },
+      { nombre: 'Circuito 3', series: 3, reps: 14, descanso: 40, bloques: [{ grupo: 'Isquiotibiales', cantidad: 1 }, { grupo: 'Pecho', cantidad: 1 }, { grupo: 'Bíceps', cantidad: 1 }, { grupo: 'Abdomen', cantidad: 1 }, { cardioAmplio: true, cantidad: 1 }] },
+      { nombre: 'Circuito 4 — cuerpo completo', series: 3, reps: 15, descanso: 30, bloques: [{ grupo: 'Cuádriceps', cantidad: 1 }, { grupo: 'Espalda', cantidad: 1 }, { grupo: 'Hombros', cantidad: 1 }, { cardioAmplio: true, cantidad: 2 }] }
     ]},
     'cardio': { nombre: 'Cardio', icono: 'timer',
       frecuencia: '3 días / semana',
       resumen: 'Sesiones de acondicionamiento metabólico con movimientos funcionales, pensadas para mejorar resistencia cardiovascular.',
       metodologia: [
         'Repeticiones altas (15 a 20) o por tiempo, con descansos muy cortos (20 a 30 segundos) para mantener elevada la frecuencia cardíaca durante toda la sesión.',
-        'Predominan ejercicios con peso corporal y movimientos multiarticulares que exigen más al sistema cardiovascular que al muscular aislado.',
+        'Predominan ejercicios con peso corporal y movimientos multiarticulares (burpees, mountain climbers, saltos) que exigen más al sistema cardiovascular que al muscular aislado.',
         'Este tipo de trabajo mejora la capacidad aeróbica y anaeróbica, y es un buen complemento — no reemplazo — de un plan de fuerza.',
         'Al ser un estímulo exigente, se recomienda no encadenar más de 3 sesiones por semana sin días de por medio para permitir recuperación.'
       ], dias: [
-      { nombre: 'Acondicionamiento 1', series: 4, reps: 15, descanso: 25, bloques: [{ grupo: 'Abdomen', cantidad: 2 }, { grupo: 'Gemelos', cantidad: 1 }] }
+      { nombre: 'Acondicionamiento 1', series: 4, reps: 15, descanso: 25, bloques: [{ cardioAmplio: true, cantidad: 3 }, { grupo: 'Abdomen', cantidad: 2 }] },
+      { nombre: 'Acondicionamiento 2', series: 4, reps: 15, descanso: 25, bloques: [{ cardioAmplio: true, cantidad: 3 }, { grupo: 'Oblicuos', cantidad: 1 }, { grupo: 'Gemelos', cantidad: 1 }] },
+      { nombre: 'Acondicionamiento 3', series: 4, reps: 15, descanso: 25, bloques: [{ cardioAmplio: true, cantidad: 2 }, { grupo: 'Glúteos', cantidad: 1 }, { grupo: 'Abdomen', cantidad: 2 }] }
     ]},
     'movilidad': { nombre: 'Movilidad y elongación', icono: 'repeat',
       frecuencia: '3 días / semana',
@@ -201,7 +210,9 @@ const App = (() => {
         'Trabajar la movilidad de forma regular ayuda a prevenir lesiones y mejora la técnica en los demás objetivos (fuerza, hipertrofia, cardio).',
         'Es un buen complemento después de entrenar, o como sesión aparte en los días de descanso activo.'
       ], dias: [
-      { nombre: 'Día 1 — Movilidad general', series: 2, reps: 1, descanso: 20, bloques: [{ grupo: 'Cadera', cantidad: 2 }, { grupo: 'Columna', cantidad: 2 }, { grupo: 'Isquiotibiales', cantidad: 1 }] }
+      { nombre: 'Día 1 — Tren superior y columna', series: 2, reps: 1, descanso: 20, bloques: [{ grupo: 'Cuello', cantidad: 1 }, { grupo: 'Hombros', cantidad: 2 }, { grupo: 'Pecho', cantidad: 1 }, { grupo: 'Columna', cantidad: 2 }, { grupo: 'Trapecios', cantidad: 1 }] },
+      { nombre: 'Día 2 — Cadera y piernas', series: 2, reps: 1, descanso: 20, bloques: [{ grupo: 'Cadera', cantidad: 3 }, { grupo: 'Isquiotibiales', cantidad: 2 }, { grupo: 'Cuádriceps', cantidad: 1 }, { grupo: 'Glúteos', cantidad: 1 }] },
+      { nombre: 'Día 3 — Piernas, tobillos y espalda', series: 2, reps: 1, descanso: 20, bloques: [{ grupo: 'Gemelos', cantidad: 2 }, { grupo: 'Tobillos', cantidad: 2 }, { grupo: 'Espalda', cantidad: 2 }, { grupo: 'Antebrazos', cantidad: 1 }] }
     ]}
   };
 
@@ -213,25 +224,34 @@ const App = (() => {
     }
     // Priorizamos los que tienen GIF real (sin dejar afuera al resto si no alcanzan),
     // para que las rutinas estándar muestren la técnica en video siempre que sea posible.
-    return candidatos
-      .sort((a, b) => {
-        const gifA = a.gifs && a.gifs.length ? 1 : 0;
-        const gifB = b.gifs && b.gifs.length ? 1 : 0;
-        if (gifA !== gifB) return gifB - gifA;
-        return a.nombre.localeCompare(b.nombre, 'es');
-      })
-      .slice(0, cantidad);
+    return ordenarPriorizandoGif(candidatos).slice(0, cantidad);
+  }
+
+  function ordenarPriorizandoGif(lista) {
+    return lista.slice().sort((a, b) => {
+      const gifA = a.gifs && a.gifs.length ? 1 : 0;
+      const gifB = b.gifs && b.gifs.length ? 1 : 0;
+      if (gifA !== gifB) return gifB - gifA;
+      return a.nombre.localeCompare(b.nombre, 'es');
+    });
   }
 
   function generarRutinaDesdeObjetivo(objetivoKey, nivel) {
     const programa = PROGRAMAS_OBJETIVO[objetivoKey];
     const topeNivel = NIVEL_ORDEN[nivel] || 3;
-    const pool = EXERCISE_DATABASE.filter(e => (NIVEL_ORDEN[e.dificultad] || 1) <= topeNivel && e.objetivos && e.objetivos.includes(objetivoKey));
+    const dentroDelNivel = e => (NIVEL_ORDEN[e.dificultad] || 1) <= topeNivel;
+    const pool = EXERCISE_DATABASE.filter(e => dentroDelNivel(e) && e.objetivos && e.objetivos.includes(objetivoKey));
+    // Pool amplio para bloques "cardioAmplio": ejercicios de cardio, o de pérdida de grasa
+    // hechos con el propio peso corporal (sin necesitar máquinas específicas).
+    const poolCardioAmplio = EXERCISE_DATABASE.filter(e => dentroDelNivel(e) && e.objetivos &&
+      (e.objetivos.includes('cardio') || (e.objetivos.includes('perdida-grasa') && e.equipamiento === 'Peso corporal')));
     const usados = new Set();
     const dias = programa.dias.map(diaDef => {
       const ejercicios = [];
       diaDef.bloques.forEach(bloque => {
-        const elegidos = elegirEjercicios(pool.filter(e => !usados.has(e.id)), bloque.grupo, bloque.cantidad, bloque.preferirCompuesto);
+        const elegidos = bloque.cardioAmplio
+          ? ordenarPriorizandoGif(poolCardioAmplio.filter(e => !usados.has(e.id))).slice(0, bloque.cantidad)
+          : elegirEjercicios(pool.filter(e => !usados.has(e.id)), bloque.grupo, bloque.cantidad, bloque.preferirCompuesto);
         elegidos.forEach(ej => {
           usados.add(ej.id);
           ejercicios.push({
@@ -359,6 +379,8 @@ const App = (() => {
   const PRESETS_DESCANSO = [30, 45, 60, 90, 120, 180, 300];
 
   function abrirWidgetTimer(segundosIniciales = 90) {
+    const usuario = FirebaseService.getUsuarioActual();
+    if (!usuario || usuario.rol !== 'alumno') return; // el timer de descanso es solo para quien entrena
     const widget = $('#rest-timer-widget');
     if (!widget) return;
     widget.classList.add('timer-widget-visible');
@@ -429,6 +451,7 @@ const App = (() => {
   const RENDERERS = {};
   function cambiarVista(vista) {
     if (!RENDERERS[vista]) return;
+    if (vista !== 'sesion') cerrarWidgetTimer();
     state.vistaActual = vista;
     $$('.view').forEach(v => v.classList.remove('view-active'));
     $(`#view-${vista}`)?.classList.add('view-active');
