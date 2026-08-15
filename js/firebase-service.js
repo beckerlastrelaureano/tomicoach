@@ -246,10 +246,14 @@ const FirebaseService = (() => {
   }
 
   async function getHistorial(alumnoUid) {
-    const snap = await db.collection('entrenamientos')
-      .where('alumnoUid', '==', alumnoUid)
-      .orderBy('fecha', 'asc')
-      .get();
+    let query = db.collection('entrenamientos').where('alumnoUid', '==', alumnoUid);
+    // Si quien pregunta es el entrenador (no el propio alumno), la regla de
+    // seguridad necesita que la consulta también filtre por entrenadorId,
+    // para poder verificarla sin tener que leer todos los entrenamientos.
+    if (usuarioActual && usuarioActual.rol === 'entrenador') {
+      query = query.where('entrenadorId', '==', usuarioActual.uid);
+    }
+    const snap = await query.orderBy('fecha', 'asc').get();
     return snap.docs.map(d => ({ id: d.id, ...d.data() }));
   }
 
