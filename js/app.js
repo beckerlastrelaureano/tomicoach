@@ -36,7 +36,9 @@ const App = (() => {
   }
   function debounce(fn, ms = 200) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
 
-  const state = { vistaActual: null, alumnoSeleccionadoUid: null, sesionActiva: null };
+  const state = { vistaActual: null, alumnoSeleccionadoUid: null, sesionActiva: null, calendario: null };
+  const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  const DIAS_SEMANA = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
 
   // ---------------------------------------------------------------------
   // Toast + Modal (idéntico criterio a Becker App)
@@ -494,8 +496,11 @@ const App = (() => {
         <a href="#" class="nav-item" data-view="alumnos">${icon('routine')}<span>Mis alumnos</span></a>`;
     } else {
       nav.innerHTML = `
+        <a href="#" class="nav-item" data-view="inicio">${icon('trophy')}<span>Inicio</span></a>
         <a href="#" class="nav-item" data-view="mi-rutina">${icon('routine')}<span>Mi rutina</span></a>
-        <a href="#" class="nav-item" data-view="mi-progreso">${icon('stats')}<span>Mi progreso</span></a>`;
+        <a href="#" class="nav-item" data-view="mi-progreso">${icon('stats')}<span>Mi progreso</span></a>
+        <a href="#" class="nav-item" data-view="calendario">${icon('calendar')}<span>Calendario</span></a>
+        <a href="#" class="nav-item" data-view="calculadoras">${icon('calculator')}<span>Calculadoras</span></a>`;
     }
     $$('.nav-item', nav).forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); cambiarVista(a.dataset.view); }));
     const etiquetaRol = { superadmin: 'Administrador', entrenador: 'Entrenador', alumno: 'Alumno' }[usuario.rol] || usuario.rol;
@@ -645,7 +650,7 @@ const App = (() => {
     }
     const alumnos = alumnosRes.value;
     const rutina = rutinaRes.status === 'fulfilled' ? rutinaRes.value : null;
-    const historial = historialRes.status === 'fulfilled' ? historialRes.value : [];
+    const historial = (historialRes.status === 'fulfilled' ? historialRes.value : []).sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
     if (rutinaRes.status === 'rejected') console.error('Error cargando rutina:', rutinaRes.reason);
     if (historialRes.status === 'rejected') console.error('Error cargando historial:', historialRes.reason);
     const alumno = alumnos.find(a => a.uid === uid);
@@ -1035,12 +1040,357 @@ const App = (() => {
   }
   RENDERERS['sesion'] = renderSesion;
 
+  // ---------------------------------------------------------------------
+  // Motor de estadísticas — deriva todo del historial ya cargado desde
+  // Firestore (a diferencia de Becker App, acá no hay un StorageManager
+  // local: el historial se pasa como parámetro a cada función).
+  // ---------------------------------------------------------------------
+  const Stats = {
+    inicioSemana(fecha = new Date()) {
+      const d = new Date(fecha);
+      const dia = d.getDay();
+      d.setDate(d.getDate() + ((dia === 0 ? -6 : 1) - dia));
+      d.setHours(0, 0, 0, 0);
+      return d;
+    },
+    finSemana(fecha = new Date()) {
+      const fin = Stats.inicioSemana(fecha);
+      fin.setDate(fin.getDate() + 7);
+      return fin;
+    },
+    toDateKey(iso) { return new Date(iso).toISOString().slice(0, 10); },
+    resumenDe(sesiones) {
+      let volumenTotal = 0, seriesTotales = 0, repsTotales = 0, pesoMax = 0, duracionSeg = 0;
+      sesiones.forEach(s => {
+        duracionSeg += s.duracionSeg || 0;
+        (s.ejercicios || []).forEach(ej => (ej.series || []).forEach(serie => {
+          if (!serie.completada) return;
+          seriesTotales++;
+          repsTotales += Number(serie.reps) || 0;
+          volumenTotal += (Number(serie.peso) || 0) * (Number(serie.reps) || 0);
+          if (serie.peso > pesoMax) pesoMax = serie.peso;
+        }));
+      });
+      return { entrenamientos: sesiones.length, volumenTotal, seriesTotales, repsTotales, pesoMax, duracionSeg };
+    },
+    getResumenSemanal(historial, fechaRef = new Date()) {
+      const desde = Stats.inicioSemana(fechaRef), hasta = Stats.finSemana(fechaRef);
+      return Stats.resumenDe(historial.filter(s => { const f = new Date(s.fecha); return f >= desde && f < hasta; }));
+    },
+    getRacha(historial) {
+      if (!historial.length) return 0;
+      const dias = new Set(historial.map(s => Stats.toDateKey(s.fecha)));
+      let cursor = new Date();
+      if (!dias.has(Stats.toDateKey(cursor.toISOString()))) cursor.setDate(cursor.getDate() - 1);
+      let racha = 0;
+      while (dias.has(Stats.toDateKey(cursor.toISOString()))) { racha++; cursor.setDate(cursor.getDate() - 1); }
+      return racha;
+    },
+    getCalendarioActividad(historial, anio, mes) {
+      const mapa = {};
+      historial.forEach(s => {
+        const f = new Date(s.fecha);
+        if (f.getFullYear() === anio && f.getMonth() === mes) (mapa[f.getDate()] = mapa[f.getDate()] || []).push(s.id);
+      });
+      return mapa;
+    },
+    getPRs(historial) {
+      const records = {};
+      historial.forEach(s => (s.ejercicios || []).forEach(ej => (ej.series || []).forEach(serie => {
+        if (!serie.completada || !serie.peso) return;
+        const actual = records[ej.ejercicioId];
+        if (!actual || serie.peso > actual.pesoMax) records[ej.ejercicioId] = { pesoMax: serie.peso, reps: serie.reps, fecha: s.fecha, nombre: ej.nombre };
+      })));
+      return records;
+    }
+  };
+
+  // ---------------------------------------------------------------------
+  // Vista: Inicio (alumno)
+  // ---------------------------------------------------------------------
+  let relojInicioIntervalo = null;
+  async function renderInicio() {
+    const cont = $('#view-inicio');
+    const usuario = FirebaseService.getUsuarioActual();
+    cont.innerHTML = `<p class="texto-suave">Cargando...</p>`;
+    let historial;
+    try { historial = await FirebaseService.getHistorial(usuario.uid); }
+    catch (err) { console.error(err); cont.innerHTML = `<p class="texto-suave estado-vacio">No se pudo cargar tu resumen. Probá de nuevo en un momento.</p>`; return; }
+
+    const ahora = new Date();
+    const resumen = Stats.getResumenSemanal(historial, ahora);
+    const racha = Stats.getRacha(historial);
+    const inicioSem = Stats.inicioSemana(ahora);
+    const finSem = new Date(inicioSem.getTime() + 6 * 86400000);
+    const prs = Stats.getPRs(historial);
+    const pesoMaxGlobal = Object.values(prs).reduce((m, r) => Math.max(m, r.pesoMax || 0), 0);
+
+    cont.innerHTML = `
+      <div class="inicio-saludo">
+        <h1>Hola, ${escapeHtml((usuario.nombre || '').split(' ')[0] || '')}</h1>
+        <p class="texto-suave" id="inicio-fecha-hora"></p>
+      </div>
+      <div id="inicio-semana-actual" style="margin-bottom:1.2rem">
+        <div class="chip-semana">${icon('calendar')} Esta semana · ${formatFecha(inicioSem)} — ${formatFecha(finSem)}</div>
+      </div>
+      <div class="grid-cards-resumen" id="inicio-cards"></div>
+      <div class="panel" style="margin-top:1.4rem">
+        <h3>${icon('calendar')} Este mes</h3>
+        <div class="calendario-encabezado" style="margin-top:.9rem">${DIAS_SEMANA.map(d => `<span>${d}</span>`).join('')}</div>
+        <div class="calendario-grid" id="inicio-calendario-mini"></div>
+      </div>`;
+
+    actualizarRelojInicio();
+    const cards = [
+      { icono: 'routine', valor: resumen.entrenamientos, label: 'Entrenamientos (semana)', color: '' },
+      { icono: 'repeat', valor: resumen.seriesTotales, label: 'Series realizadas', color: '' },
+      { icono: 'stats', valor: `${formatNumero(resumen.volumenTotal)} kg`, label: 'Volumen levantado', color: 'exito' },
+      { icono: 'trophy', valor: `${formatNumero(pesoMaxGlobal)} kg`, label: 'Récord personal máximo', color: 'exito' },
+      { icono: 'flame', valor: `${racha} ${racha === 1 ? 'día' : 'días'}`, label: 'Racha actual', color: racha > 0 ? 'exito' : '' },
+      { icono: 'timer', valor: formatDuracion(resumen.duracionSeg), label: 'Tiempo entrenado (semana)', color: '' }
+    ];
+    $('#inicio-cards').innerHTML = cards.map(c => `
+      <div class="card-stat ${c.color}"><div class="card-stat-icono">${icon(c.icono)}</div><div class="card-stat-valor">${c.valor}</div><div class="card-stat-label">${c.label}</div></div>`).join('');
+
+    renderCalendarioMiniInicio(historial, ahora);
+  }
+  RENDERERS['inicio'] = renderInicio;
+
+  function actualizarRelojInicio() {
+    clearInterval(relojInicioIntervalo);
+    const render = () => {
+      const el = $('#inicio-fecha-hora');
+      if (!el) { clearInterval(relojInicioIntervalo); return; }
+      const fecha = new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+      el.textContent = fecha.charAt(0).toUpperCase() + fecha.slice(1);
+    };
+    render();
+    relojInicioIntervalo = setInterval(render, 30000);
+  }
+
+  function renderCalendarioMiniInicio(historial, ahora) {
+    const cont = $('#inicio-calendario-mini');
+    if (!cont) return;
+    const actividad = Stats.getCalendarioActividad(historial, ahora.getFullYear(), ahora.getMonth());
+    const primerDiaSemana = (new Date(ahora.getFullYear(), ahora.getMonth(), 1).getDay() + 6) % 7;
+    const totalDias = new Date(ahora.getFullYear(), ahora.getMonth() + 1, 0).getDate();
+    let celdas = '';
+    for (let i = 0; i < primerDiaSemana; i++) celdas += `<div class="dia-calendario dia-calendario-vacio"></div>`;
+    for (let d = 1; d <= totalDias; d++) {
+      const entreno = !!actividad[d];
+      const esHoy = d === ahora.getDate();
+      celdas += `<div class="dia-calendario ${entreno ? 'dia-calendario-activo' : ''} ${esHoy ? 'dia-calendario-hoy' : ''}"><span class="dia-calendario-numero">${d}</span>${entreno ? '<span class="dia-calendario-punto"></span>' : ''}</div>`;
+    }
+    cont.innerHTML = celdas;
+  }
+
+  // ---------------------------------------------------------------------
+  // Vista: Calendario (alumno) — mes completo, navegable
+  // ---------------------------------------------------------------------
+  async function renderCalendario() {
+    const cont = $('#view-calendario');
+    const usuario = FirebaseService.getUsuarioActual();
+    cont.innerHTML = `<p class="texto-suave">Cargando...</p>`;
+    let historial;
+    try { historial = await FirebaseService.getHistorial(usuario.uid); }
+    catch (err) { console.error(err); cont.innerHTML = `<p class="texto-suave estado-vacio">No se pudo cargar el calendario.</p>`; return; }
+
+    if (!state.calendario) state.calendario = { anio: new Date().getFullYear(), mes: new Date().getMonth() };
+
+    cont.innerHTML = `
+      <div class="vista-header">
+        <h2>${icon('calendar')} Calendario</h2>
+        <div class="calendario-nav">
+          <button class="btn-icono" id="btn-mes-anterior">${icon('chevron-left')}</button>
+          <span id="calendario-titulo"></span>
+          <button class="btn-icono" id="btn-mes-siguiente">${icon('chevron-right')}</button>
+        </div>
+      </div>
+      <div class="calendario-encabezado">${DIAS_SEMANA.map(d => `<span>${d}</span>`).join('')}</div>
+      <div class="calendario-grid" id="calendario-grid"></div>`;
+
+    function pintarGrid() {
+      const { anio, mes } = state.calendario;
+      $('#calendario-titulo').textContent = `${MESES[mes].charAt(0).toUpperCase() + MESES[mes].slice(1)} ${anio}`;
+      const actividad = Stats.getCalendarioActividad(historial, anio, mes);
+      const primerDiaSemana = (new Date(anio, mes, 1).getDay() + 6) % 7;
+      const totalDias = new Date(anio, mes + 1, 0).getDate();
+      const hoy = new Date();
+      let celdas = '';
+      for (let i = 0; i < primerDiaSemana; i++) celdas += `<div class="dia-calendario dia-calendario-vacio"></div>`;
+      for (let d = 1; d <= totalDias; d++) {
+        const sesiones = actividad[d] || [];
+        const esHoy = d === hoy.getDate() && mes === hoy.getMonth() && anio === hoy.getFullYear();
+        celdas += `<button class="dia-calendario ${sesiones.length ? 'dia-calendario-activo' : ''} ${esHoy ? 'dia-calendario-hoy' : ''}" ${sesiones.length ? `data-sesiones="${sesiones.join(',')}"` : 'disabled'}>
+          <span class="dia-calendario-numero">${d}</span>${sesiones.length ? '<span class="dia-calendario-punto"></span>' : ''}</button>`;
+      }
+      $('#calendario-grid').innerHTML = celdas;
+      $$('.dia-calendario[data-sesiones]', $('#calendario-grid')).forEach(btn => btn.addEventListener('click', () => {
+        const ids = btn.dataset.sesiones.split(',');
+        const sesiones = ids.map(id => historial.find(h => h.id === id)).filter(Boolean);
+        if (sesiones.length === 1) abrirModalDetalleSesion(sesiones[0]);
+        else abrirModalListaSesionesDia(sesiones);
+      }));
+    }
+    $('#btn-mes-anterior').addEventListener('click', () => {
+      state.calendario.mes--; if (state.calendario.mes < 0) { state.calendario.mes = 11; state.calendario.anio--; }
+      pintarGrid();
+    });
+    $('#btn-mes-siguiente').addEventListener('click', () => {
+      state.calendario.mes++; if (state.calendario.mes > 11) { state.calendario.mes = 0; state.calendario.anio++; }
+      pintarGrid();
+    });
+    pintarGrid();
+  }
+  RENDERERS['calendario'] = renderCalendario;
+
+  function abrirModalListaSesionesDia(sesiones) {
+    abrirModal(`
+      <div class="modal-header"><h3>${icon('calendar')} Entrenamientos de ese día</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
+      <div class="modal-body">${sesiones.map(s => `
+        <button class="fila-historial" data-id="${s.id}"><div class="fila-historial-info"><strong>${escapeHtml(s.diaNombre || s.rutinaNombre || 'Entrenamiento')}</strong></div>${icon('chevron-right')}</button>`).join('')}</div>`,
+      { id: 'modal-sesiones-dia' });
+    $$('.fila-historial', $('#modal-root')).forEach(f => f.addEventListener('click', () => {
+      const s = sesiones.find(x => x.id === f.dataset.id);
+      if (s) abrirModalDetalleSesion(s);
+    }));
+  }
+
+  // ---------------------------------------------------------------------
+  // Vista: Calculadoras — sin dependencia de datos, igual que Becker App
+  // ---------------------------------------------------------------------
+  const DISCOS_DISPONIBLES = [25, 20, 15, 10, 5, 2.5, 1.25];
+
+  function renderCalculadoras() {
+    const cont = $('#view-calculadoras');
+    cont.innerHTML = `
+      <div class="vista-header"><h2>${icon('calculator')} Calculadoras</h2></div>
+      <div class="calc-tabs" id="calc-tabs">
+        <button class="calc-tab calc-tab-activo" data-calc="1rm">1RM</button>
+        <button class="calc-tab" data-calc="imc">IMC</button>
+        <button class="calc-tab" data-calc="volumen">Volumen sesión</button>
+        <button class="calc-tab" data-calc="carga">Carga barra</button>
+        <button class="calc-tab" data-calc="porcentaje">Peso por %</button>
+        <button class="calc-tab" data-calc="discos">Discos</button>
+      </div>
+      <div class="panel" id="calc-contenido"></div>`;
+    $$('.calc-tab', cont).forEach(btn => btn.addEventListener('click', () => {
+      $$('.calc-tab', cont).forEach(b => b.classList.remove('calc-tab-activo'));
+      btn.classList.add('calc-tab-activo');
+      renderCalculadora(btn.dataset.calc);
+    }));
+    renderCalculadora('1rm');
+  }
+  RENDERERS['calculadoras'] = renderCalculadoras;
+
+  function renderCalculadora(tipo) {
+    const cont = $('#calc-contenido');
+    const plantillas = {
+      '1rm': `<h3>Calculadora de 1RM (fórmula de Epley)</h3>
+        <div class="campo-fila">
+          <label class="campo"><span>Peso levantado (kg)</span><input type="number" id="c1-peso" min="0" step="0.5" value="60"></label>
+          <label class="campo"><span>Repeticiones realizadas</span><input type="number" id="c1-reps" min="1" max="15" value="8"></label>
+        </div>
+        <div class="resultado-calc" id="c1-resultado"></div>
+        <p class="texto-suave">Estimación orientativa. La precisión disminuye a partir de 12-15 repeticiones.</p>`,
+      'imc': `<h3>Índice de Masa Corporal</h3>
+        <div class="campo-fila">
+          <label class="campo"><span>Peso (kg)</span><input type="number" id="c2-peso" min="0" step="0.1" value="75"></label>
+          <label class="campo"><span>Altura (cm)</span><input type="number" id="c2-altura" min="0" step="0.5" value="175"></label>
+        </div>
+        <div class="resultado-calc" id="c2-resultado"></div>`,
+      'volumen': `<h3>Volumen total de una sesión</h3>
+        <p class="texto-suave">Ingresá series en formato <code>peso x reps</code> separadas por coma. Ej: <code>80x8, 80x8, 82.5x6</code></p>
+        <label class="campo"><input type="text" id="c4-series" placeholder="80x8, 80x8, 82.5x6"></label>
+        <div class="resultado-calc" id="c4-resultado"></div>`,
+      'carga': `<h3>Carga total de la barra</h3>
+        <div class="campo-fila">
+          <label class="campo"><span>Peso de la barra (kg)</span><input type="number" id="c5-barra" min="0" step="0.5" value="20"></label>
+          <label class="campo"><span>Peso por lado (kg)</span><input type="number" id="c5-lado" min="0" step="0.5" value="20"></label>
+        </div>
+        <div class="resultado-calc" id="c5-resultado"></div>`,
+      'porcentaje': `<h3>Peso según porcentaje de tu 1RM</h3>
+        <div class="campo-fila">
+          <label class="campo"><span>1RM (kg)</span><input type="number" id="c6-1rm" min="0" step="0.5" value="100"></label>
+          <label class="campo"><span>Porcentaje (%)</span><input type="number" id="c6-pct" min="0" max="120" value="80"></label>
+        </div>
+        <div class="resultado-calc" id="c6-resultado"></div>`,
+      'discos': `<h3>Calculadora de discos</h3>
+        <div class="campo-fila">
+          <label class="campo"><span>Peso objetivo total (kg)</span><input type="number" id="c7-total" min="0" step="0.5" value="100"></label>
+          <label class="campo"><span>Peso de la barra (kg)</span><input type="number" id="c7-barra" min="0" step="0.5" value="20"></label>
+        </div>
+        <div class="resultado-calc" id="c7-resultado"></div>
+        <p class="texto-suave">Discos disponibles por lado: ${DISCOS_DISPONIBLES.join(', ')} kg</p>`
+    };
+    cont.innerHTML = plantillas[tipo];
+
+    const recalcular = {
+      '1rm': () => {
+        const peso = Number($('#c1-peso').value) || 0, reps = Number($('#c1-reps').value) || 1;
+        const rm = peso * (1 + reps / 30);
+        $('#c1-resultado').innerHTML = `<strong>1RM estimado: ${formatNumero(rm, 1)} kg</strong>
+          <div class="tabla-porcentajes">${[95, 90, 85, 80, 75, 70, 65, 60].map(p => `<div><span>${p}%</span><span>${formatNumero(rm * p / 100, 1)} kg</span></div>`).join('')}</div>`;
+      },
+      'imc': () => {
+        const peso = Number($('#c2-peso').value) || 0, alturaM = (Number($('#c2-altura').value) || 1) / 100;
+        const imc = peso / (alturaM * alturaM);
+        let categoria = 'Peso normal';
+        if (imc < 18.5) categoria = 'Bajo peso'; else if (imc >= 25 && imc < 30) categoria = 'Sobrepeso'; else if (imc >= 30) categoria = 'Obesidad';
+        $('#c2-resultado').innerHTML = `<strong>IMC: ${formatNumero(imc, 1)}</strong><br><span class="texto-suave">Categoría: ${categoria}</span>`;
+      },
+      'volumen': () => {
+        const texto = $('#c4-series').value.trim();
+        if (!texto) { $('#c4-resultado').innerHTML = ''; return; }
+        const partes = texto.split(',').map(p => p.trim()).filter(Boolean);
+        let volumen = 0, validas = 0;
+        partes.forEach(p => { const m = p.match(/^([\d.]+)\s*x\s*([\d.]+)$/i); if (m) { volumen += Number(m[1]) * Number(m[2]); validas++; } });
+        $('#c4-resultado').innerHTML = validas ? `<strong>Volumen total: ${formatNumero(volumen, 1)} kg</strong><br><span class="texto-suave">${validas} serie(s) reconocida(s)</span>` : `<span class="texto-suave">Formato no reconocido. Usá "peso x reps".</span>`;
+      },
+      'carga': () => {
+        const barra = Number($('#c5-barra').value) || 0, lado = Number($('#c5-lado').value) || 0;
+        $('#c5-resultado').innerHTML = `<strong>Carga total: ${formatNumero(barra + lado * 2, 1)} kg</strong>`;
+      },
+      'porcentaje': () => {
+        const rm = Number($('#c6-1rm').value) || 0, pct = Number($('#c6-pct').value) || 0;
+        $('#c6-resultado').innerHTML = `<strong>${formatNumero(rm * pct / 100, 1)} kg</strong>`;
+      },
+      'discos': () => {
+        let objetivo = Number($('#c7-total').value) || 0;
+        const barra = Number($('#c7-barra').value) || 0;
+        let porLado = Math.max(0, (objetivo - barra) / 2);
+        const usados = [];
+        DISCOS_DISPONIBLES.forEach(d => { while (porLado >= d - 0.001) { usados.push(d); porLado -= d; } });
+        $('#c7-resultado').innerHTML = usados.length
+          ? `<strong>Por lado:</strong> ${usados.map(d => `${d}kg`).join(' + ')}<br><span class="texto-suave">Total real: ${formatNumero(barra + usados.reduce((a, b) => a + b, 0) * 2, 2)} kg</span>`
+          : `<span class="texto-suave">Ingresá un peso objetivo mayor que la barra.</span>`;
+      }
+    };
+    $$('input', cont).forEach(input => input.addEventListener('input', debounce(() => recalcular[tipo](), 120)));
+    recalcular[tipo]();
+  }
+
+
   async function renderMiProgreso() {
     const cont = $('#view-mi-progreso');
     const usuario = FirebaseService.getUsuarioActual();
     cont.innerHTML = `<p class="texto-suave">Cargando...</p>`;
-    const historial = await FirebaseService.getHistorial(usuario.uid);
-    const historialOrdenado = [...historial].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+    let historial;
+    try {
+      historial = await FirebaseService.getHistorial(usuario.uid);
+    } catch (err) {
+      console.error('Error cargando historial:', err);
+      const necesitaIndice = (err && err.message || '').includes('index');
+      cont.innerHTML = `<div class="estado-vacio">
+        <p class="texto-suave">${necesitaIndice
+          ? 'Falta crear un índice en Firestore para esta consulta. Revisá la consola del navegador (F12): el error de Firebase trae un link que lo crea automáticamente con un clic.'
+          : 'No se pudo cargar el historial (error de permisos o de conexión).'}</p>
+        <p class="texto-pequeno texto-suave" style="margin-top:.6rem;word-break:break-all">${escapeHtml(err?.message || String(err))}</p>
+      </div>`;
+      return;
+    }
+    historial.sort((a, b) => new Date(a.fecha) - new Date(b.fecha)); // ascendente: para el gráfico
+    const historialOrdenado = [...historial].reverse(); // descendente: para la lista (más reciente primero)
     cont.innerHTML = `
       <div class="panel-header"><h2>Mi progreso</h2></div>
       <div class="grid-cards-resumen" style="grid-template-columns:repeat(2,1fr)">
@@ -1255,7 +1605,7 @@ const App = (() => {
     $('#app').hidden = false;
     cerrarWidgetTimer();
     construirSidebar(usuario);
-    const vistaInicial = usuario.rol === 'superadmin' ? 'superadmin' : usuario.rol === 'entrenador' ? 'alumnos' : 'mi-rutina';
+    const vistaInicial = usuario.rol === 'superadmin' ? 'superadmin' : usuario.rol === 'entrenador' ? 'alumnos' : 'inicio';
     cambiarVista(vistaInicial);
   }
 

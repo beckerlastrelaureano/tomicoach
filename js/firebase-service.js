@@ -253,7 +253,10 @@ const FirebaseService = (() => {
     if (usuarioActual && usuarioActual.rol === 'entrenador') {
       query = query.where('entrenadorId', '==', usuarioActual.uid);
     }
-    const snap = await query.orderBy('fecha', 'asc').get();
+    // Sin orderBy a propósito: combinar un "where" con "orderBy" en un campo
+    // distinto exige crear un índice compuesto en la consola de Firebase.
+    // Como igual ordenamos en el código donde se muestra, lo evitamos.
+    const snap = await query.get();
     return snap.docs.map(d => ({ id: d.id, ...d.data() }));
   }
 
