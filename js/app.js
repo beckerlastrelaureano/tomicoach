@@ -518,6 +518,8 @@ const App = (() => {
         <button class="btn btn-primario btn-sm" id="btn-nuevo-codigo">${icon('plus')} Generar código</button>
       </div>
       <div id="lista-entrenadores"><p class="texto-suave">Cargando...</p></div>
+      <div class="panel-header" style="margin-top:2rem"><h3>${icon('stats')} Pagos por mes</h3></div>
+      <div id="resumen-pagos-mensual"><p class="texto-suave">Cargando...</p></div>
       <div class="panel-header" style="margin-top:2rem"><h3>Códigos de invitación</h3></div>
       <div id="lista-codigos"><p class="texto-suave">Cargando...</p></div>
     `;
@@ -535,9 +537,10 @@ const App = (() => {
       }
     });
 
-    const [entrenadores, codigos] = await Promise.all([
+    const [entrenadores, codigos, pagosEntrenadores] = await Promise.all([
       FirebaseService.listarEntrenadores(),
-      FirebaseService.listarCodigosInvitacion()
+      FirebaseService.listarCodigosInvitacion(),
+      FirebaseService.getPagosDeEntrenadores().catch(() => [])
     ]);
 
     const listaEnt = $('#lista-entrenadores');
@@ -548,10 +551,13 @@ const App = (() => {
         <div class="tarjeta-objetivo" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.6rem">
           <div>
             <h3 style="margin-bottom:.2rem">${escapeHtml(en.nombreNegocio || en.nombre)}</h3>
-            <p class="texto-suave texto-pequeno" style="margin:0">${escapeHtml(en.email)}</p>
+            <p class="texto-suave texto-pequeno" style="margin:0 0 .2rem">${escapeHtml(en.email)}</p>
+            <p class="texto-suave texto-pequeno" style="margin:0;font-family:var(--fuente-mono)">${escapeHtml(en.uid)}</p>
           </div>
-          <div style="display:flex;align-items:center;gap:.6rem">
+          <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
+            <span class="badge ${en.estadoCuota === 'vencido' ? 'badge-peligro' : 'badge-exito'}">${en.estadoCuota === 'vencido' ? 'Cuota vencida' : 'Cuota al día'}</span>
             <span class="badge ${en.estadoPago === 'suspendido' ? 'badge-peligro' : 'badge-exito'}">${en.estadoPago === 'suspendido' ? 'Suspendido' : 'Activo'}</span>
+            <button class="btn btn-fantasma btn-sm" data-registrar-pago="${en.uid}">${icon('plus')} Registrar pago</button>
             <button class="btn btn-sm ${en.estadoPago === 'suspendido' ? 'btn-primario' : 'btn-peligro'}" data-uid="${en.uid}" data-accion="${en.estadoPago === 'suspendido' ? 'activar' : 'suspender'}">
               ${en.estadoPago === 'suspendido' ? 'Reactivar' : 'Suspender'}
             </button>
@@ -564,7 +570,24 @@ const App = (() => {
         toast(nuevoEstado === 'suspendido' ? 'Entrenador suspendido.' : 'Entrenador reactivado.', 'exito');
         renderSuperadmin();
       }));
+      $$('[data-registrar-pago]', listaEnt).forEach(b => b.addEventListener('click', () => abrirModalRegistrarPago(b.dataset.registrarPago, 'entrenador', null, renderSuperadmin)));
     }
+
+    const resumenMensual = {};
+    pagosEntrenadores.forEach(p => {
+      const clave = (p.fecha || '').slice(0, 7);
+      if (!clave) return;
+      resumenMensual[clave] = (resumenMensual[clave] || 0) + (Number(p.monto) || 0);
+    });
+    const mesesOrdenados = Object.keys(resumenMensual).sort().reverse().slice(0, 6);
+    $('#resumen-pagos-mensual').innerHTML = mesesOrdenados.length ? `
+      <div class="grid-cards-resumen" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+        ${mesesOrdenados.map(m => {
+          const [anio, mes] = m.split('-');
+          const nombreMes = MESES[Number(mes) - 1];
+          return `<div class="card-stat exito"><div class="card-stat-icono">${icon('stats')}</div><div class="card-stat-valor">$${formatNumero(resumenMensual[m])}</div><div class="card-stat-label">${nombreMes.charAt(0).toUpperCase() + nombreMes.slice(1)} ${anio}</div></div>`;
+        }).join('')}
+      </div>` : `<p class="texto-suave estado-vacio">Todavía no registraste ningún pago.</p>`;
 
     const listaCod = $('#lista-codigos');
     if (!codigos.length) {
@@ -576,6 +599,25 @@ const App = (() => {
     }
   }
   RENDERERS['superadmin'] = renderSuperadmin;
+
+  function abrirModalRegistrarPago(uidPagador, rolPagador, entrenadorId, alRefrescar) {
+    abrirModal(`
+      <div class="modal-header"><h3>${icon('plus')} Registrar pago</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
+      <div class="modal-body">
+        <label class="campo"><span>Monto</span><input type="number" id="input-monto-pago" min="0" step="0.01" value="0" autofocus></label>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-fantasma" data-cerrar-modal>Cancelar</button>
+        <button class="btn btn-primario" id="btn-confirmar-pago">${icon('check')} Registrar</button>
+      </div>`, { id: 'modal-registrar-pago' });
+    $('#btn-confirmar-pago').addEventListener('click', async () => {
+      const monto = Number($('#input-monto-pago').value) || 0;
+      await FirebaseService.registrarPago(uidPagador, rolPagador, entrenadorId, monto);
+      cerrarModal();
+      toast('Pago registrado.', 'exito');
+      if (alRefrescar) alRefrescar();
+    });
+  }
 
   // =======================================================================
   // VISTAS DE ENTRENADOR
@@ -617,13 +659,21 @@ const App = (() => {
       return;
     }
     listaCont.innerHTML = alumnos.map(a => `
-      <button class="tarjeta-objetivo" data-uid="${a.uid}" style="text-align:left;cursor:pointer">
+      <div class="tarjeta-objetivo" data-uid="${a.uid}" role="button" tabindex="0" style="text-align:left;cursor:pointer">
         <div class="tarjeta-objetivo-header">
           <div class="tarjeta-objetivo-icono">${icon('routine')}</div>
           <div><h3>${escapeHtml(a.nombre)}</h3><span class="badge">${a.objetivo ? PROGRAMAS_OBJETIVO[a.objetivo]?.nombre || a.objetivo : 'Sin objetivo asignado'}</span></div>
         </div>
         <p class="texto-suave texto-pequeno">${escapeHtml(a.email)}</p>
-      </button>`).join('');
+        <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;margin-top:.6rem">
+          <span class="badge ${a.estadoCuota === 'vencido' ? 'badge-peligro' : 'badge-exito'}">${a.estadoCuota === 'vencido' ? 'Cuota vencida' : 'Cuota al día'}</span>
+          <button class="btn btn-fantasma btn-sm" data-registrar-pago-alumno="${a.uid}">${icon('plus')} Registrar pago</button>
+        </div>
+      </div>`).join('');
+    $$('[data-registrar-pago-alumno]', listaCont).forEach(b => b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      abrirModalRegistrarPago(b.dataset.registrarPagoAlumno, 'alumno', usuario.uid, renderAlumnos);
+    }));
     $$('[data-uid]', listaCont).forEach(b => b.addEventListener('click', () => {
       state.alumnoSeleccionadoUid = b.dataset.uid;
       cambiarVista('ficha-alumno');
@@ -1108,6 +1158,28 @@ const App = (() => {
   // ---------------------------------------------------------------------
   // Vista: Inicio (alumno)
   // ---------------------------------------------------------------------
+  const FRASES_MOTIVACIONALES = [
+    'El único entrenamiento malo es el que no hiciste.',
+    'La disciplina vence a la motivación cuando esta última se apaga.',
+    'No busques resultados rápidos, buscá resultados que duren.',
+    'Cada serie completada es una promesa cumplida con vos mismo.',
+    'El progreso no siempre se ve en la balanza, a veces se siente en la barra.',
+    'Hoy es un buen día para superar a la versión de ayer.',
+    'La constancia transforma más que la intensidad de un solo día.',
+    'Tu único rival de verdad sos vos mismo hace una semana.',
+    'Los resultados llegan cuando el esfuerzo se vuelve rutina.',
+    'Nadie dijo que sería fácil, pero vale la pena.',
+    'Un entrenamiento a la vez, un día a la vez.',
+    'La fuerza no viene de lo que podés hacer, sino de superar lo que pensabas que no podías.',
+    'El cuerpo logra lo que la mente cree.',
+    'Pequeños pasos constantes ganan carreras largas.',
+    'Hoy entrenás por el vos del futuro.'
+  ];
+  function fraseMotivacionalDelDia() {
+    const diaDelAnio = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+    return FRASES_MOTIVACIONALES[diaDelAnio % FRASES_MOTIVACIONALES.length];
+  }
+
   let relojInicioIntervalo = null;
   async function renderInicio() {
     const cont = $('#view-inicio');
@@ -1129,6 +1201,9 @@ const App = (() => {
       <div class="inicio-saludo">
         <h1>Hola, ${escapeHtml((usuario.nombre || '').split(' ')[0] || '')}</h1>
         <p class="texto-suave" id="inicio-fecha-hora"></p>
+      </div>
+      <div class="tarjeta-objetivo" style="margin-bottom:1.2rem;background:var(--color-acento-suave);border-color:var(--color-acento)">
+        <p style="margin:0;font-style:italic">${icon('flame')} ${escapeHtml(fraseMotivacionalDelDia())}</p>
       </div>
       <div id="inicio-semana-actual" style="margin-bottom:1.2rem">
         <div class="chip-semana">${icon('calendar')} Esta semana · ${formatFecha(inicioSem)} — ${formatFecha(finSem)}</div>

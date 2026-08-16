@@ -260,6 +260,35 @@ const FirebaseService = (() => {
     return snap.docs.map(d => ({ id: d.id, ...d.data() }));
   }
 
+  // ---------------------------------------------------------------------
+  // Pagos: entrenador→superadmin (cuota de la plataforma) y
+  // alumno→entrenador (cuota de entrenamiento). estadoCuota es un concepto
+  // distinto de estadoPago (que es la suspensión de la cuenta).
+  // ---------------------------------------------------------------------
+  async function registrarPago(uidPagador, rolPagador, entrenadorId, monto) {
+    const fecha = new Date().toISOString();
+    await db.collection('pagos').add({ uidPagador, rolPagador, entrenadorId: entrenadorId || null, monto: Number(monto) || 0, fecha });
+    await db.collection('usuarios').doc(uidPagador).update({ estadoCuota: 'al_dia', ultimoPagoFecha: fecha, ultimoPagoMonto: Number(monto) || 0 });
+  }
+
+  async function marcarCuotaVencida(uid) {
+    await db.collection('usuarios').doc(uid).update({ estadoCuota: 'vencido' });
+  }
+
+  // Pagos de los alumnos de ESTE entrenador (o de un alumno puntual).
+  async function getPagosDeAlumnos(alumnoUid) {
+    let query = db.collection('pagos').where('entrenadorId', '==', usuarioActual.uid);
+    if (alumnoUid) query = query.where('uidPagador', '==', alumnoUid);
+    const snap = await query.get();
+    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  }
+
+  // Solo superadmin: todos los pagos de entrenadores, para el resumen mensual.
+  async function getPagosDeEntrenadores() {
+    const snap = await db.collection('pagos').where('rolPagador', '==', 'entrenador').get();
+    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  }
+
   return {
     init, configurado,
     resolverCodigo,
@@ -267,6 +296,7 @@ const FirebaseService = (() => {
     listarEntrenadores, crearCodigoInvitacion, listarCodigosInvitacion, cambiarEstadoPagoEntrenador,
     listarAlumnos, actualizarFichaAlumno, getEstadoEntrenador,
     getRutina, guardarRutina,
-    agregarEntrenamiento, getHistorial
+    agregarEntrenamiento, getHistorial,
+    registrarPago, marcarCuotaVencida, getPagosDeAlumnos, getPagosDeEntrenadores
   };
 })();
