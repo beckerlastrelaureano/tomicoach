@@ -527,9 +527,10 @@ const App = (() => {
     $('#btn-nuevo-codigo').addEventListener('click', async (e) => {
       const btn = e.currentTarget;
       if (btn.disabled) return;
+      const nombreNegocio = prompt('¿Nombre del entrenador o del negocio? (solo para identificarlo en tu lista)');
+      if (nombreNegocio === null) return; // canceló el prompt, no generamos nada
       btn.disabled = true;
       try {
-        const nombreNegocio = prompt('¿Nombre del entrenador o del negocio? (solo para identificarlo en tu lista)') || '';
         const codigo = await FirebaseService.crearCodigoInvitacion(nombreNegocio.trim());
         toast(`Código generado: ${codigo}`, 'exito', 6000);
       } finally {
@@ -593,9 +594,16 @@ const App = (() => {
     if (!codigos.length) {
       listaCod.innerHTML = `<p class="texto-suave">Todavía no generaste ningún código.</p>`;
     } else {
-      listaCod.innerHTML = `<div class="tabla-records-wrap"><table class="tabla-records"><thead><tr><th>Código</th><th>Para</th><th>Estado</th></tr></thead><tbody>
-        ${codigos.map(c => `<tr><td>${escapeHtml(c.codigo)}</td><td>${escapeHtml(c.nombreNegocio || '—')}</td><td>${c.usado ? '<span class="badge">Usado</span>' : '<span class="badge badge-exito">Disponible</span>'}</td></tr>`).join('')}
+      listaCod.innerHTML = `<div class="tabla-records-wrap"><table class="tabla-records"><thead><tr><th>Código</th><th>Para</th><th>Estado</th><th></th></tr></thead><tbody>
+        ${codigos.map(c => `<tr><td>${escapeHtml(c.codigo)}</td><td>${escapeHtml(c.nombreNegocio || '—')}</td><td>${c.usado ? '<span class="badge">Usado</span>' : '<span class="badge badge-exito">Disponible</span>'}</td>
+          <td><button class="btn-icono btn-icono-peligro" data-borrar-codigo="${c.codigo}" title="Borrar código">${icon('close')}</button></td></tr>`).join('')}
       </tbody></table></div>`;
+      $$('[data-borrar-codigo]', listaCod).forEach(b => b.addEventListener('click', async () => {
+        if (!confirm(`¿Borrar el código ${b.dataset.borrarCodigo}? Esta acción no se puede deshacer.`)) return;
+        await FirebaseService.eliminarCodigoInvitacion(b.dataset.borrarCodigo);
+        toast('Código borrado.', 'exito');
+        renderSuperadmin();
+      }));
     }
   }
   RENDERERS['superadmin'] = renderSuperadmin;
@@ -634,7 +642,13 @@ const App = (() => {
           <button class="btn btn-fantasma btn-sm" id="btn-copiar-codigo">Copiar</button>
         </div>
       </div>
-      <div id="lista-alumnos" class="grid-objetivos"><p class="texto-suave">Cargando...</p></div>`;
+      <div class="layout-dos-columnas">
+        <div id="lista-alumnos" class="grid-objetivos"><p class="texto-suave">Cargando...</p></div>
+        <div class="panel">
+          <h3>${icon('stats')} Pagos de tus alumnos</h3>
+          <div id="resumen-pagos-entrenador" style="margin-top:.9rem"><p class="texto-suave">Cargando...</p></div>
+        </div>
+      </div>`;
 
     $('#btn-copiar-codigo').addEventListener('click', async () => {
       try {
@@ -644,6 +658,18 @@ const App = (() => {
         toast('No se pudo copiar. Copialo a mano.', 'info');
       }
     });
+
+    FirebaseService.getPagosDeAlumnos().then(pagos => {
+      const resumenMensual = {};
+      let totalPendientes = 0;
+      pagos.forEach(p => { const clave = (p.fecha || '').slice(0, 7); if (clave) resumenMensual[clave] = (resumenMensual[clave] || 0) + (Number(p.monto) || 0); });
+      const mesesOrdenados = Object.keys(resumenMensual).sort().reverse().slice(0, 4);
+      $('#resumen-pagos-entrenador').innerHTML = mesesOrdenados.length ? mesesOrdenados.map(m => {
+        const [anio, mes] = m.split('-');
+        const nombreMes = MESES[Number(mes) - 1];
+        return `<div class="fila-historial" style="cursor:default"><div class="fila-historial-info"><strong>${nombreMes.charAt(0).toUpperCase() + nombreMes.slice(1)} ${anio}</strong></div><div class="fila-historial-volumen"><strong>$${formatNumero(resumenMensual[m])}</strong></div></div>`;
+      }).join('') : `<p class="texto-suave estado-vacio">Todavía no registraste ningún pago.</p>`;
+    }).catch(() => { $('#resumen-pagos-entrenador').innerHTML = `<p class="texto-suave estado-vacio">No se pudo cargar.</p>`; });
 
     let alumnos;
     try {
@@ -717,7 +743,14 @@ const App = (() => {
       <div class="grid-cards-resumen" style="grid-template-columns:repeat(3,1fr)">
         <div class="card-stat"><div class="card-stat-icono">${icon('calendar')}</div><div class="card-stat-valor">${diasEntrenados}</div><div class="card-stat-label">Días entrenados</div></div>
         <div class="card-stat"><div class="card-stat-icono">${icon('routine')}</div><div class="card-stat-valor">${historial.length}</div><div class="card-stat-label">Entrenamientos totales</div></div>
-        <div class="card-stat exito"><div class="card-stat-icono">${icon('stats')}</div><div class="card-stat-valor">${formatNumero(historial.reduce((s, h) => s + (h.volumenTotal || 0), 0))} kg</div><div class="card-stat-label">Volumen total</div></div>
+        <div class="card-stat exito"><div class="card-stat-icono">${icon('timer')}</div><div class="card-stat-valor">${formatDuracion(historial.length ? historial.reduce((s, h) => s + (h.duracionSeg || 0), 0) / historial.length : 0)}</div><div class="card-stat-label">Duración promedio</div></div>
+      </div>
+
+      <div class="panel" style="margin-bottom:1.2rem">
+        <h3>${icon('flame')} Mensaje para ${escapeHtml((alumno.nombre || '').split(' ')[0] || 'el alumno')}</h3>
+        <p class="texto-suave texto-pequeno" style="margin:.3rem 0 .7rem">Una nota o frase motivacional personal, visible solo para vos.</p>
+        <textarea id="input-notas-alumno" rows="3" style="width:100%;resize:vertical;background:var(--color-fondo-elevado);border:1px solid var(--color-borde-suave);border-radius:var(--radio-sm);padding:.6rem .8rem;color:var(--color-texto);font-family:inherit" placeholder="Ej: Vamos con todo esta semana, subamos el peso en sentadilla 🔥">${escapeHtml(alumno.notasEntrenador || '')}</textarea>
+        <button class="btn btn-fantasma btn-sm" id="btn-guardar-notas-alumno" style="margin-top:.6rem">${icon('check')} Guardar mensaje</button>
       </div>
 
       <div class="panel" style="margin-bottom:1.2rem">
@@ -741,6 +774,10 @@ const App = (() => {
     `;
 
     $('#btn-volver-alumnos').addEventListener('click', () => cambiarVista('alumnos'));
+    $('#btn-guardar-notas-alumno').addEventListener('click', async () => {
+      await FirebaseService.actualizarFichaAlumno(uid, { notasEntrenador: $('#input-notas-alumno').value.trim() });
+      toast('Mensaje guardado.', 'exito');
+    });
 
     $('#picker-objetivo-alumno').innerHTML = Object.entries(PROGRAMAS_OBJETIVO).map(([key, p]) => `
       <button class="tarjeta-objetivo-grande ${alumno.objetivo === key ? 'tarjeta-objetivo-grande-activa' : ''}" data-objetivo="${key}">
@@ -1203,7 +1240,8 @@ const App = (() => {
         <p class="texto-suave" id="inicio-fecha-hora"></p>
       </div>
       <div class="tarjeta-objetivo" style="margin-bottom:1.2rem;background:var(--color-acento-suave);border-color:var(--color-acento)">
-        <p style="margin:0;font-style:italic">${icon('flame')} ${escapeHtml(fraseMotivacionalDelDia())}</p>
+        <p style="margin:0;font-style:italic">${icon('flame')} ${escapeHtml(usuario.notasEntrenador?.trim() || fraseMotivacionalDelDia())}</p>
+        ${usuario.notasEntrenador?.trim() ? `<p class="texto-suave texto-pequeno" style="margin:.4rem 0 0">— Mensaje de tu entrenador</p>` : ''}
       </div>
       <div id="inicio-semana-actual" style="margin-bottom:1.2rem">
         <div class="chip-semana">${icon('calendar')} Esta semana · ${formatFecha(inicioSem)} — ${formatFecha(finSem)}</div>
@@ -1470,7 +1508,7 @@ const App = (() => {
       <div class="panel-header"><h2>Mi progreso</h2></div>
       <div class="grid-cards-resumen" style="grid-template-columns:repeat(2,1fr)">
         <div class="card-stat"><div class="card-stat-icono">${icon('routine')}</div><div class="card-stat-valor">${historial.length}</div><div class="card-stat-label">Entrenamientos</div></div>
-        <div class="card-stat exito"><div class="card-stat-icono">${icon('stats')}</div><div class="card-stat-valor">${formatNumero(historial.reduce((s, h) => s + (h.volumenTotal || 0), 0))} kg</div><div class="card-stat-label">Volumen total</div></div>
+        <div class="card-stat exito"><div class="card-stat-icono">${icon('timer')}</div><div class="card-stat-valor">${formatDuracion(historial.length ? historial.reduce((s, h) => s + (h.duracionSeg || 0), 0) / historial.length : 0)}</div><div class="card-stat-label">Duración promedio</div></div>
       </div>
       <div class="panel"><h3>Volumen por sesión</h3><div class="contenedor-grafico" style="margin-top:.8rem"><canvas id="grafico-mi-progreso"></canvas></div></div>
       <div class="panel" style="margin-top:1.2rem">

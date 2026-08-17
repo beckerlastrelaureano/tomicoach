@@ -289,11 +289,15 @@ const FirebaseService = (() => {
     return snap.docs.map(d => ({ id: d.id, ...d.data() }));
   }
 
+  async function eliminarCodigoInvitacion(codigo) {
+    await db.collection('codigosInvitacion').doc(codigo).delete();
+  }
+
   return {
     init, configurado,
     resolverCodigo,
     onCambioSesion, registrarUsuario, iniciarSesion, cerrarSesion, recuperarContrasena, getUsuarioActual,
-    listarEntrenadores, crearCodigoInvitacion, listarCodigosInvitacion, cambiarEstadoPagoEntrenador,
+    listarEntrenadores, crearCodigoInvitacion, listarCodigosInvitacion, cambiarEstadoPagoEntrenador, eliminarCodigoInvitacion,
     listarAlumnos, actualizarFichaAlumno, getEstadoEntrenador,
     getRutina, guardarRutina,
     agregarEntrenamiento, getHistorial,
