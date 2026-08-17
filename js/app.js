@@ -574,21 +574,8 @@ const App = (() => {
       $$('[data-registrar-pago]', listaEnt).forEach(b => b.addEventListener('click', () => abrirModalRegistrarPago(b.dataset.registrarPago, 'entrenador', null, renderSuperadmin)));
     }
 
-    const resumenMensual = {};
-    pagosEntrenadores.forEach(p => {
-      const clave = (p.fecha || '').slice(0, 7);
-      if (!clave) return;
-      resumenMensual[clave] = (resumenMensual[clave] || 0) + (Number(p.monto) || 0);
-    });
-    const mesesOrdenados = Object.keys(resumenMensual).sort().reverse().slice(0, 6);
-    $('#resumen-pagos-mensual').innerHTML = mesesOrdenados.length ? `
-      <div class="grid-cards-resumen" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
-        ${mesesOrdenados.map(m => {
-          const [anio, mes] = m.split('-');
-          const nombreMes = MESES[Number(mes) - 1];
-          return `<div class="card-stat exito"><div class="card-stat-icono">${icon('stats')}</div><div class="card-stat-valor">$${formatNumero(resumenMensual[m])}</div><div class="card-stat-label">${nombreMes.charAt(0).toUpperCase() + nombreMes.slice(1)} ${anio}</div></div>`;
-        }).join('')}
-      </div>` : `<p class="texto-suave estado-vacio">Todavía no registraste ningún pago.</p>`;
+    const nombrePorUidEntrenador = Object.fromEntries(entrenadores.map(en => [en.uid, en.nombreNegocio || en.nombre]));
+    renderPanelPagos('#resumen-pagos-mensual', pagosEntrenadores, nombrePorUidEntrenador, true);
 
     const listaCod = $('#lista-codigos');
     if (!codigos.length) {
@@ -646,7 +633,7 @@ const App = (() => {
         <div id="lista-alumnos" class="grid-objetivos"><p class="texto-suave">Cargando...</p></div>
         <div class="panel">
           <h3>${icon('stats')} Pagos de tus alumnos</h3>
-          <div id="resumen-pagos-entrenador" style="margin-top:.9rem"><p class="texto-suave">Cargando...</p></div>
+          <div id="panel-pagos-entrenador" style="margin-top:.9rem"><p class="texto-suave">Cargando...</p></div>
         </div>
       </div>`;
 
@@ -659,26 +646,23 @@ const App = (() => {
       }
     });
 
-    FirebaseService.getPagosDeAlumnos().then(pagos => {
-      const resumenMensual = {};
-      let totalPendientes = 0;
-      pagos.forEach(p => { const clave = (p.fecha || '').slice(0, 7); if (clave) resumenMensual[clave] = (resumenMensual[clave] || 0) + (Number(p.monto) || 0); });
-      const mesesOrdenados = Object.keys(resumenMensual).sort().reverse().slice(0, 4);
-      $('#resumen-pagos-entrenador').innerHTML = mesesOrdenados.length ? mesesOrdenados.map(m => {
-        const [anio, mes] = m.split('-');
-        const nombreMes = MESES[Number(mes) - 1];
-        return `<div class="fila-historial" style="cursor:default"><div class="fila-historial-info"><strong>${nombreMes.charAt(0).toUpperCase() + nombreMes.slice(1)} ${anio}</strong></div><div class="fila-historial-volumen"><strong>$${formatNumero(resumenMensual[m])}</strong></div></div>`;
-      }).join('') : `<p class="texto-suave estado-vacio">Todavía no registraste ningún pago.</p>`;
-    }).catch(() => { $('#resumen-pagos-entrenador').innerHTML = `<p class="texto-suave estado-vacio">No se pudo cargar.</p>`; });
+    const [alumnosRes, pagosRes] = await Promise.allSettled([
+      FirebaseService.listarAlumnos(),
+      FirebaseService.getPagosDeAlumnos()
+    ]);
 
-    let alumnos;
-    try {
-      alumnos = await FirebaseService.listarAlumnos();
-    } catch (err) {
-      console.error('Error cargando alumnos:', err);
+    if (alumnosRes.status === 'rejected') {
+      console.error('Error cargando alumnos:', alumnosRes.reason);
       $('#lista-alumnos').innerHTML = `<p class="texto-suave estado-vacio">No se pudo cargar la lista de alumnos (error de permisos o de conexión). Refrescá la página e intentá de nuevo.</p>`;
       return;
     }
+    const alumnos = alumnosRes.value;
+    const pagos = pagosRes.status === 'fulfilled' ? pagosRes.value : [];
+    if (pagosRes.status === 'rejected') console.error('Error cargando pagos:', pagosRes.reason);
+    const nombrePorUid = Object.fromEntries(alumnos.map(a => [a.uid, a.nombre]));
+
+    renderPanelPagos('#panel-pagos-entrenador', pagos, nombrePorUid, true);
+
     const listaCont = $('#lista-alumnos');
     if (!alumnos.length) {
       listaCont.innerHTML = `<div class="estado-vacio"><p>${icon('routine')} Todavía no tenés alumnos registrados.</p><p class="texto-suave">Pasales el código de arriba para que se registren.</p></div>`;
@@ -706,6 +690,41 @@ const App = (() => {
     }));
   }
   RENDERERS['alumnos'] = renderAlumnos;
+
+  // Listado real de pagos individuales (no solo el resumen por mes), con
+  // botón de borrar. Se reutiliza en el panel de entrenador y de superadmin.
+  function renderPanelPagos(selector, pagos, nombrePorUid, permiteBorrar) {
+    const cont = $(selector);
+    if (!cont) return;
+    const resumenMensual = {};
+    pagos.forEach(p => { const clave = (p.fecha || '').slice(0, 7); if (clave) resumenMensual[clave] = (resumenMensual[clave] || 0) + (Number(p.monto) || 0); });
+    const mesesOrdenados = Object.keys(resumenMensual).sort().reverse().slice(0, 4);
+    const pagosOrdenados = [...pagos].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
+    cont.innerHTML = `
+      ${mesesOrdenados.length ? `<div class="grid-cards-resumen" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin-bottom:1rem">
+        ${mesesOrdenados.map(m => {
+          const [anio, mes] = m.split('-');
+          const nombreMes = MESES[Number(mes) - 1];
+          return `<div class="card-stat exito"><div class="card-stat-valor">$${formatNumero(resumenMensual[m])}</div><div class="card-stat-label">${nombreMes.charAt(0).toUpperCase() + nombreMes.slice(1)} ${anio}</div></div>`;
+        }).join('')}
+      </div>` : ''}
+      <div id="lista-pagos-detalle">
+        ${pagosOrdenados.length ? pagosOrdenados.map(p => `
+          <div class="fila-historial" style="cursor:default">
+            <div class="fila-historial-info"><strong>${escapeHtml(nombrePorUid[p.uidPagador] || 'Pago')}</strong><span class="texto-suave">${formatFecha(p.fecha)}</span></div>
+            <div class="fila-historial-volumen"><strong>$${formatNumero(p.monto)}</strong></div>
+            ${permiteBorrar ? `<button class="btn-icono btn-icono-peligro" data-borrar-pago="${p.id}" title="Borrar pago">${icon('close')}</button>` : ''}
+          </div>`).join('') : `<p class="texto-suave estado-vacio">Todavía no registraste ningún pago.</p>`}
+      </div>`;
+
+    $$('[data-borrar-pago]', cont).forEach(b => b.addEventListener('click', async () => {
+      if (!confirm('¿Borrar este pago? Esta acción no se puede deshacer.')) return;
+      await FirebaseService.eliminarPago(b.dataset.borrarPago);
+      toast('Pago borrado.', 'exito');
+      renderPanelPagos(selector, pagos.filter(p => p.id !== b.dataset.borrarPago), nombrePorUid, permiteBorrar);
+    }));
+  }
 
   async function renderFichaAlumno() {
     const cont = $('#view-ficha-alumno');

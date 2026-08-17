@@ -293,6 +293,10 @@ const FirebaseService = (() => {
     await db.collection('codigosInvitacion').doc(codigo).delete();
   }
 
+  async function eliminarPago(id) {
+    await db.collection('pagos').doc(id).delete();
+  }
+
   return {
     init, configurado,
     resolverCodigo,
@@ -301,6 +305,6 @@ const FirebaseService = (() => {
     listarAlumnos, actualizarFichaAlumno, getEstadoEntrenador,
     getRutina, guardarRutina,
     agregarEntrenamiento, getHistorial,
-    registrarPago, marcarCuotaVencida, getPagosDeAlumnos, getPagosDeEntrenadores
+    registrarPago, marcarCuotaVencida, getPagosDeAlumnos, getPagosDeEntrenadores, eliminarPago
   };
 })();
