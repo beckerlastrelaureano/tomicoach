@@ -70,8 +70,11 @@ service cloud.firestore {
       // y el entrenador puede editar esos mismos campos no sensibles en la
       // ficha de SU alumno (para asignarle objetivo/nivel desde su panel).
       allow update: if esSuperadmin()
-                    || (estoyAutenticado() && (request.auth.uid == uid || esMiAlumno(uid))
+                    || (estoyAutenticado() && request.auth.uid == uid
                         && !('estadoPago' in request.resource.data.diff(resource.data).affectedKeys())
+                        && !('rol' in request.resource.data.diff(resource.data).affectedKeys())
+                        && !('entrenadorId' in request.resource.data.diff(resource.data).affectedKeys()))
+                    || (estoyAutenticado() && esMiAlumno(uid)
                         && !('rol' in request.resource.data.diff(resource.data).affectedKeys())
                         && !('entrenadorId' in request.resource.data.diff(resource.data).affectedKeys()));
 

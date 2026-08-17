@@ -677,9 +677,20 @@ const App = (() => {
         <p class="texto-suave texto-pequeno">${escapeHtml(a.email)}</p>
         <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;margin-top:.6rem">
           <span class="badge ${a.estadoCuota === 'vencido' ? 'badge-peligro' : 'badge-exito'}">${a.estadoCuota === 'vencido' ? 'Cuota vencida' : 'Cuota al día'}</span>
+          <span class="badge ${a.estadoPago === 'suspendido' ? 'badge-peligro' : 'badge-exito'}">${a.estadoPago === 'suspendido' ? 'Suspendido' : 'Activo'}</span>
           <button class="btn btn-fantasma btn-sm" data-registrar-pago-alumno="${a.uid}">${icon('plus')} Registrar pago</button>
+          <button class="btn btn-sm ${a.estadoPago === 'suspendido' ? 'btn-primario' : 'btn-peligro'}" data-suspender-alumno="${a.uid}" data-accion="${a.estadoPago === 'suspendido' ? 'activar' : 'suspender'}">
+            ${a.estadoPago === 'suspendido' ? 'Reactivar' : 'Suspender'}
+          </button>
         </div>
       </div>`).join('');
+    $$('[data-suspender-alumno]', listaCont).forEach(b => b.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const nuevoEstado = b.dataset.accion === 'activar' ? 'activo' : 'suspendido';
+      await FirebaseService.cambiarEstadoAlumno(b.dataset.suspenderAlumno, nuevoEstado);
+      toast(nuevoEstado === 'suspendido' ? 'Alumno suspendido.' : 'Alumno reactivado.', 'exito');
+      renderAlumnos();
+    }));
     $$('[data-registrar-pago-alumno]', listaCont).forEach(b => b.addEventListener('click', (e) => {
       e.stopPropagation();
       abrirModalRegistrarPago(b.dataset.registrarPagoAlumno, 'alumno', usuario.uid, renderAlumnos);
@@ -787,12 +798,18 @@ const App = (() => {
         <div class="contenedor-grafico" style="margin-top:.8rem"><canvas id="grafico-progreso-alumno"></canvas></div>
       </div>
 
-      <div class="panel-header"><h3>Rutina asignada</h3></div>
+      <div class="panel-header-flex"><h3>Rutina asignada</h3>${rutina ? `<button class="btn btn-peligro btn-sm" id="btn-borrar-rutina">${icon('close')} Borrar rutina</button>` : ''}</div>
       <div id="dias-rutina-alumno"></div>
       ${rutina ? `<button class="btn btn-fantasma" id="btn-agregar-dia-alumno">${icon('plus')} Agregar día</button>` : ''}
     `;
 
     $('#btn-volver-alumnos').addEventListener('click', () => cambiarVista('alumnos'));
+    $('#btn-borrar-rutina')?.addEventListener('click', async () => {
+      if (!confirm(`¿Borrar toda la rutina de ${alumno.nombre}? Esta acción no se puede deshacer.`)) return;
+      await FirebaseService.eliminarRutina(uid);
+      toast('Rutina borrada.', 'exito');
+      renderFichaAlumno();
+    });
     $('#btn-guardar-notas-alumno').addEventListener('click', async () => {
       await FirebaseService.actualizarFichaAlumno(uid, { notasEntrenador: $('#input-notas-alumno').value.trim() });
       toast('Mensaje guardado.', 'exito');
@@ -1718,8 +1735,10 @@ const App = (() => {
       mostrarPantallaSuspendido();
       return;
     }
-    // Un alumno cuyo entrenador está suspendido, tampoco.
+    // Un alumno suspendido directamente, o cuyo entrenador está
+    // suspendido, tampoco entra.
     if (usuario.rol === 'alumno') {
+      if (usuario.estadoPago === 'suspendido') { mostrarPantallaSuspendido(); return; }
       const estado = await FirebaseService.getEstadoEntrenador(usuario.entrenadorId);
       if (estado === 'suspendido') { mostrarPantallaSuspendido(); return; }
     }

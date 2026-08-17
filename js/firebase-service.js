@@ -234,6 +234,14 @@ const FirebaseService = (() => {
     return rutina;
   }
 
+  async function eliminarRutina(alumnoUid) {
+    await db.collection('rutinas').doc(alumnoUid).delete();
+  }
+
+  async function cambiarEstadoAlumno(alumnoUid, estadoPago) {
+    await db.collection('usuarios').doc(alumnoUid).update({ estadoPago });
+  }
+
   // ---------------------------------------------------------------------
   // Entrenamientos (historial append-only)
   // ---------------------------------------------------------------------
@@ -302,8 +310,8 @@ const FirebaseService = (() => {
     resolverCodigo,
     onCambioSesion, registrarUsuario, iniciarSesion, cerrarSesion, recuperarContrasena, getUsuarioActual,
     listarEntrenadores, crearCodigoInvitacion, listarCodigosInvitacion, cambiarEstadoPagoEntrenador, eliminarCodigoInvitacion,
-    listarAlumnos, actualizarFichaAlumno, getEstadoEntrenador,
-    getRutina, guardarRutina,
+    listarAlumnos, actualizarFichaAlumno, getEstadoEntrenador, cambiarEstadoAlumno,
+    getRutina, guardarRutina, eliminarRutina,
     agregarEntrenamiento, getHistorial,
     registrarPago, marcarCuotaVencida, getPagosDeAlumnos, getPagosDeEntrenadores, eliminarPago
   };
