@@ -221,7 +221,11 @@ const App = (() => {
       { nombre: 'Día 1 — Tren superior y columna', series: 2, reps: 1, descanso: 20, bloques: [{ grupo: 'Cuello', cantidad: 1 }, { grupo: 'Hombros', cantidad: 2 }, { grupo: 'Pecho', cantidad: 1 }, { grupo: 'Columna', cantidad: 2 }, { grupo: 'Trapecios', cantidad: 1 }] },
       { nombre: 'Día 2 — Cadera y piernas', series: 2, reps: 1, descanso: 20, bloques: [{ grupo: 'Cadera', cantidad: 3 }, { grupo: 'Isquiotibiales', cantidad: 2 }, { grupo: 'Cuádriceps', cantidad: 1 }, { grupo: 'Glúteos', cantidad: 1 }] },
       { nombre: 'Día 3 — Piernas, tobillos y espalda', series: 2, reps: 1, descanso: 20, bloques: [{ grupo: 'Gemelos', cantidad: 2 }, { grupo: 'Tobillos', cantidad: 2 }, { grupo: 'Espalda', cantidad: 2 }, { grupo: 'Antebrazos', cantidad: 1 }] }
-    ]}
+    ]},
+    'libre': { nombre: 'Libre (armado a mano)', icono: 'edit',
+      resumen: 'Empieza una rutina en blanco y armala vos mismo, día por día y ejercicio por ejercicio — sin generación automática.',
+      dias: []
+    }
   };
 
   function elegirEjercicios(pool, grupo, cantidad, preferirCompuesto) {
@@ -820,7 +824,7 @@ const App = (() => {
         <span class="tarjeta-objetivo-grande-icono">${icon(p.icono)}</span>
         <span class="tarjeta-objetivo-grande-nombre">${escapeHtml(p.nombre)}</span>
       </button>`).join('');
-    $$('#picker-objetivo-alumno [data-objetivo]').forEach(b => b.addEventListener('click', () => abrirModalNivelParaAlumno(uid, b.dataset.objetivo)));
+    $$('#picker-objetivo-alumno [data-objetivo]').forEach(b => b.addEventListener('click', () => elegirObjetivoParaRutina(uid, b.dataset.objetivo, renderFichaAlumno)));
 
     renderCalendarioAsistencia(historial);
     renderGraficoProgresoAlumno(historial);
@@ -834,7 +838,19 @@ const App = (() => {
   }
   RENDERERS['ficha-alumno'] = renderFichaAlumno;
 
-  function abrirModalNivelParaAlumno(uid, objetivoKey) {
+  async function elegirObjetivoParaRutina(uid, objetivoKey, alRefrescar) {
+    if (objetivoKey === 'libre') {
+      const rutina = { nombre: 'Rutina libre', objetivo: 'libre', nivel: null, dias: [], calentamiento: [] };
+      await FirebaseService.guardarRutina(uid, rutina);
+      await FirebaseService.actualizarFichaAlumno(uid, { objetivo: 'libre', nivel: null });
+      toast('Rutina en blanco creada. Agregá los días que quieras.', 'exito');
+      alRefrescar();
+      return;
+    }
+    abrirModalNivelParaAlumno(uid, objetivoKey, alRefrescar);
+  }
+
+  function abrirModalNivelParaAlumno(uid, objetivoKey, alRefrescar = renderFichaAlumno) {
     const p = PROGRAMAS_OBJETIVO[objetivoKey];
     abrirModal(`
       <div class="modal-header"><h3>${icon(p.icono)} ${escapeHtml(p.nombre)}</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
@@ -862,7 +878,7 @@ const App = (() => {
       await FirebaseService.actualizarFichaAlumno(uid, { objetivo: objetivoKey, nivel });
       cerrarModal();
       toast('Rutina generada y asignada.', 'logro');
-      renderFichaAlumno();
+      alRefrescar();
     });
   }
 
@@ -922,18 +938,23 @@ const App = (() => {
       await FirebaseService.guardarRutina(uid, rutina);
       cerrarModal();
       toast('Ejercicio actualizado.', 'exito');
-      renderDiasRutina(uid, rutina, esEntrenadorEditando);
+      renderDiasRutina(uid, rutina, esEntrenadorEditando, permiteEmpezar);
     });
   }
 
 
-  function renderDiasRutina(uid, rutina, esEntrenadorEditando) {
+  function renderDiasRutina(uid, rutina, esEntrenadorEditando, permiteEmpezar) {
     const cont = $('#dias-rutina-alumno');
     if (!rutina) { cont.innerHTML = `<p class="texto-suave estado-vacio">Este alumno todavía no tiene una rutina asignada. Elegí un objetivo arriba para generar una.</p>`; return; }
     cont.innerHTML = rutina.dias.map((dia, di) => `
       <div class="bloque-dia">
         <div class="dia-header"><strong>${escapeHtml(dia.nombre)}</strong>
-          ${esEntrenadorEditando ? `<button class="btn btn-fantasma btn-sm" style="margin-left:auto" data-agregar-ej="${di}">${icon('plus')} Agregar ejercicio</button>` : ''}
+          <div style="margin-left:auto;display:flex;gap:.4rem">
+            ${permiteEmpezar && dia.ejercicios.length ? `<button class="btn btn-primario btn-sm" data-empezar-dia="${di}">${icon('play')} Empezar</button>` : ''}
+            ${esEntrenadorEditando ? `<button class="btn-icono" data-renombrar-dia="${di}" title="Renombrar día" aria-label="Renombrar día">${icon('edit')}</button>` : ''}
+            ${esEntrenadorEditando ? `<button class="btn btn-fantasma btn-sm" data-agregar-ej="${di}">${icon('plus')} Agregar ejercicio</button>` : ''}
+            ${esEntrenadorEditando ? `<button class="btn-icono btn-icono-peligro" data-borrar-dia="${di}" title="Borrar día" aria-label="Borrar día">${icon('trash')}</button>` : ''}
+          </div>
         </div>
         <div class="lista-ejercicios-dia">
           ${dia.ejercicios.map((item, ei) => {
@@ -950,9 +971,10 @@ const App = (() => {
             </div>`;
           }).join('') || '<p class="texto-suave texto-pequeno">Sin ejercicios.</p>'}
         </div>
-      </div>`).join('');
+      </div>`).join('') || `<p class="texto-suave estado-vacio">Sin días todavía.${esEntrenadorEditando ? ' Agregá el primero con el botón de abajo.' : ''}</p>`;
 
     $$('[data-ver-detalle]', cont).forEach(b => b.addEventListener('click', () => abrirDetalleEjercicio(b.dataset.verDetalle)));
+    $$('[data-empezar-dia]', cont).forEach(b => b.addEventListener('click', () => iniciarEntrenamiento(rutina, rutina.dias[Number(b.dataset.empezarDia)])));
     $$('[data-editar-series]', cont).forEach(b => b.addEventListener('click', () => {
       const [di, ei] = b.dataset.editarSeries.split(':').map(Number);
       abrirModalEditarSeriesObjetivo(uid, rutina, di, ei, esEntrenadorEditando);
@@ -964,7 +986,7 @@ const App = (() => {
           seriesObjetivo: [{ reps: 10, peso: 0 }, { reps: 10, peso: 0 }, { reps: 10, peso: 0 }], descansoSeg: 90
         });
         await FirebaseService.guardarRutina(uid, rutina);
-        renderDiasRutina(uid, rutina, esEntrenadorEditando);
+        renderDiasRutina(uid, rutina, esEntrenadorEditando, permiteEmpezar);
         toast(`${ej.nombre} agregado.`, 'exito');
       });
     }));
@@ -972,7 +994,23 @@ const App = (() => {
       const [di, ei] = b.dataset.quitarEj.split(':').map(Number);
       rutina.dias[di].ejercicios.splice(ei, 1);
       await FirebaseService.guardarRutina(uid, rutina);
-      renderDiasRutina(uid, rutina, esEntrenadorEditando);
+      renderDiasRutina(uid, rutina, esEntrenadorEditando, permiteEmpezar);
+    }));
+    $$('[data-renombrar-dia]', cont).forEach(b => b.addEventListener('click', async () => {
+      const di = Number(b.dataset.renombrarDia);
+      const nuevoNombre = prompt('Nuevo nombre para este día:', rutina.dias[di].nombre);
+      if (nuevoNombre === null || !nuevoNombre.trim()) return;
+      rutina.dias[di].nombre = nuevoNombre.trim();
+      await FirebaseService.guardarRutina(uid, rutina);
+      renderDiasRutina(uid, rutina, esEntrenadorEditando, permiteEmpezar);
+    }));
+    $$('[data-borrar-dia]', cont).forEach(b => b.addEventListener('click', async () => {
+      const di = Number(b.dataset.borrarDia);
+      if (!confirm(`¿Borrar "${rutina.dias[di].nombre}"? Esta acción no se puede deshacer.`)) return;
+      rutina.dias.splice(di, 1);
+      await FirebaseService.guardarRutina(uid, rutina);
+      renderDiasRutina(uid, rutina, esEntrenadorEditando, permiteEmpezar);
+      toast('Día borrado.', 'exito');
     }));
   }
 
@@ -982,6 +1020,7 @@ const App = (() => {
   async function renderMiRutina() {
     const cont = $('#view-mi-rutina');
     const usuario = FirebaseService.getUsuarioActual();
+    const puedeEditar = usuario.autoeditar === true;
     cont.innerHTML = `<p class="texto-suave">Cargando tu rutina...</p>`;
     const rutina = await FirebaseService.getRutina(usuario.uid);
 
@@ -990,14 +1029,49 @@ const App = (() => {
         <p class="texto-suave texto-pequeno" style="margin-bottom:.2rem">Hola, ${escapeHtml(usuario.nombre.split(' ')[0])} 👋</p>
         <div class="estado-vacio">
           <p>${icon('routine')} Todavía no tenés una rutina asignada.</p>
-          <p class="texto-suave">Tu entrenador te la va a armar pronto. Cuando lo haga, la vas a ver acá.</p>
-        </div>`;
+          <p class="texto-suave">${puedeEditar ? 'Elegí un objetivo abajo para generar la tuya.' : 'Tu entrenador te la va a armar pronto. Cuando lo haga, la vas a ver acá.'}</p>
+        </div>
+        ${puedeEditar ? `<div class="panel" style="margin-top:1.2rem"><h3>Elegí tu objetivo</h3><div id="picker-objetivo-propio" class="grid-objetivos" style="margin-top:.8rem"></div></div>` : ''}`;
+      if (puedeEditar) {
+        $('#picker-objetivo-propio').innerHTML = Object.entries(PROGRAMAS_OBJETIVO).map(([key, p]) => `
+          <button class="tarjeta-objetivo-grande" data-objetivo="${key}">
+            <span class="tarjeta-objetivo-grande-icono">${icon(p.icono)}</span>
+            <span class="tarjeta-objetivo-grande-nombre">${escapeHtml(p.nombre)}</span>
+          </button>`).join('');
+        $$('#picker-objetivo-propio [data-objetivo]').forEach(b => b.addEventListener('click', () => elegirObjetivoParaRutina(usuario.uid, b.dataset.objetivo, renderMiRutina)));
+      }
       return;
     }
 
     cont.innerHTML = `
       <p class="texto-suave texto-pequeno" style="margin-bottom:.2rem">Hola, ${escapeHtml(usuario.nombre.split(' ')[0])} 👋</p>
-      <div class="panel-header"><h2>${escapeHtml(rutina.nombre)}</h2></div><div id="dias-mi-rutina"></div>`;
+      <div class="panel-header-flex"><h2>${escapeHtml(rutina.nombre)}</h2>${puedeEditar ? `<button class="btn btn-fantasma btn-sm" id="btn-cambiar-objetivo-propio">${icon('repeat')} Cambiar objetivo</button>` : ''}</div>
+      <div id="${puedeEditar ? 'dias-rutina-alumno' : 'dias-mi-rutina'}"></div>
+      ${puedeEditar ? `<button class="btn btn-fantasma" id="btn-agregar-dia-propio">${icon('plus')} Agregar día</button>` : ''}`;
+
+    if (puedeEditar) {
+      // Reutilizamos exactamente el mismo editor que usa el entrenador,
+      // pero apuntado a la propia rutina.
+      renderDiasRutina(usuario.uid, rutina, true, true);
+      $('#btn-agregar-dia-propio').addEventListener('click', () => {
+        rutina.dias.push({ id: `dia-${Date.now()}`, nombre: `Día ${rutina.dias.length + 1}`, ejercicios: [] });
+        FirebaseService.guardarRutina(usuario.uid, rutina);
+        renderMiRutina();
+      });
+      $('#btn-cambiar-objetivo-propio').addEventListener('click', () => {
+        abrirModal(`
+          <div class="modal-header"><h3>Elegí tu objetivo</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
+          <div class="modal-body"><div id="picker-objetivo-propio-modal" class="grid-objetivos"></div></div>`, { ancho: 'lg', id: 'modal-objetivo-propio' });
+        $('#picker-objetivo-propio-modal').innerHTML = Object.entries(PROGRAMAS_OBJETIVO).map(([key, p]) => `
+          <button class="tarjeta-objetivo-grande" data-objetivo="${key}">
+            <span class="tarjeta-objetivo-grande-icono">${icon(p.icono)}</span>
+            <span class="tarjeta-objetivo-grande-nombre">${escapeHtml(p.nombre)}</span>
+          </button>`).join('');
+        $$('#picker-objetivo-propio-modal [data-objetivo]').forEach(b => b.addEventListener('click', () => { cerrarModal(); elegirObjetivoParaRutina(usuario.uid, b.dataset.objetivo, renderMiRutina); }));
+      });
+      return;
+    }
+
     const diasCont = $('#dias-mi-rutina');
     diasCont.innerHTML = rutina.dias.map((dia, di) => `
       <div class="bloque-dia">
