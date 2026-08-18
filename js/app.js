@@ -686,8 +686,16 @@ const App = (() => {
           <button class="btn btn-sm ${a.estadoPago === 'suspendido' ? 'btn-primario' : 'btn-peligro'}" data-suspender-alumno="${a.uid}" data-accion="${a.estadoPago === 'suspendido' ? 'activar' : 'suspender'}">
             ${a.estadoPago === 'suspendido' ? 'Reactivar' : 'Suspender'}
           </button>
+          <button class="btn-icono btn-icono-peligro" data-eliminar-alumno="${a.uid}" data-nombre-alumno="${escapeHtml(a.nombre)}" title="Eliminar alumno permanentemente" aria-label="Eliminar alumno">${icon('trash')}</button>
         </div>
       </div>`).join('');
+    $$('[data-eliminar-alumno]', listaCont).forEach(b => b.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      if (!confirm(`¿Eliminar a ${b.dataset.nombreAlumno} PERMANENTEMENTE? Pierde su ficha y su rutina. Esta acción no se puede deshacer. Si querés poder reactivarlo más adelante, usá "Suspender" en vez de esto.`)) return;
+      await FirebaseService.eliminarAlumno(b.dataset.eliminarAlumno);
+      toast('Alumno eliminado.', 'exito');
+      renderAlumnos();
+    }));
     $$('[data-suspender-alumno]', listaCont).forEach(b => b.addEventListener('click', async (e) => {
       e.stopPropagation();
       const nuevoEstado = b.dataset.accion === 'activar' ? 'activo' : 'suspendido';
@@ -1706,10 +1714,16 @@ const App = (() => {
     $('#form-login').addEventListener('submit', async (e) => {
       e.preventDefault();
       const err = $('#login-error'); err.hidden = true;
+      const email = $('#login-email').value.trim();
+      const password = $('#login-password').value;
       try {
-        const usuario = await FirebaseService.iniciarSesion($('#login-email').value.trim(), $('#login-password').value);
+        const usuario = await FirebaseService.iniciarSesion(email, password);
         await entrarConUsuario(usuario);
       } catch (ex) {
+        if (ex.code === 'app/cuenta-eliminada') {
+          abrirModalCuentaEliminada(email, password);
+          return;
+        }
         err.textContent = traducirErrorFirebase(ex); err.hidden = false;
       }
     });
@@ -1740,6 +1754,35 @@ const App = (() => {
     $('#btn-cerrar-sesion').addEventListener('click', () => { cerrarWidgetTimer(); FirebaseService.cerrarSesion(); });
     $('#btn-cerrar-sesion-suspendido')?.addEventListener('click', () => { cerrarWidgetTimer(); FirebaseService.cerrarSesion(); });
     $('#btn-menu-movil')?.addEventListener('click', () => $('#sidebar').classList.toggle('sidebar-abierto'));
+  }
+
+  function abrirModalCuentaEliminada(email, password) {
+    abrirModal(`
+      <div class="modal-header"><h3>${icon('warning')} Cuenta eliminada</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
+      <div class="modal-body">
+        <p class="texto-suave" style="margin-bottom:1rem">Tu ficha fue eliminada por tu entrenador. Para volver a entrar, pedile un código de invitación nuevo y completá estos datos (tu email y contraseña se mantienen, solo hace falta recrear tu ficha).</p>
+        <label class="campo"><span>Nombre completo</span><input type="text" id="input-nombre-recuperacion" autofocus></label>
+        <label class="campo"><span>Código de invitación</span><input type="text" id="input-codigo-recuperacion" style="text-transform:uppercase"></label>
+        <p class="auth-error" id="error-recuperacion" hidden></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-fantasma" data-cerrar-modal>Cancelar</button>
+        <button class="btn btn-primario" id="btn-confirmar-recuperacion">${icon('check')} Completar registro</button>
+      </div>`, { id: 'modal-cuenta-eliminada' });
+
+    $('#btn-confirmar-recuperacion').addEventListener('click', async () => {
+      const errEl = $('#error-recuperacion'); errEl.hidden = true;
+      const nombre = $('#input-nombre-recuperacion').value.trim();
+      const codigo = $('#input-codigo-recuperacion').value.trim();
+      if (!nombre || !codigo) { errEl.textContent = 'Completá los dos campos.'; errEl.hidden = false; return; }
+      try {
+        const usuario = await FirebaseService.completarRegistroTrasEliminacion({ email, password, nombre, codigo });
+        cerrarModal();
+        await entrarConUsuario(usuario);
+      } catch (ex) {
+        errEl.textContent = traducirErrorFirebase(ex); errEl.hidden = false;
+      }
+    });
   }
 
   function traducirErrorFirebase(ex) {

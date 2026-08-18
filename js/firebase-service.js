@@ -141,8 +141,46 @@ const FirebaseService = (() => {
   async function iniciarSesion(email, password) {
     const cred = await auth.signInWithEmailAndPassword(email, password);
     const doc = await db.collection('usuarios').doc(cred.user.uid).get();
+    if (!doc.exists) {
+      // La cuenta de Firebase existe pero su ficha fue borrada por el
+      // entrenador (o el superadmin): la cerramos de nuevo y avisamos.
+      await auth.signOut();
+      const err = new Error('CUENTA_ELIMINADA');
+      err.code = 'app/cuenta-eliminada';
+      throw err;
+    }
     usuarioActual = { uid: cred.user.uid, ...doc.data() };
     return usuarioActual;
+  }
+
+  // Se usa después de detectar CUENTA_ELIMINADA: vuelve a autenticar con el
+  // mismo email/contraseña (la cuenta de Firebase Auth sigue existiendo,
+  // solo se borró la ficha) y crea una ficha nueva con un código nuevo,
+  // sin tener que dar de alta una cuenta de Firebase distinta.
+  async function completarRegistroTrasEliminacion({ email, password, nombre, codigo }) {
+    const cred = await auth.signInWithEmailAndPassword(email, password);
+    const resuelto = await resolverCodigo(codigo);
+    if (resuelto.tipo === 'invalido') { await auth.signOut(); throw new Error(resuelto.motivo); }
+
+    const datos = resuelto.tipo === 'entrenador-nuevo'
+      ? { rol: 'entrenador', nombre, email, nombreNegocio: resuelto.nombreNegocio || nombre, estadoPago: 'activo', fechaAlta: new Date().toISOString() }
+      : { rol: 'alumno', nombre, email, entrenadorId: resuelto.entrenadorUid, objetivo: null, nivel: null, fechaAlta: new Date().toISOString() };
+
+    await db.collection('usuarios').doc(cred.user.uid).set(datos);
+    if (resuelto.tipo === 'entrenador-nuevo') await db.collection('codigosInvitacion').doc(resuelto.codigo).update({ usado: true });
+
+    usuarioActual = { uid: cred.user.uid, ...datos };
+    return usuarioActual;
+  }
+
+  // El entrenador elimina PERMANENTEMENTE a un alumno: se borra su ficha y
+  // su rutina. Ojo: la cuenta de Firebase Auth del alumno sigue existiendo
+  // (no se puede borrar desde el navegador del entrenador); por eso, si
+  // ese alumno intenta loguearse de nuevo, iniciarSesion() lo va a detectar
+  // como CUENTA_ELIMINADA y le va a pedir completar el registro de nuevo.
+  async function eliminarAlumno(alumnoUid) {
+    await db.collection('rutinas').doc(alumnoUid).delete().catch(() => {});
+    await db.collection('usuarios').doc(alumnoUid).delete();
   }
 
   function cerrarSesion() {
@@ -308,9 +346,9 @@ const FirebaseService = (() => {
   return {
     init, configurado,
     resolverCodigo,
-    onCambioSesion, registrarUsuario, iniciarSesion, cerrarSesion, recuperarContrasena, getUsuarioActual,
+    onCambioSesion, registrarUsuario, iniciarSesion, cerrarSesion, recuperarContrasena, getUsuarioActual, completarRegistroTrasEliminacion,
     listarEntrenadores, crearCodigoInvitacion, listarCodigosInvitacion, cambiarEstadoPagoEntrenador, eliminarCodigoInvitacion,
-    listarAlumnos, actualizarFichaAlumno, getEstadoEntrenador, cambiarEstadoAlumno,
+    listarAlumnos, actualizarFichaAlumno, getEstadoEntrenador, cambiarEstadoAlumno, eliminarAlumno,
     getRutina, guardarRutina, eliminarRutina,
     agregarEntrenamiento, getHistorial,
     registrarPago, marcarCuotaVencida, getPagosDeAlumnos, getPagosDeEntrenadores, eliminarPago

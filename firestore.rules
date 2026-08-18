@@ -78,7 +78,8 @@ service cloud.firestore {
                         && !('rol' in request.resource.data.diff(resource.data).affectedKeys())
                         && !('entrenadorId' in request.resource.data.diff(resource.data).affectedKeys()));
 
-      allow delete: if esSuperadmin();
+      allow delete: if esSuperadmin()
+                    || (estoyAutenticado() && esMiAlumno(uid));
     }
 
     // ------------------------------------------------------------------
