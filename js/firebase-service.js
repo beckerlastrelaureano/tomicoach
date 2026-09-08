@@ -280,6 +280,21 @@ const FirebaseService = (() => {
     await db.collection('usuarios').doc(alumnoUid).update({ estadoPago });
   }
 
+  async function cambiarAutoeditar(alumnoUid, valor) {
+    await db.collection('usuarios').doc(alumnoUid).update({ autoeditar: !!valor });
+  }
+
+  // Solo superadmin: ver los alumnos de CUALQUIER entrenador. Útil para dar
+  // soporte, y para el caso de Becker App donde el propio Becker es el
+  // entrenador y quiere gestionar todo desde Becker Center.
+  async function listarAlumnosDeEntrenador(entrenadorUid) {
+    const snap = await db.collection('usuarios')
+      .where('rol', '==', 'alumno')
+      .where('entrenadorId', '==', entrenadorUid)
+      .get();
+    return snap.docs.map(d => ({ uid: d.id, ...d.data() }));
+  }
+
   // ---------------------------------------------------------------------
   // Entrenamientos (historial append-only)
   // ---------------------------------------------------------------------
@@ -348,7 +363,7 @@ const FirebaseService = (() => {
     resolverCodigo,
     onCambioSesion, registrarUsuario, iniciarSesion, cerrarSesion, recuperarContrasena, getUsuarioActual, completarRegistroTrasEliminacion,
     listarEntrenadores, crearCodigoInvitacion, listarCodigosInvitacion, cambiarEstadoPagoEntrenador, eliminarCodigoInvitacion,
-    listarAlumnos, actualizarFichaAlumno, getEstadoEntrenador, cambiarEstadoAlumno, eliminarAlumno,
+    listarAlumnos, actualizarFichaAlumno, getEstadoEntrenador, cambiarEstadoAlumno, eliminarAlumno, cambiarAutoeditar, listarAlumnosDeEntrenador,
     getRutina, guardarRutina, eliminarRutina,
     agregarEntrenamiento, getHistorial,
     registrarPago, marcarCuotaVencida, getPagosDeAlumnos, getPagosDeEntrenadores, eliminarPago
