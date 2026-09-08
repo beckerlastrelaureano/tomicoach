@@ -372,19 +372,14 @@ const App = (() => {
   }
 
   let filtrosSelector = {};
-  function abrirSelectorEjercicios(onSeleccionar, onEjercicioLibre) {
+  function abrirSelectorEjercicios(onSeleccionar) {
     filtrosSelector = { texto: '', grupo: '', equipo: '', dificultad: '', tipo: '', soloConGif: false };
     abrirModal(`
       <div class="modal-header"><h3>${icon('search')} Agregar ejercicio</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
       <div class="modal-body">
         ${panelFiltrosHTML('selector', filtrosSelector)}
-        ${onEjercicioLibre ? `<button class="btn btn-fantasma btn-full" id="btn-abrir-ejercicio-libre" style="margin-bottom:.8rem">${icon('plus')} No está en la lista — agregar uno libre</button>` : ''}
         <div id="selector-resultados" class="grid-ejercicios grid-ejercicios-modal"></div>
       </div>`, { ancho: 'lg', id: 'modal-selector-ejercicio' });
-
-    if (onEjercicioLibre) {
-      $('#btn-abrir-ejercicio-libre').addEventListener('click', () => { cerrarModal(); onEjercicioLibre(); });
-    }
 
     function pintar() {
       const cont = $('#selector-resultados');
@@ -571,38 +566,8 @@ const App = (() => {
             <button class="btn btn-sm ${en.estadoPago === 'suspendido' ? 'btn-primario' : 'btn-peligro'}" data-uid="${en.uid}" data-accion="${en.estadoPago === 'suspendido' ? 'activar' : 'suspender'}">
               ${en.estadoPago === 'suspendido' ? 'Reactivar' : 'Suspender'}
             </button>
-            <button class="btn btn-fantasma btn-sm" data-ver-alumnos-de="${en.uid}">${icon('stats')} Ver alumnos</button>
           </div>
-        </div>
-        <div id="alumnos-de-${en.uid}" hidden style="margin:-.3rem 0 1rem"></div>`).join('');
-
-      $$('[data-ver-alumnos-de]', listaEnt).forEach(b => b.addEventListener('click', async () => {
-        const cont = $(`#alumnos-de-${b.dataset.verAlumnosDe}`);
-        const abierto = !cont.hidden;
-        if (abierto) { cont.hidden = true; return; }
-        cont.hidden = false;
-        cont.innerHTML = `<p class="texto-suave texto-pequeno">Cargando...</p>`;
-        const alumnosDe = await FirebaseService.listarAlumnosDeEntrenador(b.dataset.verAlumnosDe).catch(() => []);
-        cont.innerHTML = !alumnosDe.length ? `<p class="texto-suave texto-pequeno estado-vacio">Este entrenador todavía no tiene alumnos.</p>` :
-          alumnosDe.map(a => `
-            <div class="fila-historial" style="cursor:default">
-              <div class="fila-historial-info"><strong>${escapeHtml(a.nombre)}</strong><span class="texto-suave">${escapeHtml(a.email)}</span></div>
-              <span class="badge ${a.estadoPago === 'suspendido' ? 'badge-peligro' : 'badge-exito'}" style="margin-right:.4rem">${a.estadoPago === 'suspendido' ? 'Suspendido' : 'Activo'}</span>
-              <button class="btn-icono" data-toggle-autoeditar-sa="${a.uid}" data-valor="${a.autoeditar ? 'false' : 'true'}" title="${a.autoeditar ? 'Puede editar su rutina — tocá para quitarle el permiso' : 'Permitir que edite su propia rutina'}">${icon(a.autoeditar ? 'check-circle' : 'edit')}</button>
-              <button class="btn-icono ${a.estadoPago === 'suspendido' ? '' : 'btn-icono-peligro'}" data-suspender-sa="${a.uid}" data-accion-sa="${a.estadoPago === 'suspendido' ? 'activar' : 'suspender'}" data-entrenador-sa="${b.dataset.verAlumnosDe}" title="${a.estadoPago === 'suspendido' ? 'Reactivar' : 'Suspender'}">${icon(a.estadoPago === 'suspendido' ? 'play' : 'close')}</button>
-            </div>`).join('');
-        $$('[data-toggle-autoeditar-sa]', cont).forEach(bb => bb.addEventListener('click', async () => {
-          await FirebaseService.cambiarAutoeditar(bb.dataset.toggleAutoeditarSa, bb.dataset.valor === 'true');
-          toast('Actualizado.', 'exito');
-          b.click(); b.click(); // recarga la sublista (cerrar y volver a abrir)
-        }));
-        $$('[data-suspender-sa]', cont).forEach(bb => bb.addEventListener('click', async () => {
-          const nuevoEstado = bb.dataset.accionSa === 'activar' ? 'activo' : 'suspendido';
-          await FirebaseService.cambiarEstadoAlumno(bb.dataset.suspenderSa, nuevoEstado);
-          toast(nuevoEstado === 'suspendido' ? 'Alumno suspendido.' : 'Alumno reactivado.', 'exito');
-          b.click(); b.click();
-        }));
-      }));
+        </div>`).join('');
 
       $$('[data-accion]', listaEnt).forEach(b => b.addEventListener('click', async () => {
         const nuevoEstado = b.dataset.accion === 'activar' ? 'activo' : 'suspendido';
@@ -721,19 +686,9 @@ const App = (() => {
           <button class="btn btn-sm ${a.estadoPago === 'suspendido' ? 'btn-primario' : 'btn-peligro'}" data-suspender-alumno="${a.uid}" data-accion="${a.estadoPago === 'suspendido' ? 'activar' : 'suspender'}">
             ${a.estadoPago === 'suspendido' ? 'Reactivar' : 'Suspender'}
           </button>
-          <button class="btn btn-fantasma btn-sm" data-toggle-autoeditar="${a.uid}" data-valor="${a.autoeditar ? 'false' : 'true'}" title="${a.autoeditar ? 'El alumno puede editar su propia rutina — tocá para quitarle el permiso' : 'Dar permiso para que edite su propia rutina'}">
-            ${icon(a.autoeditar ? 'check-circle' : 'edit')} ${a.autoeditar ? 'Puede editar su rutina' : 'Permitir editar rutina'}
-          </button>
           <button class="btn-icono btn-icono-peligro" data-eliminar-alumno="${a.uid}" data-nombre-alumno="${escapeHtml(a.nombre)}" title="Eliminar alumno permanentemente" aria-label="Eliminar alumno">${icon('trash')}</button>
         </div>
       </div>`).join('');
-    $$('[data-toggle-autoeditar]', listaCont).forEach(b => b.addEventListener('click', async (e) => {
-      e.stopPropagation();
-      const valor = b.dataset.valor === 'true';
-      await FirebaseService.cambiarAutoeditar(b.dataset.toggleAutoeditar, valor);
-      toast(valor ? 'Ahora puede editar su rutina.' : 'Ya no puede editar su rutina.', 'exito');
-      renderAlumnos();
-    }));
     $$('[data-eliminar-alumno]', listaCont).forEach(b => b.addEventListener('click', async (e) => {
       e.stopPropagation();
       if (!confirm(`¿Eliminar a ${b.dataset.nombreAlumno} PERMANENTEMENTE? Pierde su ficha y su rutina. Esta acción no se puede deshacer. Si querés poder reactivarlo más adelante, usá "Suspender" en vez de esto.`)) return;
@@ -965,14 +920,12 @@ const App = (() => {
     });
   }
 
-  function abrirModalEditarSeriesObjetivo(uid, rutina, di, ei, esEntrenadorEditando, permiteEmpezar) {
+  function abrirModalEditarSeriesObjetivo(uid, rutina, di, ei, esEntrenadorEditando) {
     const item = rutina.dias[di].ejercicios[ei];
-    const esLibre = !item.ejercicioId;
-    const ej = esLibre ? null : getExerciseById(item.ejercicioId);
-    if (!esLibre && !ej) return;
-    const nombreMostrado = esLibre ? item.nombreLibre : ej.nombre;
+    const ej = getExerciseById(item.ejercicioId);
+    if (!ej) return;
     abrirModal(`
-      <div class="modal-header"><h3>${icon('edit')} ${escapeHtml(nombreMostrado)}</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
+      <div class="modal-header"><h3>${icon('edit')} ${escapeHtml(ej.nombre)}</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
       <div class="modal-body">
         <label class="campo"><span>Número de series</span><input type="number" min="1" max="12" id="input-num-series" value="${item.seriesObjetivo.length}"></label>
         <label class="campo"><span>Repeticiones objetivo</span><input type="number" min="1" id="input-reps-obj" value="${item.seriesObjetivo[0]?.reps || 10}"></label>
@@ -990,10 +943,10 @@ const App = (() => {
       const peso = Math.max(0, Number($('#input-peso-obj').value) || 0);
       item.seriesObjetivo = Array.from({ length: n }, () => ({ reps, peso }));
       item.descansoSeg = Math.max(0, Number($('#input-descanso-obj').value) || 90);
+      await FirebaseService.guardarRutina(uid, rutina);
       cerrarModal();
       toast('Ejercicio actualizado.', 'exito');
       renderDiasRutina(uid, rutina, esEntrenadorEditando, permiteEmpezar);
-      guardarRutinaDeFondo(uid, rutina);
     });
   }
 
@@ -1013,17 +966,13 @@ const App = (() => {
         </div>
         <div class="lista-ejercicios-dia">
           ${dia.ejercicios.map((item, ei) => {
-            const esLibre = !item.ejercicioId;
-            const ej = esLibre ? null : getExerciseById(item.ejercicioId);
-            if (!esLibre && !ej) return '';
-            const nombre = esLibre ? item.nombreLibre : ej.nombre;
+            const ej = getExerciseById(item.ejercicioId);
+            if (!ej) return '';
             return `<div class="fila-ejercicio-dia">
               <div class="fila-ejercicio-dia-icono">${icon('routine')}</div>
-              <div class="fila-ejercicio-dia-info"><strong>${escapeHtml(nombre)}</strong><span class="texto-suave">${item.seriesObjetivo.length} series${esLibre ? ' · libre' : ''}</span></div>
+              <div class="fila-ejercicio-dia-info"><strong>${escapeHtml(ej.nombre)}</strong><span class="texto-suave">${item.seriesObjetivo.length} series</span></div>
               <div class="fila-ejercicio-dia-acciones">
-                ${esEntrenadorEditando ? `<button class="btn-icono" data-mover-ej="${di}:${ei}:arriba" title="Subir" aria-label="Subir" ${ei === 0 ? 'disabled' : ''}>${icon('chevron-up')}</button>` : ''}
-                ${esEntrenadorEditando ? `<button class="btn-icono" data-mover-ej="${di}:${ei}:abajo" title="Bajar" aria-label="Bajar" ${ei === dia.ejercicios.length - 1 ? 'disabled' : ''}>${icon('chevron-down')}</button>` : ''}
-                ${!esLibre ? `<button class="btn-icono" data-ver-detalle="${ej.id}" title="Ver detalle" aria-label="Ver detalle">${icon('info')}</button>` : ''}
+                <button class="btn-icono" data-ver-detalle="${ej.id}" title="Ver detalle" aria-label="Ver detalle">${icon('info')}</button>
                 ${esEntrenadorEditando ? `<button class="btn-icono" data-editar-series="${di}:${ei}" title="Editar series" aria-label="Editar series">${icon('edit')}</button>` : ''}
                 ${esEntrenadorEditando ? `<button class="btn-icono btn-icono-peligro" data-quitar-ej="${di}:${ei}">${icon('close')}</button>` : ''}
               </div>
@@ -1036,77 +985,41 @@ const App = (() => {
     $$('[data-empezar-dia]', cont).forEach(b => b.addEventListener('click', () => iniciarEntrenamiento(rutina, rutina.dias[Number(b.dataset.empezarDia)])));
     $$('[data-editar-series]', cont).forEach(b => b.addEventListener('click', () => {
       const [di, ei] = b.dataset.editarSeries.split(':').map(Number);
-      abrirModalEditarSeriesObjetivo(uid, rutina, di, ei, esEntrenadorEditando, permiteEmpezar);
-    }));
-    $$('[data-mover-ej]', cont).forEach(b => b.addEventListener('click', () => {
-      const [di, ei, direccion] = b.dataset.moverEj.split(':');
-      const diN = Number(di), eiN = Number(ei);
-      const destino = direccion === 'arriba' ? eiN - 1 : eiN + 1;
-      const lista = rutina.dias[diN].ejercicios;
-      if (destino < 0 || destino >= lista.length) return;
-      [lista[eiN], lista[destino]] = [lista[destino], lista[eiN]];
-      renderDiasRutina(uid, rutina, esEntrenadorEditando, permiteEmpezar);
-      guardarRutinaDeFondo(uid, rutina);
+      abrirModalEditarSeriesObjetivo(uid, rutina, di, ei, esEntrenadorEditando);
     }));
     $$('[data-agregar-ej]', cont).forEach(b => b.addEventListener('click', () => {
-      const di = Number(b.dataset.agregarEj);
       abrirSelectorEjercicios(async (ej) => {
-        rutina.dias[di].ejercicios.push({
+        rutina.dias[Number(b.dataset.agregarEj)].ejercicios.push({
           id: `ej-${Date.now()}`, ejercicioId: ej.id,
           seriesObjetivo: [{ reps: 10, peso: 0 }, { reps: 10, peso: 0 }, { reps: 10, peso: 0 }], descansoSeg: 90
         });
+        await FirebaseService.guardarRutina(uid, rutina);
         renderDiasRutina(uid, rutina, esEntrenadorEditando, permiteEmpezar);
         toast(`${ej.nombre} agregado.`, 'exito');
-        guardarRutinaDeFondo(uid, rutina);
-      }, () => abrirModalEjercicioLibre(di));
+      });
     }));
-    $$('[data-quitar-ej]', cont).forEach(b => b.addEventListener('click', () => {
+    $$('[data-quitar-ej]', cont).forEach(b => b.addEventListener('click', async () => {
       const [di, ei] = b.dataset.quitarEj.split(':').map(Number);
       rutina.dias[di].ejercicios.splice(ei, 1);
+      await FirebaseService.guardarRutina(uid, rutina);
       renderDiasRutina(uid, rutina, esEntrenadorEditando, permiteEmpezar);
-      guardarRutinaDeFondo(uid, rutina);
     }));
-    $$('[data-renombrar-dia]', cont).forEach(b => b.addEventListener('click', () => {
+    $$('[data-renombrar-dia]', cont).forEach(b => b.addEventListener('click', async () => {
       const di = Number(b.dataset.renombrarDia);
       const nuevoNombre = prompt('Nuevo nombre para este día:', rutina.dias[di].nombre);
       if (nuevoNombre === null || !nuevoNombre.trim()) return;
       rutina.dias[di].nombre = nuevoNombre.trim();
+      await FirebaseService.guardarRutina(uid, rutina);
       renderDiasRutina(uid, rutina, esEntrenadorEditando, permiteEmpezar);
-      guardarRutinaDeFondo(uid, rutina);
     }));
-    $$('[data-borrar-dia]', cont).forEach(b => b.addEventListener('click', () => {
+    $$('[data-borrar-dia]', cont).forEach(b => b.addEventListener('click', async () => {
       const di = Number(b.dataset.borrarDia);
       if (!confirm(`¿Borrar "${rutina.dias[di].nombre}"? Esta acción no se puede deshacer.`)) return;
       rutina.dias.splice(di, 1);
+      await FirebaseService.guardarRutina(uid, rutina);
       renderDiasRutina(uid, rutina, esEntrenadorEditando, permiteEmpezar);
       toast('Día borrado.', 'exito');
-      guardarRutinaDeFondo(uid, rutina);
     }));
-
-    function abrirModalEjercicioLibre(di) {
-      abrirModal(`
-        <div class="modal-header"><h3>${icon('plus')} Ejercicio libre</h3><button data-cerrar-modal class="btn-icono">${icon('close')}</button></div>
-        <div class="modal-body">
-          <p class="texto-suave texto-pequeno">Para un ejercicio que no está en la base — no va a tener GIF ni detalle, solo el nombre.</p>
-          <label class="campo"><span>Nombre del ejercicio</span><input type="text" id="input-nombre-ej-libre" placeholder="Ej: Circuito funcional propio" autofocus></label>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-fantasma" data-cerrar-modal>Cancelar</button>
-          <button class="btn btn-primario" id="btn-guardar-ej-libre">${icon('check')} Agregar</button>
-        </div>`, { id: 'modal-ejercicio-libre' });
-      $('#btn-guardar-ej-libre').addEventListener('click', () => {
-        const nombreLibre = $('#input-nombre-ej-libre').value.trim();
-        if (!nombreLibre) { toast('Escribí un nombre para el ejercicio.', 'error'); return; }
-        rutina.dias[di].ejercicios.push({
-          id: `ej-${Date.now()}`, ejercicioId: null, nombreLibre,
-          seriesObjetivo: [{ reps: 10, peso: 0 }, { reps: 10, peso: 0 }, { reps: 10, peso: 0 }], descansoSeg: 90
-        });
-        cerrarModal();
-        renderDiasRutina(uid, rutina, esEntrenadorEditando, permiteEmpezar);
-        toast(`${nombreLibre} agregado.`, 'exito');
-        guardarRutinaDeFondo(uid, rutina);
-      });
-    }
   }
 
   // =======================================================================
@@ -1175,11 +1088,8 @@ const App = (() => {
         </div>
         <div class="lista-ejercicios-dia">
           ${dia.ejercicios.map(item => {
-            const esLibre = !item.ejercicioId;
-            const ej = esLibre ? null : getExerciseById(item.ejercicioId);
-            if (!esLibre && !ej) return '';
-            const nombre = esLibre ? item.nombreLibre : ej.nombre;
-            return `<div class="fila-ejercicio-dia"><div class="fila-ejercicio-dia-icono">${esLibre ? icon('routine') : imagenEjercicioHTML(ej)}</div><div class="fila-ejercicio-dia-info"><strong>${escapeHtml(nombre)}</strong><span class="texto-suave">${item.seriesObjetivo.length} series${esLibre ? ' · libre' : ''}</span></div><div class="fila-ejercicio-dia-acciones">${!esLibre ? `<button class="btn-icono" data-ver-detalle="${ej.id}" title="Ver detalle" aria-label="Ver detalle">${icon('info')}</button>` : ''}</div></div>`;
+            const ej = getExerciseById(item.ejercicioId);
+            return ej ? `<div class="fila-ejercicio-dia"><div class="fila-ejercicio-dia-icono">${imagenEjercicioHTML(ej)}</div><div class="fila-ejercicio-dia-info"><strong>${escapeHtml(ej.nombre)}</strong><span class="texto-suave">${item.seriesObjetivo.length} series</span></div><div class="fila-ejercicio-dia-acciones"><button class="btn-icono" data-ver-detalle="${ej.id}" title="Ver detalle" aria-label="Ver detalle">${icon('info')}</button></div></div>` : '';
           }).join('') || '<p class="texto-suave texto-pequeno">Sin ejercicios.</p>'}
         </div>
       </div>`).join('');
@@ -1188,21 +1098,14 @@ const App = (() => {
   }
   RENDERERS['mi-rutina'] = renderMiRutina;
 
-  function guardarRutinaDeFondo(uid, rutina) {
-    FirebaseService.guardarRutina(uid, rutina).catch(err => {
-      console.error('Error guardando rutina:', err);
-      toast('No se pudo guardar el cambio. Revisá tu conexión e intentá de nuevo.', 'error');
-    });
-  }
-
   function iniciarEntrenamiento(rutina, dia) {
     state.sesionActiva = {
       rutinaNombre: rutina.nombre, diaNombre: dia.nombre, inicio: Date.now(),
       calentamiento: rutina.calentamiento || [],
       ejercicios: dia.ejercicios.map(item => {
-        const ej = item.ejercicioId ? getExerciseById(item.ejercicioId) : null;
+        const ej = getExerciseById(item.ejercicioId);
         return {
-          ejercicioId: item.ejercicioId || null, nombre: ej?.nombre || item.nombreLibre || 'Ejercicio',
+          ejercicioId: item.ejercicioId, nombre: ej?.nombre || 'Ejercicio',
           descansoSeg: item.descansoSeg || 90,
           series: item.seriesObjetivo.map(o => ({ peso: o.peso || 0, reps: o.reps || 0, rpe: null, rir: null, completada: false }))
         };
